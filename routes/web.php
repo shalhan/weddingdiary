@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
 Route::get('/', function (Request $req) {
     $couple = 'shalhan';
     $vendor_id = 1;
-    $url = 'http://localhost:8888';
+    $url = env("DEV_CURRENT_URL");
     $path = '/diary';
     $token = '68501fe8d004ef236c0370ce97eef8d1';
     Log::info($req->fullUrl);
@@ -30,7 +30,7 @@ Route::group(['middleware'=> 'cors'], function() {
     Route::get('/check', function (Request $req) {
         $couple = 'shalhan';
         $vendor_id = 1;
-        $url = 'http://localhost:8888';
+        $url = env("DEV_CURRENT_URL");
         $path = '/diary';
         $token = '68501fe8d004ef236c0370ce97eef8d1';
     
@@ -46,7 +46,7 @@ Route::group(['middleware'=> 'cors'], function() {
                 
                 $current_url = parse_url($req->current_url);
                 //check are current_url and path in database exist?
-                if('http://localhost:8888' === $url && $current_url['path'] === $path)
+                if(env("DEV_CURRENT_URL") === $url && $current_url['path'] === $path)
                     return [
                         'code' => 1,
                         'msg' => 'Url is valid'
