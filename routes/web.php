@@ -36,7 +36,7 @@ Route::group(['middleware'=> 'cors'], function() use ($DEV_CURRENT_URL) {
         $couple = 'shalhan';
         $vendor_id = 1;
         $url = $DEV_CURRENT_URL;
-        $path = '/diary';
+        $path = ['/diary', '/diary/'];
         $token = '68501fe8d004ef236c0370ce97eef8d1';
     
         //check if token exist in db
@@ -51,7 +51,7 @@ Route::group(['middleware'=> 'cors'], function() use ($DEV_CURRENT_URL) {
                 
                 $current_url = parse_url($req->current_url);
                 //check are current_url and path in database exist?
-                if($DEV_CURRENT_URL === $url && $current_url['path'] === $path)
+                if($DEV_CURRENT_URL === $url && in_array($current_url['path'],$path))
                     return [
                         'code' => 1,
                         'msg' => 'Url is valid'
