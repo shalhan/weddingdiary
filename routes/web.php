@@ -46,12 +46,12 @@ Route::group(['middleware'=> 'cors'], function() {
                 
                 $current_url = parse_url($req->current_url);
                 //check are current_url and path in database exist?
-                if('http://'.$current_url['host'].':'.$current_url['port'] === $url && $current_url['path'] === $path)
+                if('http://localhost:8888' === $url && $current_url['path'] === $path)
                     return [
                         'code' => 1,
                         'msg' => 'Url is valid'
                     ];
-                else
+                else 
                     return [
                         'code' => 0,
                         'msg' => 'Url is not valid'
@@ -65,6 +65,7 @@ Route::group(['middleware'=> 'cors'], function() {
             }
         }
         else {
+            \Log::info("TOKEN TIDAK SAMA");
             return [
                 'code' => 0,
                 'msg' => 'Url is not valid'
