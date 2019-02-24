@@ -9,18 +9,18 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
         <!-- Favicon and Touch Icons -->
-        <link href="{{ url('resources/favicon.ico') }}" rel="shortcut icon" type="image/png">
-        <link href="{{ url('resources/apple-touch-icon.png') }}" rel="apple-touch-icon">
-        <link href="{{ url('resources/apple-touch-icon-72x72.png') }}" rel="apple-touch-icon" sizes="72x72">
-        <link href="{{ url('resources/apple-touch-icon-114x114.png') }}" rel="apple-touch-icon" sizes="114x114">
-        <link href="{{ url('resources/apple-touch-icon-144x144.png') }}" rel="apple-touch-icon" sizes="144x144">
+        <link href="{{ asset('resources/favicon.ico') }}" rel="shortcut icon" type="image/png">
+        <link href="{{ asset('resources/apple-touch-icon.png') }}" rel="apple-touch-icon">
+        <link href="{{ asset('resources/apple-touch-icon-72x72.png') }}" rel="apple-touch-icon" sizes="72x72">
+        <link href="{{ asset('resources/apple-touch-icon-114x114.png') }}" rel="apple-touch-icon" sizes="114x114">
+        <link href="{{ asset('resources/apple-touch-icon-144x144.png') }}" rel="apple-touch-icon" sizes="144x144">
 
         <!-- Icon fonts -->
-        <link href="{{ url('/css/font-awesome.min.css') }}" rel="stylesheet">
-        <link href="{{ url('/css/flaticon.css') }}" rel="stylesheet">
+        <link href="{{ asset('/css/font-awesome.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('/css/flaticon.css') }}" rel="stylesheet">
 
         <!-- Bootstrap core CSS -->
-        <link href="{{ url('/css/bootstrap.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('/css/bootstrap.min.css') }}" rel="stylesheet">
 
         <!-- CUSTOM CSS -->
         @stack("style")
@@ -80,8 +80,8 @@
     </head>
     <body>
         @yield("content")
-        <script src="{{ url('/js/jquery.min.js') }}"></script>
-        <script src="{{ url('/js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('/js/jquery.min.js') }}"></script>
+        <script src="{{ asset('/js/bootstrap.min.js') }}"></script>
         @stack("script")
     </body>
 </html>

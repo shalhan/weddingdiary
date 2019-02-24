@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddTokenIntoMscouple extends Migration
+class AddTokenIntoMsvendor extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class AddTokenIntoMscouple extends Migration
      */
     public function up()
     {
-        Schema::table('mscouple', function (Blueprint $table) {
+        Schema::table('msvendor', function (Blueprint $table) {
             $table->string('TOKEN')->nullable();
         });
     }
@@ -25,7 +25,7 @@ class AddTokenIntoMscouple extends Migration
      */
     public function down()
     {
-        Schema::table('mscouple', function (Blueprint $table) {
+        Schema::table('msvendor', function (Blueprint $table) {
             $table->dropColumn('TOKEN');
         });
     }
