@@ -1,0 +1,150 @@
+
+/***********************
+= hero slider
+***********************/
+.hero {
+	position: relative;
+	height: 100vh;
+
+	@include media-query(767px) {
+		min-height: 420px;
+	}
+
+	.hero-img {
+		height: 100vh;
+
+		@include media-query(767px) {
+			min-height: 420px;
+		}
+
+		background-repeat: no-repeat;
+		position: relative;
+
+		img {
+			display: none;
+		}
+
+		&:before {
+			content: "";
+			@include overlay(transparentize($black, 0.6));
+		}
+	}
+
+
+	.announcement-wrapper {
+		width: 100%;
+		color: #fff;
+		text-align: center;
+		position: absolute;
+		top: 50%;
+		@include translatingY;
+		z-index: 10;
+
+		.married-text  {
+			letter-spacing: -2px;
+			span {
+				display: inline-block;
+			}
+		}
+
+		span {
+			text-transform: uppercase;
+			font-size: 24px;
+			letter-spacing: 7px;
+			display: block;
+
+			@include media-query(767px) {
+				font-size: 17px;
+				letter-spacing: 4px;
+			}
+
+			@include media-query(450px) {
+				font-size: 14px;
+				letter-spacing: 4px;
+			}
+		}
+
+		.couple-name {
+			background-color: transparentize($theme-primary-color, 0.5);
+			display: inline-block;
+			margin-top: 20px;
+			padding: 15px 35px;
+			position: relative;
+
+			@include media-query(450px) {
+				padding: 15px 15px;
+			}
+
+			&:before,
+			&:after {
+				content: "";
+				background-color: $theme-primary-color;
+				width: 105%;
+				height: 3px;
+				position: absolute;
+				left: 50%;
+				@include translatingX;
+
+				@include media-query(767px) {
+					height: 2px;
+				}
+
+				@include media-query(450px) {
+					height: 1px;
+				}
+			}
+
+
+
+			&:before {
+				top: 0;
+			}
+
+			&:after {
+				bottom: 0;
+			}
+		}
+
+		h1 {
+			font-family: $parisienne;
+			font-size: 65px;
+			color: #fff;
+			margin: 0;
+
+			@include media-query(767px) {
+				font-size: 40px;
+			}
+
+			@include media-query(450px) {
+				font-size: 32px;
+			}
+		}
+
+		.date {
+			font-family: $section-title-font;
+			font-size: 48px;
+			line-height: 1.9em;
+
+			@include media-query(767px) {
+				font-size: 25px;
+			}
+		}
+
+		.vector {
+			background: url(../images/announcement-bg.png) no-repeat center bottom;
+			background-size: 100%;
+			width: 325px;
+			height: 37px;
+			margin: 0 auto;
+
+			@include media-query(767px) {
+				width: 220px;
+			}
+
+			@include media-query(450px) {
+				width: 200px;
+			}
+		}
+	}
+
+}

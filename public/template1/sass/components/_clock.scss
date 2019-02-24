@@ -1,0 +1,41 @@
+#clock {
+	text-align: center;
+	
+	overflow: hidden;
+
+	.box {
+		width: 25%;
+		float: left;
+		padding: 55px 0;
+
+		@include media-query(767px) {
+			padding: 25px 0;
+		}
+	}
+
+	> .box:nth-child(even) {
+		background-color: darken($theme-primary-color, 3%);
+	}
+
+	.box div {
+		font-family: $parisienne;
+		font-size: 48px;
+	    display: block;
+	    @include media-query(776px) {
+			font-size: 30px;
+		}		
+	}
+
+	.box span {
+		display: block;
+	    font-size: 14px;
+	    text-transform: uppercase;
+	    @include media-query(776px) {
+			font-size: 12px;
+		}
+		
+	    @include media-query(400px) {
+			font-size: 10px;
+		}
+	}
+}

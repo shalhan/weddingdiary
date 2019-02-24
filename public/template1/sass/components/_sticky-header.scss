@@ -1,0 +1,38 @@
+.sticky {
+	width: 100% !important;
+	position: fixed !important;
+	left: 0;
+	top: 0;
+	z-index: 9999 !important;
+	-webkit-animation: navigationFlipIn 0.5s;
+	animation: navigationFlipIn 0.5s;
+
+	.logo-bottom-shape {
+		visibility: visible !important;
+		opacity: 1 !important;
+	}
+}
+
+@-webkit-keyframes navigationFlipIn {
+	from {
+		-webkit-transform: translateY(-100%);
+		transform: translateY(-100%);
+	}
+
+	to {
+		-webkit-transform: translateY(0);
+		transform: translateY(0);
+	}
+}
+
+@keyframes navigationFlipIn {
+	from {
+		-webkit-transform: translateY(-100%);
+		transform: translateY(-100%);
+	}
+
+	to {
+		-webkit-transform: translateY(0);
+		transform: translateY(0);
+	}
+}

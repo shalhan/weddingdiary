@@ -1,0 +1,24 @@
+/***********
+	Fonts
+************/
+@import url('https://fonts.googleapis.com/css?family=Parisienne|Roboto:400,400i,500,700|Sail');
+
+// fonts
+$base-font: 'Roboto', sans-serif;
+$sail: 'Sail', cursive;
+$parisienne: 'Parisienne', cursive;
+$section-title-font: $sail;
+
+$footer-slogan: $sail;
+$footer-couple: $parisienne;
+
+// color
+$dark-gray: #2a2a2a;
+$white: #fff;
+$black: #000;
+
+$theme-primary-color: #aa9a45;
+$body-bg-color: #f2f0f0;
+$section-bg-color: #edecec;
+$text-color: #6e6e6e;
+$heading-color: $dark-gray;

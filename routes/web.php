@@ -2,6 +2,8 @@
 use Illuminate\Http\Request;
 
 use App\Couple;
+use App\Wedding;
+use App\Message;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,17 +21,22 @@ $DEV_CURRENT_URL = "http://localhost:8888";
 
 
 Route::get('/', function (Request $req) use ($DEV_CURRENT_URL) {
-    $couple = new Couple();
-    $selectedCouple = $couple->getByToken($req->token);
-    if(!$selectedCouple)
+    $couples = new Couple();
+    $couple = $couples->getByToken($req->token);
+    if(!$couple)
         abort(404);
-
-    $subFolder2 = $selectedCouple->SUBFOLDER2;
-    $vendorId = $selectedCouple->MSVENDOR_GUID;
-    $token = $selectedCouple->TOKEN;
+    else {
+        $weddings = new Wedding();
+        $messages = new Message();
+        $wedding = $weddings->getByCoupleId($couple->GUID);
+        $messages = $messages->getByCoupleId($couple->GUID);
+    }
+    $subFolder2 = $couple->SUBFOLDER2;
+    $vendorId = $couple->MSVENDOR_GUID;
+    $token = $couple->TOKEN;
     foreach($req->query() as $key => $value) {
         if($key . '=' . $value == $subFolder2)
-            return view('index');
+            return view('templates.'.$couple->MSTEMPLATE_GUID, compact('couple', 'wedding', 'messages'));
     }
     
     abort(404);
@@ -57,7 +64,7 @@ Route::group(['middleware'=> 'cors'], function() use ($DEV_CURRENT_URL) {
                 //change in server
                 $currentUrlFull = $currentUrl['scheme'] . '://' . $currentUrl['host'] . ':' . $currentUrl['port'];
                 //check are current_url and path in database exist?
-                if($currentUrlFull === $url && in_array($currentUrl['path'],$subFolder) && $currentUrl['query'] == $subFolder2)
+                if($currentUrlFull === $url && in_array($currentUrl['path'],$subFolder))
                     return [
                         'code' => 1,
                         'msg' => 'Url is valid',
