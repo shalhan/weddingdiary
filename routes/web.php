@@ -18,11 +18,11 @@ use App\Vendor;
 */
 
 // $DEV_CURRENT_URL = "http://abphotographs.com";
-$DEV_CURRENT_URL = "http://localhost:8888";
+// $DEV_CURRENT_URL = "http://localhost:8888";
 
 
 
-Route::get('/', function (Request $req) use ($DEV_CURRENT_URL) {
+Route::get('/', function (Request $req) {
     $vendors = new Vendor();
     $vendor = $vendors->getByToken($req->token);
     if(!$vendor)
@@ -49,8 +49,8 @@ Route::get('/', function (Request $req) use ($DEV_CURRENT_URL) {
     abort(404);
 });
 
-Route::group(['middleware'=> 'cors'], function() use ($DEV_CURRENT_URL) {
-    Route::get('/check', function (Request $req) use ($DEV_CURRENT_URL) {
+Route::group(['middleware'=> 'cors'], function() {
+    Route::get('/check', function (Request $req) {
         $vendors = new Vendor();
         $vendor = $vendors->getByToken($req->token);
         if(!$vendor)
@@ -61,15 +61,16 @@ Route::group(['middleware'=> 'cors'], function() use ($DEV_CURRENT_URL) {
         $couples = new Couple();
         $vendorCouples = $couples->getByVendorId($vendor->GUID);
         //check if token exist in db
-        if($vendorCouples) {
+        \Log::info(json_encode($vendorCouples));
+        if(count($vendorCouples)>0) {
             foreach($vendorCouples as $couple) {
 
                 try {
                     $subFolder = ['/'. $couple->SUBFOLDER, '/'.$couple->SUBFOLDER.'/'] ;
                     $subFolder2 = $couple->SUBFOLDER2;
                     $vendorId = $couple->MSVENDOR_GUID;
-                    // $url = $couple->vendor->VENDOR_WEBSITE;
-                    $url = $DEV_CURRENT_URL;
+                    $url = $couple->vendor->VENDOR_WEBSITE;
+
                     //check is current_url is an URL (to detact script)
                     if(!filter_var($req->current_url, FILTER_VALIDATE_URL))
                         return [
@@ -81,7 +82,6 @@ Route::group(['middleware'=> 'cors'], function() use ($DEV_CURRENT_URL) {
                     //change in server
                     $currentUrlFull = $currentUrl['scheme'] . '://' . $currentUrl['host'] . ':' . $currentUrl['port'];
                     //check are current_url and path in database exist?
-                    \Log::info($url);
                     if($currentUrlFull === $url && in_array($currentUrl['path'],$subFolder))
                         return [
                             'code' => 1,
@@ -97,6 +97,7 @@ Route::group(['middleware'=> 'cors'], function() use ($DEV_CURRENT_URL) {
                         ];
                 }
                 catch(\Exception $e) {
+
                     return [
                         'code' => 0,
                         'msg' => $e->getMessage()
