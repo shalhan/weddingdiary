@@ -75,9 +75,9 @@
                     <li><a href="#couple">Couple</a></li>
                     <li><a href="#story">Story</a></li>
                     <li><a href="#events">Wedding</a></li>
-                    <?php if(!(sizeof($couple->bride->siblings)==0)&&(sizeof($couple->bride->bridesmaids)==0)&&(sizeof($couple->bride->siblings)==0)&&(sizeof($couple->bride->bridesmaids)==0)){ ?>
-                    <li><a href="#people">People</a></li>
-                    <?php }?>
+                    <?php //if(!(sizeof($couple->bride->siblings)==0)&&(sizeof($couple->bride->bridesmaids)==0)&&(sizeof($couple->bride->siblings)==0)&&(sizeof($couple->bride->bridesmaids)==0)){ ?>
+                    <!-- <li><a href="#people">People</a></li> -->
+                    <?php //}?>
                     <li><a href="#gallery">Gallery</a></li>
                     <li><a href="#rsvp">Guest</a></li>
                     <li><a href="<?php echo $couple->vendor->VENDOR_WEBSITE; ?>"><?php echo $couple->vendor->VENDOR_NAME; ?></a></li>
