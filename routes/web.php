@@ -80,7 +80,7 @@ Route::group(['middleware'=> 'cors'], function() {
                     
                     $currentUrl = parse_url($req->current_url);
                     //change in server
-                    $currentUrlFull = $currentUrl['scheme'] . '://' . $currentUrl['host'] . ':' . $currentUrl['port'];
+                    $currentUrlFull = $currentUrl['scheme'] . '://' . $currentUrl['host'];
                     //check are current_url and path in database exist?
                     if($currentUrlFull === $url && in_array($currentUrl['path'],$subFolder))
                         return [
