@@ -16,6 +16,7 @@ class CouplesTableSeeder extends Seeder
         $couples = Couple::with(["groom", "bride"])->get();
         foreach($couples as $couple) {
             $couple->SUBFOLDER2 = $PREFIX . strtolower($couple->groom->GROOM_NAME) . strtolower($couple->bride->BRIDE_NAME);
+            $couple->MSTEMPLATE_GUID = rand(1,2);
             $couple->update();
         }
     }
