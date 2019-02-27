@@ -43,7 +43,7 @@ Route::get('/', function (Request $req) {
         $vendorId = $couple->MSVENDOR_GUID;
         foreach($req->query() as $key => $value) {
             if($key . '=' . $value == $subFolder2)
-                return view('templates.'.$couple->MSTEMPLATE_GUID, compact('couple', 'wedding', 'messages', 'template'));
+                return view('templates.template'.$couple->MSTEMPLATE_GUID, compact('couple', 'wedding', 'messages', 'template'));
         }
     }
     abort(404);
