@@ -109,8 +109,8 @@ Route::group(['middleware'=> 'cors'], function() {
                     $subFolder = ['/'. $couple->SUBFOLDER, '/'.$couple->SUBFOLDER.'/'] ;
                     $subFolder2 = $couple->SUBFOLDER2;
                     $vendorId = $couple->MSVENDOR_GUID;
-                    // $url = $couple->vendor->VENDOR_WEBSITE;
-                    $url = "http://localhost";
+                    $url = $couple->vendor->VENDOR_WEBSITE;
+                    // $url = "http://localhost";
 
                     //check is current_url is an URL (to detact script)
                     if(!filter_var($req->current_url, FILTER_VALIDATE_URL))
