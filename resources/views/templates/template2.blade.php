@@ -310,45 +310,38 @@
                 <h3 class="gla_subtitle">Sign Our Guest Book And leave a couple words</h3>
                 
                 
-                <?php
-                if(isset($data["error"]) && count($data["error"]) > 0) {
-                ?>
-                <div class="alert alert-danger" role="alert">
-                    <ul class="list-square">
-                        <?php
-                        foreach($data["error"] as $error) {
-                        ?>
-                        <li>
-                            <?php echo $error; ?>
-                        </li>
-                        <?php } ?>
-                    </ul>
-                </div>
-                <?php
-                } else if(isset($data["success"])) {
-                ?>
-                <div class="alert alert-success">
-                    <?php echo $data["success"]; ?>
-                </div>
-                <meta http-equiv="refresh" content="1;url={{url('/')}}">
-                <?php } ?>
+                @if($errors->any())
+                    <div class="alert alert-danger" role="alert">
+                        <ul class="list-square">
+                            @foreach($errors->all() as $error)
+                                {{ $error }}
+                            </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @elseif(session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                    @endif
                 
                 <div class="row">
                     <div class="col-md-8 col-md-push-2">
-                        <form action="{{ url('/message') }}" method="POST">
+                        <form action="{{ url('/messages/'.$couple->GUID) }}" method="POST">
+                            @csrf
                             <div class="row">
                                 <div class="col-md-6">
                                     <label>Your name*</label>
-                                    <input type="text" name="gb_name" placeholder="Your Name" class="form-control form-opacity">
+                                    <input type="text" name="Nama" placeholder="Your Name" class="form-control form-opacity">
                                 </div>
                                 <div class="col-md-6">
                                     <label>Your e-mail*</label>
-                                    <input type="text" name="gb_email" placeholder="Your Email" class="form-control form-opacity">
+                                    <input type="text" name="Email" placeholder="Your Email" class="form-control form-opacity">
                                 </div>
                   
                                 <div class="col-md-6">
                                     <label>How Many Of You Will Come</label>
-                                    <select name="meal" class="form-control form-opacity">
+                                    <select name="Tamu" class="form-control form-opacity">
                                         <option value="0" style="color:#333;">Can't Go</option>
                                         <option value="1" style="color:#333;">1 Person</option>
                                         <option value="2" style="color:#333;">2 Persons</option>
@@ -358,7 +351,7 @@
                                 </div>
                                 <div class="col-md-12">
                                     <label>Notes</label>
-                                    <textarea name="gb_comments" placeholder="Your Message" class="form-control form-opacity"></textarea>
+                                    <textarea name="Pesan" placeholder="Your Message" class="form-control form-opacity"></textarea>
                                 </div>
                                 <div class="col-md-12">
                                     <input type="submit" class="btn submit" value="Send">

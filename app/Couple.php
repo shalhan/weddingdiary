@@ -18,6 +18,11 @@ class Couple extends Model
                     ->get();
     }
 
+    public function getById($coupleId, $subfolder2 = null) {
+        return $this->select('GUID','MSGROOM_GUID', 'MSBRIDE_GUID', 'MSVENDOR_GUID', 'SUBFOLDER', 'SUBFOLDER2', "MSTEMPLATE_GUID", "PREWEDPHOTO_AMOUNT")
+                    ->find($coupleId);
+    }
+
     public function bride() {
         return $this->belongsTo('App\Bride', 'MSBRIDE_GUID', 'GUID');
     }

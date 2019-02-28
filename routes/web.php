@@ -49,6 +49,31 @@ Route::get('/', function (Request $req) {
     abort(404);
 });
 
+//submit comment
+Route::post('/messages/{coupleId}', function (Request $req, $coupleId) {
+    $messages = [
+        'required' => ':attribute harus di isi',
+    ];
+    Validator::make($req->all(), [
+        'Nama' => 'required',
+        'Email' => 'required',
+        'Pesan' => 'required',
+    ], $messages)->validate();
+
+    $couples = new Couple();
+    $couple = $couples->getById($coupleId);
+    $data = [
+        "MSCOUPLE_GUID" => $couple->GUID,
+        "TEXT" => $req->Pesan,
+        "EMAIL" => $req->Email,
+        "NAME" => $req->Nama,
+        "GUEST" => $req->Tamu,
+    ];
+    $messages = new Message();
+    $messages->create($data);
+    return redirect()->back()->with('success', 'Pesan kamu berhasil terkirim');
+});
+
 Route::group(['middleware'=> 'cors'], function() {
     Route::get('/check', function (Request $req) {
         $vendors = new Vendor();
@@ -61,7 +86,6 @@ Route::group(['middleware'=> 'cors'], function() {
         $couples = new Couple();
         $vendorCouples = $couples->getByVendorId($vendor->GUID);
         //check if token exist in db
-        \Log::info(json_encode($vendorCouples));
         if(count($vendorCouples)>0) {
             foreach($vendorCouples as $couple) {
 
@@ -69,7 +93,8 @@ Route::group(['middleware'=> 'cors'], function() {
                     $subFolder = ['/'. $couple->SUBFOLDER, '/'.$couple->SUBFOLDER.'/'] ;
                     $subFolder2 = $couple->SUBFOLDER2;
                     $vendorId = $couple->MSVENDOR_GUID;
-                    $url = $couple->vendor->VENDOR_WEBSITE;
+                    // $url = $couple->vendor->VENDOR_WEBSITE;
+                    $url = "http://localhost";
 
                     //check is current_url is an URL (to detact script)
                     if(!filter_var($req->current_url, FILTER_VALIDATE_URL))
@@ -106,7 +131,6 @@ Route::group(['middleware'=> 'cors'], function() {
             }
         }
         else {
-            \Log::info("TOKEN TIDAK SAMA");
             return [
                 'code' => 0,
                 'msg' => 'Url is not valid'

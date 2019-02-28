@@ -15,6 +15,7 @@ class VendorsTableSeeder extends Seeder
         $vendors = Vendor::get();
         foreach($vendors as $vendor) {
             $vendor->TOKEN = md5($vendor->VENDOR_WEBSITE . $vendor->GUID);
+            $vendor->VENDOR_URL = $vendor->VENDOR_WEBSITE;
             $vendor->update();
         }
     }

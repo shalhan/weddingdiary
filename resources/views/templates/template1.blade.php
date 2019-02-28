@@ -80,7 +80,7 @@
                     <?php //}?>
                     <li><a href="#gallery">Gallery</a></li>
                     <li><a href="#rsvp">Guest</a></li>
-                    <li><a href="<?php echo $couple->vendor->VENDOR_WEBSITE; ?>"><?php echo $couple->vendor->VENDOR_NAME; ?></a></li>
+                    <li><a href="<?php echo $couple->vendor->VENDOR_URL; ?>"><?php echo $couple->vendor->VENDOR_NAME; ?></a></li>
 
                 </ul>
             </div><!-- end of nav-collapse -->
@@ -375,7 +375,7 @@
             </div>
         </div> <!-- end of section-title -->
 
-        <div class="row content">
+        <div class="row content" id="message">
             <div class="col col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="rsvp-form-wrapper">
                     <div class="border-box">
@@ -385,45 +385,32 @@
                     </div>
                     <h4>Sign Our Guest Book And leave a couple words</h4>
 
-
-                    <?php
-                        if(isset($data["error"]) && count($data["error"]) > 0) {
-                    ?>
+                    @if($errors->any())
                     <div class="alert alert-danger" role="alert">
                         <ul class="list-square">
-                            <?php
-                                foreach($data["error"] as $error) {
-                            ?>
-                            <li>
-                                <?php echo $error; ?>
+                            @foreach($errors->all() as $error)
+                                {{ $error }}
                             </li>
-                            <?php } ?>
-
+                            @endforeach
                         </ul>
                     </div>
-                    <?php
-
-                        }else if(isset($data["success"])) {
-                    ?>
-
+                    @elseif(session('success'))
                         <div class="alert alert-success">
-                            <?php echo $data["success"]; ?>
+                            {{ session('success') }}
                         </div>
-                                <meta http-equiv="refresh" content="1;url={{ url('/') }}">
+                    @endif
 
-                    <?php } ?>
-
-
-                    <form name="rsvp-form" role="form" class="form form-inline" method="post" action="{{ url('/messages') }}>">
+                    <form name="rsvp-form" role="form" class="form form-inline" method="post" action="{{ url('/messages/'.$couple->GUID) }}>">
+                        @csrf
                         <div class="row">
                             <div class="form-group col col-sm-6">
-                                <input type="text" class="form-control"  name="gb_name" placeholder="Your Name" required>
+                                <input type="text" class="form-control"  name="Nama" placeholder="Your Name" required>
                             </div>
                             <div class="form-group col col-sm-6">
-                                <input type="email" class="form-control"  name="gb_email" placeholder="Your Email" required>
+                                <input type="email" class="form-control"  name="Email" placeholder="Your Email" required>
                             </div>
                             <div class="form-group col col-sm-6">
-                                <select name="gb_guest" class="form-control">\
+                                <select name="Tamu" class="form-control">\
                                     <option value="0">Can't Go</option>
                                     <option value="1" selected="selected">1 Person</option>
                                     <option value="2">2 Persons</option>
@@ -434,7 +421,7 @@
 
 
                             <div class="form-group col col-sm-12">
-                                <textarea name="gb_comments" class="form-control" placeholder="Your Message" ></textarea>
+                                <textarea name="Pesan" class="form-control" placeholder="Your Message" ></textarea>
                             </div>
 
                             <div class="form-group col col-sm-12">
