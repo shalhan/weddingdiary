@@ -80,7 +80,7 @@
                     <?php //}?>
                     <li><a href="#gallery">Gallery</a></li>
                     <li><a href="#rsvp">Guest</a></li>
-                    <li><a href="<?php echo $couple->vendor->VENDOR_URL; ?>"><?php echo $couple->vendor->VENDOR_NAME; ?></a></li>
+                    <li><a href="{{ url('/redirect?couple_id='.$couple->GUID. '&vendor_id=' . $couple->vendor->GUID . '&redirect_to=https://instagram.com') }}"><?php echo $couple->vendor->VENDOR_NAME; ?></a></li>
 
                 </ul>
             </div><!-- end of nav-collapse -->

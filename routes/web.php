@@ -5,7 +5,7 @@ use App\Couple;
 use App\Wedding;
 use App\Message;
 use App\Vendor;
-
+use App\VendorMenuVisit;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -42,8 +42,10 @@ Route::get('/', function (Request $req) {
         $subFolder2 = $couple->SUBFOLDER2;
         $vendorId = $couple->MSVENDOR_GUID;
         foreach($req->query() as $key => $value) {
-            if($key . '=' . $value == $subFolder2)
+            if($key . '=' . $value == $subFolder2) {
+                visited($couple->GUID,$req->ip());
                 return view('templates.template'.$couple->MSTEMPLATE_GUID, compact('couple', 'wedding', 'messages', 'template'));
+            }
         }
     }
     abort(404);
@@ -72,6 +74,20 @@ Route::post('/messages/{coupleId}', function (Request $req, $coupleId) {
     $messages = new Message();
     $messages->create($data);
     return redirect()->back()->with('success', 'Pesan kamu berhasil terkirim');
+});
+
+//redirect
+Route::get('/redirect', function (Request $req) {
+    $clientData = getClientMeta($req->ip());
+    $data = [
+        'MSCOUPLE_GUID'=>$req->couple_id,
+        'MSVENDORMENU_GUID'=>$req->vendor_id,
+        'IPPUBLIC' => $clientData["ipAddress"]
+    ];
+    $vendorMenuVisitors = new VendorMenuVisit();
+    $vendorMenuVisitors->create($data);
+    header('Location: ' . $req->redirect_to);
+    exit();
 });
 
 Route::group(['middleware'=> 'cors'], function() {
