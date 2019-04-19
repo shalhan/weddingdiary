@@ -160,7 +160,8 @@ Route::get("/weddings/create", "WeddingController@showCreate")->name("showCreate
 Route::get("/dashboard", "DashboardController@showIndex")->name("showDashboard");
 
 Route::get("/profile", "VendorController@showProfile")->name("showProfile");
+Route::get("/profile/change-password", "VendorController@showChangePassword")->name("showChangePassword");
 
 Route::get("/login", "Auth\LoginController@showLoginForm")->name("login");
-
+Route::get("/change-password", "Auth\LoginController@showLoginForm")->name("changePassword");
 
