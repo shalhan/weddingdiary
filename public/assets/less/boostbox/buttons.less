@@ -1,0 +1,313 @@
+//
+// Buttons
+// --------------------------------------------------
+
+// Alternate buttons
+// --------------------------------------------------
+
+.btn-inverse {
+	.button-variant(@btn-inverse-color; @btn-inverse-bg; @btn-inverse-border);
+}
+
+.btn-white {		.button-variant(darken(@white, 60%); @white; @white); }
+.btn-support1 {		.button-variant(darken(@brand-support1, 60%); @brand-support1; darken(@brand-support1, 5%)); }
+.btn-support2 {		.button-variant(darken(@brand-support2, 60%); @brand-support2; darken(@brand-support2, 5%)); }
+.btn-support3 {		.button-variant(darken(@brand-support3, 60%); @brand-support3; darken(@brand-support3, 5%)); }
+.btn-support4 {		.button-variant(darken(@brand-support4, 60%); @brand-support4; darken(@brand-support4, 5%)); }
+.btn-support5 {		.button-variant(darken(@brand-support5, 60%); @brand-support5; darken(@brand-support5, 5%)); }
+
+.btn-transparent {
+	color: inherit;
+	background-color: transparent;
+	border-color: transparent;
+
+	&:hover,
+		&:focus,
+		&:active,
+		&.active,
+		.open .dropdown-toggle& {
+		color: inherit;
+		background-color: rgba(0, 0, 0, 0.05);
+	}
+	&:active,
+		&.active,
+		.open .dropdown-toggle& {
+		background-image: none;
+	}
+}
+
+
+// Base styles
+// --------------------------------------------------
+
+// Core styles
+.btn {
+	&:active, &.active {
+		.box-shadow(none);
+	}
+}
+
+// Prevent double borders when buttons are next to each other
+.btn-group {
+	.btn.btn-outline + .btn.btn-outline,
+	.btn.btn-outline + .btn-group,
+	.btn-group + .btn.btn-outline {
+		margin-left: -3px;
+		&.btn-xs {margin-left: -1px;}
+	}
+}
+
+// Bordered button
+// --------------------------------------------------
+
+.btn-outline {
+	border-width: 3px;
+	background: #fff;
+	padding: 4px 10px;
+}
+
+.btn-rounded {
+	border-radius: 999px;
+	.label {
+		top: 0;
+		right: 3px;
+	}
+}
+
+.btn-xs {
+	&.btn-outline {	padding: 1px 5px; border-width: 1px; }
+}
+
+// Labeled buttons
+// --------------------------------------------------
+
+.btn-labeled {
+	position: relative;
+	
+	.label {
+		position: absolute;
+		top: -6px; right: -6px;
+		
+		.btn-rounded& {
+			top: 7px;
+			right: auto;
+			left: 99%;
+			margin: auto;
+		}
+	}
+}
+
+// Icon button
+// --------------------------------------------------
+
+.btn-equal,
+.btn-equal.btn-outline {
+	padding-left: 0;
+	padding-right: 0;
+	width: 32px;
+
+	&.btn-lg {	width: 44px; }
+	&.btn-sm {	width: 30px; }
+	&.btn-xs {	width: 22px; }
+}
+
+
+// Button group sizing
+.btn-group-xs > .btn.btn-equal { width: 22px; padding-left: 0; padding-right: 0; }
+.btn-group-sm > .btn.btn-equal { width: 30px; padding-left: 0; padding-right: 0; }
+.btn-group-lg > .btn.btn-equal { width: 44px; padding-left: 0; padding-right: 0; }
+
+// Checkboxes & Radiobuttons
+// --------------------------------------------------
+
+[data-toggle="buttons"] > input[type="checkbox"],
+[data-toggle="buttons"] > label > input[type="checkbox"] {
+	display: none;
+}
+
+
+.btn {
+	&[class^="btn-radio"],
+	&[class^="btn-checkbox"],
+	&[class*=" btn-radio"],
+	&[class*=" btn-checkbox"] {
+		padding: 6px 0;
+		.box-shadow(none);
+		vertical-align: middle;
+
+		&:hover {
+			color: inherit;
+			text-decoration: underline;
+		}
+		&:before {
+			position: relative;
+			display: inline-block;
+			margin-right: 4px;
+			font-style: normal;
+			text-align: center;
+			color: #fff;
+			border: 1px solid @gray-light;
+			background: #fff;
+
+			.active& {	color: @gray; }
+			:hover& {	border-color: @gray; }
+		}
+	}
+}
+.btn {
+	&[class^="btn-radio"],
+	&[class*=" btn-radio"] {
+		&:before {
+			content: "\2022";
+			top:3px;
+			padding: 2px;
+			width: 14px; height: 14px;
+			font-family: arial;
+			font-weight: bold;
+			font-size: 22px;
+			line-height: 9px;
+			border-radius: 999px;
+		}
+	}
+
+	&[class^="btn-checkbox"],
+	&[class*=" btn-checkbox"] {
+		&:before {
+			content: "\f00c";
+			top: -1px;
+			padding: 0;
+			width: 16px; height: 16px;
+			font-family: FontAwesome;
+			font-weight: normal;
+			font-size: 11px;
+			line-height: 13px;
+		}
+	}
+
+
+}
+
+
+// Variants
+// --------------------------------------------------
+
+.checkbox-radio-variant(primary,	@brand-primary);
+.checkbox-radio-variant(success,	@brand-success);
+.checkbox-radio-variant(warning,	@brand-warning);
+.checkbox-radio-variant(danger,		@brand-danger);
+.checkbox-radio-variant(info,		@brand-info);
+.checkbox-radio-variant(black,		@black);
+.checkbox-radio-variant(white,		@white);
+.checkbox-radio-variant(gray,		@gray-lighter);
+.checkbox-radio-variant(inverse,	@brand-inverse);
+.checkbox-radio-variant(body,		@body-color);
+.checkbox-radio-variant(support1,	@brand-support1);
+.checkbox-radio-variant(support2,	@brand-support2);
+.checkbox-radio-variant(support3,	@brand-support3);
+.checkbox-radio-variant(support4,	@brand-support4);
+.checkbox-radio-variant(support5,	@brand-support5);
+
+.checkbox-radio-variant-inverse(default-inverse,	@gray);
+.checkbox-radio-variant-inverse(primary-inverse,	@brand-primary);
+.checkbox-radio-variant-inverse(success-inverse,	@brand-success);
+.checkbox-radio-variant-inverse(warning-inverse,	@brand-warning);
+.checkbox-radio-variant-inverse(danger-inverse,		@brand-danger);
+.checkbox-radio-variant-inverse(info-inverse,		@brand-info);
+.checkbox-radio-variant-inverse(black-inverse,		@black);
+.checkbox-radio-variant-inverse(white-inverse,		@white);
+.checkbox-radio-variant-inverse(gray-inverse,		@gray-lighter);
+.checkbox-radio-variant-inverse(inverse-inverse,	@brand-inverse);
+.checkbox-radio-variant-inverse(support1-inverse,	@brand-support1);
+.checkbox-radio-variant-inverse(support2-inverse,	@brand-support2);
+.checkbox-radio-variant-inverse(support3-inverse,	@brand-support3);
+.checkbox-radio-variant-inverse(support4-inverse,	@brand-support4);
+.checkbox-radio-variant-inverse(support5-inverse,	@brand-support5);
+
+
+// Switches
+// --------------------------------------------------
+
+.btn-switch {
+	.box-shadow(none);
+    .user-select(none);
+	width: 60px;
+	position: relative;
+	overflow: hidden;
+	padding: 0; margin: 0;
+	background: #E1E1E8;
+
+	label {
+		padding:0; margin: 0;
+		white-space: nowrap;
+		width:200%;
+		cursor: pointer;
+		margin-bottom: -4px;
+		margin-left: 0;
+		.transition(margin-left .2s ease-out);
+
+		span {
+			display: inline-block;
+			float: left;
+			padding:6px 18px 6px 0;
+			text-align: center;
+			width: 50%;
+			background: #55baf5;
+
+			&+span {
+				padding:6px 0 6px 18px;
+			}
+		}
+	}
+
+	&:after {
+		content:".";
+		position: absolute;
+		left:100%;
+		display: inline-block;
+		padding: 5px 0;
+		margin-left: -20px;
+		width: 20px;
+		background: #fff;
+		color: #fff;
+		border: 1px solid @gray-light;
+		.transition(all .2s ease-out);
+	}
+	&.active {
+		&:after {
+			left: 0;
+			margin-left: 0;
+			.transition(all .2s ease-out);
+		}
+		label {
+			margin-left: -100%;
+			.transition(margin-left .2s ease-out);
+		}
+	}
+}
+
+// Vertical button groups
+// ----------------------
+
+.btn-group-vertical {
+	&.full-width {
+		width: 100%;
+		.btn,
+		.btn-group {
+			width: 100%;
+		}
+	}
+}
+
+
+// Links
+// --------------------------------------------------
+
+.link-default {
+	font-weight: 600;
+	color: inherit;
+
+	&:hover {
+		text-decoration: underline;
+		color: inherit;
+	}
+}

@@ -1,0 +1,280 @@
+//
+// Forms
+// --------------------------------------------------
+
+
+// Normalize non-controls
+//
+// Restyle and baseline non-control form elements.
+
+fieldset {
+}
+
+legend {
+	font-size: 14px;
+	font-weight: 600;
+	color: @gray-light;
+	margin: 10px 0;
+}
+
+label {
+	font-weight: 600;
+}
+
+.control-label {
+	small {
+		display: block;
+		color: lighten(#000, 50%);
+		font-weight: 500;
+		&.inline {
+			display: inline-block;
+		}
+	}
+}
+
+// Help text
+
+.help-block {
+	color: @form-help-color;
+	margin-bottom: 0;
+}
+
+// Common form controls
+//
+// Shared size and type resets for form controls. Apply `.form-control` to any
+// of the following form controls:
+// select
+// textarea
+// input[type="text"]
+// input[type="password"]
+// input[type="datetime"]
+// input[type="datetime-local"]
+// input[type="date"]
+// input[type="month"]
+// input[type="time"]
+// input[type="week"]
+// input[type="number"]
+// input[type="email"]
+// input[type="url"]
+// input[type="search"]
+// input[type="tel"]
+// input[type="color"]
+
+.form-control {
+	.box-shadow(none);
+
+	// Disabled and read-only inputs
+	&[disabled],
+	&[readonly],
+	fieldset[disabled] & {
+		border-color: @input-border-disabled;
+	}
+}
+
+input,
+textarea,
+select,
+.input-group {
+	&.control-width-tiny {		max-width: 40px; padding-right: 5px; }
+	&.control-width-mini {		max-width: 75px; }
+	&.control-width-small {		max-width: 130px; }
+	&.control-width-medium {	max-width: 200px; }
+	&.control-width-normal {	max-width: 300px; }
+	&.control-width-large {		max-width: 500px; }
+	&.control-width-xlarge {	max-width: 750px; }
+	&.control-width-xxlarge {	max-width: 1200px; }
+
+	&.control-2-rows {			height: (32px * 2); }
+	&.control-3-rows {			height: (32px * 3); }
+	&.control-4-rows {			height: (32px * 4); }
+	&.control-5-rows {			height: (32px * 5); }
+	&.control-6-rows {			height: (32px * 6); }
+	&.control-7-rows {			height: (32px * 7); }
+	&.control-8-rows {			height: (32px * 8); }
+	&.control-9-rows {			height: (32px * 9); }
+	&.control-10-rows {			height: (32px * 10); }
+	&.control-11-rows {			height: (32px * 11); }
+	&.control-12-rows {			height: (32px * 12); }
+}
+
+textarea.no-resize {
+	resize: none;
+}
+
+
+// Warning
+.has-warning {
+	.form-control {
+		background-color: screen(@state-warning-bg, #b3b3b3);
+	}
+}
+// Error
+.has-error {
+	.form-control {
+		background-color: screen(@state-danger-bg, #cccccc);
+	}
+}
+// Success
+.has-success {
+	.form-control {
+		background-color: screen(@state-success-bg, #cccccc);
+	}
+}
+
+
+// Form footer
+
+.form-footer {
+	padding: 10px 15px 15px 15px;
+}
+
+
+// Form bordered
+
+.form-bordered {
+	.form-group {
+		border-bottom: 1px solid @form-border;
+
+		.form-banded& {
+			> [class^="col-"],
+			> [class*=" col-"] {
+				border-left: 1px solid @form-border;
+				&:first-child {
+					border-left: none;
+				}
+			}
+		}
+	}
+}
+
+
+// Help text
+
+.help-block {
+}
+
+
+// Inline forms
+
+.form-inline {
+}
+
+
+// Horizontal forms
+
+.form-horizontal {
+	.form-group {
+		.control-label {
+			text-align: left;
+		}
+	}
+
+	&.form-bordered,
+	&.form-striped {
+		.form-group {
+			padding: 7px 5px 7px 5px;
+			margin-left: 0;
+			margin-right: 0;
+			margin-bottom: 0;
+		}
+
+		&.form-banded {
+			.form-group { padding: 0; }
+		}
+	}
+
+	// Banded forms
+
+	&.form-banded {
+		.form-group {
+			display: table;
+			width:100%;
+			margin: 0;
+
+			> [class^="col-"],
+			> [class*=" col-"] {
+				display: table-cell;
+				vertical-align: top;
+				float: none;
+				padding: 7px;
+
+				&:first-child {
+					background: @form-back-alt;
+					padding-left: 15px;
+					padding-right: 10px;
+				}
+				
+				.form-control-feedback {
+					top: 7px;
+				}
+			}
+		}
+	}
+}
+
+
+// Vertical forms
+
+.form-vertical {
+	&.form-bordered,
+	&.form-striped {
+		.form-group {
+			padding-top: 10px;
+			padding-bottom: 10px;
+			margin-bottom: 0;
+			
+			.no-padding & {
+				padding-left: 15px;
+				padding-right: 15px;
+			}
+		}
+	}
+}
+
+.form-vertical {
+	&.form-striped {
+		.form-group {
+			padding-left: 15px;
+			padding-right: 15px;
+		}
+	}
+}
+
+
+// Vertical forms
+
+.form-striped {
+	.form-group {
+		border-bottom: 1px solid @form-border;
+
+		&:first-child {
+			border-top: 1px solid @form-border;
+		}
+		&:nth-child(odd){
+			background: @form-back-alt;
+			.form-control {
+				background: #fff;
+			}
+
+		}
+	}
+}
+
+
+// Extra-small grid
+.form-table-layout(xs);
+
+// Small grid
+@media (max-width: @screen-tablet) {
+	.form-table-layout(sm);
+}
+
+// Medium grid
+@media (max-width: @screen-desktop) {
+	.form-table-layout(md);
+}
+
+// Large grid
+@media (max-width: @screen-lg-desktop) {
+	.form-table-layout(lg);
+}

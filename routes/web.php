@@ -110,7 +110,7 @@ Route::group(['middleware'=> 'cors'], function() {
                     $subFolder2 = $couple->SUBFOLDER2;
                     $vendorId = $couple->MSVENDOR_GUID;
                     $url = $couple->vendor->VENDOR_WEBSITE;
-                    // $url = "http://localhost";
+                    $url = "http://localhost";
 
                     //check is current_url is an URL (to detact script)
                     if(!filter_var($req->current_url, FILTER_VALIDATE_URL))
@@ -154,5 +154,13 @@ Route::group(['middleware'=> 'cors'], function() {
         }
     });
 });
+
+Route::get("/weddings", "WeddingController@showIndex")->name("showWedding");
+Route::get("/weddings/create", "WeddingController@showCreate")->name("showCreateWedding");
+Route::get("/dashboard", "DashboardController@showIndex")->name("showDashboard");
+
+Route::get("/profile", "VendorController@showProfile")->name("showProfile");
+
+Route::get("/login", "Auth\LoginController@showLoginForm")->name("login");
 
 

@@ -1,0 +1,104 @@
+//
+// Typography
+// --------------------------------------------------
+
+// Emphasis & misc
+// -------------------------
+
+// Contextual emphasis
+.text-default-color		{ color: @text-color; }
+.text-primary-alt		{ .color-contrast-soft(@brand-primary); }
+.text-white				{ color: @white; }
+.text-inverse			{ color: @brand-inverse; }
+.text-inverse-alt		{ .color-contrast-soft(@brand-inverse); }
+.text-gray-lighter		{ color: @gray-lighter; }
+.text-gray-light		{ color: @gray-light; }
+.text-gray				{ color: @gray; }
+.text-support1			{ color: darken(@brand-support1, 15%); }
+.text-support1-alt		{ .color-contrast-soft(@brand-support1); }
+.text-support2			{ color: darken(@brand-support2, 15%); }
+.text-support2-alt		{ .color-contrast-soft(@brand-support2); }
+.text-support3			{ color: darken(@brand-support3, 15%); }
+.text-support3-alt		{ .color-contrast-soft(@brand-support3); }
+.text-support4			{ color: darken(@brand-support4, 15%); }
+.text-support4-alt		{ .color-contrast-soft(@brand-support4); }
+.text-support5			{ color: darken(@brand-support5, 15%); }
+.text-support5-alt		{ .color-contrast-soft(@brand-support5); }
+
+.text-light				{ font-weight: @light-weight; }
+.text-standard			{ font-weight: @standard-weight; }
+.text-bold, strong		{ font-weight: @strong-weight; }
+.text-bolder			{ font-weight: @strong-weight2; }
+.text-boldest			{ font-weight: @strong-weight3; }
+
+
+.text-highlight-primary {	background-color:@brand-primary; padding: 0 3px; }
+.text-highlight-danger {	background-color:@brand-danger; padding: 0 3px; }
+.text-highlight-info {		background-color:@brand-info; padding: 0 3px; }
+.text-highlight-success {	background-color:@brand-success; padding: 0 3px; }
+.text-highlight-warning {	background-color:@brand-warning; padding: 0 3px; }
+.text-highlight-white {		background-color:@white; padding: 0 3px; }
+.text-highlight-black {		background-color:@black; padding: 0 3px; }
+.text-highlight-gray {		background-color:@gray-lighter; padding: 0 3px; }
+.text-highlight-inverse {	background-color:@brand-inverse; padding: 0 3px; }
+.text-highlight-support1 {	background-color:@brand-support1; padding: 0 3px; }
+.text-highlight-support2 {	background-color:@brand-support2; padding: 0 3px; }
+.text-highlight-support3 {	background-color:@brand-support3; padding: 0 3px; }
+.text-highlight-support4 {	background-color:@brand-support4; padding: 0 3px; }
+.text-highlight-support5 {	background-color:@brand-support5; padding: 0 3px; }
+
+h1 > strong, h2 > strong, h3 > strong, h4 > strong, h5 > strong, h6 > strong {
+	font-weight: @strong-weight2;
+}
+
+// Misc
+// -------------------------
+
+.no-linebreak { white-space: nowrap; }
+
+.text-xs {		font-size: 75%; }
+.text-sm {		font-size: 85%; }
+.text-lg {		font-size: 150%; }
+.text-xl {		font-size: 200%; }
+.text-xxl {		font-size: 250%; }
+.text-xxxl {	font-size: 300%; }
+.text-huge {	font-size: 900%; }
+
+// Blockquote override
+// -------------------------
+
+blockquote small { 
+	color: inherit;
+	opacity: .7;
+}
+
+// Article
+// -------------------------
+
+article {
+	img.pull-right { 
+		margin-left: 10px;
+		margin-bottom: 5px;
+	}
+	img.pull-left { 
+		margin-right: 10px;
+		margin-bottom: 5px;
+	}
+}
+
+// List
+// -------------------------
+ul.list-extra-spacing li {
+	margin-top: 5px;
+	
+	&:first-child {
+		margin-top: 0;
+	}
+}
+
+// Pageheader
+// -------------------------
+
+.page-header {
+	border-bottom-color: rgba(0,0,0,.1);
+}

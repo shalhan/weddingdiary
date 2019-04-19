@@ -1,0 +1,355 @@
+//
+// Shared Mixins
+// --------------------------------------------------
+
+@import "../bootstrap/mixins.less";
+@import "animations.less";
+
+
+// UTILITIES
+// --------------------------------------------------
+
+// Contrast
+// -------------------------
+
+.color-contrast-soft(@color) {
+	color: contrast(@color, hardlight(@color, #5e5e5e), screen(@color, #a6a6a6), @color-threshold);
+}
+
+
+// COMPONENT MIXINS
+// --------------------------------------------------
+
+// Triangles
+// -------------------------
+
+#triangle {
+	.base() {
+		content: "";
+		width: 0px;
+		height: 0px;
+		border-style: solid;
+	}
+	.tl(@color: #000; @width: 20px; @height: 7px) {
+		#triangle > .base();
+		border-width: @height @width 0 0;
+		border-color: @color transparent transparent transparent;
+	}
+	.t(@color: #000; @width: 10px; @height: 7px) {
+		#triangle > .base();
+		border-width: 0 @width @height @width;
+		border-color: transparent transparent @color transparent;
+	}
+	.tr(@color: #000; @width: 20px; @height: 7px) {
+		#triangle > .base();
+		border-width: 0 @width @height 0;
+		border-color: transparent @color transparent transparent;
+	}
+	.bl(@color: #000; @width: 20px; @height: 7px) {
+		#triangle > .base();
+		border-width: @height 0 0 @width;
+		border-color: transparent transparent transparent @color;
+	}
+	.br(@color: #000; @width: 20px; @height: 7px) {
+		#triangle > .base();
+		border-width: 0 0 @height @width;
+		border-color: transparent transparent @color transparent;
+	}
+	.b(@color: #000; @width: 10px; @height: 10px) {
+		#triangle > .base();
+		border-width: @height @width 0 @width;
+		border-color: @color transparent transparent transparent;
+	}
+}
+
+
+// Button sizes
+// -------------------------
+// Overiddes bootstraps '.button-size'.
+// - Added '.btn-ouline' style
+
+.button-size(@padding-vertical; @padding-horizontal; @font-size; @line-height; @border-radius) {
+	padding: @padding-vertical @padding-horizontal;
+	font-size: @font-size;
+	line-height: @line-height;
+	border-radius: @border-radius;
+
+	// MODIFIED-CODECOVERS
+	&.btn-outline {	padding: (@padding-vertical - 2px) (@padding-horizontal - 2px); }
+}
+
+
+// Form control focus state
+// -------------------------
+// Overiddes bootstraps '.form-control-focus'. 
+// - Shadow is removed
+
+.form-control-focus(@color: @input-border-focus) {
+	@color-rgba: rgba(red(@color), green(@color), blue(@color), .2);
+	&:focus {
+		border-color: @color;
+		outline: 0;
+		.box-shadow(none);
+	}
+}
+
+// Form control focus state
+// -------------------------
+
+.form-table-layout(@name) {
+	.form-horizontal {
+		&.form-banded {
+			.form-group {
+				> [class^="col-@{name}"],
+				> [class*=" col-@{name}"] {
+					float: left;
+					width: 100%;
+					&:first-child {
+						padding-left: 10px;
+						padding-right: 10px;
+					}
+				}
+			}
+
+			.form-group-@{name} {
+				/* WebKit bug 53166 fix ('display' styles in media queries don’t get re-applied correctly after resizing) */
+				display: block;
+			}
+		}
+	}
+}
+
+
+
+// VARIANTS
+// --------------------------------------------------
+
+// Box variant
+// -------------------------
+
+.box-variant(@name; @color) {
+	.box {
+		.@{name},
+		&.@{name} {
+			background-color: @color;
+			border-color: @color;
+			color: contrast(@color,@text-color,@white, @color-threshold);
+
+			.btn-group-transparent > .btn:hover,
+				.btn-group-transparent > .btn-group > .btn:hover { 
+				color: @color;
+				background-color: contrast(@color,@text-color,@white, @color-threshold);
+			}
+		}
+	}
+	.box-head,
+	.box-body-darken {
+		.@{name},
+		&.@{name} {
+			background-color: darken(@color, 7%);
+			border-color: darken(@color, 7%);
+			color: contrast(darken(@color, 7%), @text-color, @white, @color-threshold);
+
+			.btn-group-transparent > .btn:hover,
+				.btn-group-transparent > .btn-group > .btn:hover { 
+				color: darken(@color, 7%);
+				background-color: contrast(darken(@color, 7%), @text-color, @white, @color-threshold);
+			}
+		}
+	}
+}
+
+
+// Box gradient variant
+// -------------------------
+
+.box-gradient-variant(@name; @color1; @deg:-20deg) {
+	.box {
+		.@{name},
+		&.@{name} {
+			background-color: @color1;
+			@color2: darken(@color1, 20%);//desaturate(spin(@color1, 60%), 10%);
+			#gradient>.directional(@color2, darken(@color1, 0%), @deg);
+			border-color: @color1;
+			color: contrast(darken(@color1, 0%), @text-color, @white, @color-threshold);
+
+			.btn-group-transparent > .btn:hover,
+				.btn-group-transparent > .btn-group > .btn:hover { 
+				color: @color1;
+				background-color: contrast(@color1,@text-color,@white, @color-threshold);
+			}
+		}
+	}
+}
+
+
+// Tab varaint
+// -------------------------
+
+.tab-variant(@name; @color) {
+	.nav-tabs.@{name} {
+		background: @color;
+		color: contrast(@color, @text-color, @white, @color-threshold); // IE8 support
+		color: contrast(@color, fade(@text-color, 40%), fade(@white, 40%), @color-threshold);
+	}
+}
+
+
+// Button variant
+// -------------------------
+// Overiddes bootstraps '.button-variant'. 
+// - Added contrast function to color
+// - Added '.btn-ouline' style
+
+.button-variant(@color; @background; @border) {
+	color: contrast(@background, @color, @white, @color-threshold);
+	background-color: @background;
+	border-color: @border;
+	
+	// MODIFIED-CODECOVERS
+	&.btn-outline {
+		color: #333;
+		&:hover {
+			background-color: lighten(@background, 10%);
+		}
+		&.disabled,
+		&[disabled],
+		fieldset[disabled] & {
+			color: lighten(@background, 40%);
+		}
+	}
+
+	&:hover,
+		&:focus,
+		&:active,
+		&.active,
+		.open .dropdown-toggle& {
+		color: contrast(darken(@background, 10%), @color, @white, @color-threshold);
+		background-color: darken(@background, 10%);
+		border-color: darken(@border, 5%);
+	}
+	&:active,
+		&.active,
+		.open .dropdown-toggle& {
+		background-image: none;
+	}
+	&.disabled,
+	&[disabled],
+	fieldset[disabled] & {
+		&,
+		&:hover,
+			&:active,
+			&:focus,
+			&.active {
+			background-color: @background;
+			border-color: @border
+		}
+	}
+	.badge {
+		color: @background;
+		background-color: #fff;
+	}
+}
+
+
+// Badge variants
+// -------------------------
+
+.badge-variant(@background) {
+	color: contrast(@background, @text-color, @white, @color-threshold);
+	background-color: @background;
+}
+
+
+// List variants
+// -------------------------
+
+.list-variant(@name; @color) {
+	.@{name} {
+		.list-group-item.active,
+		.list-group-item.active:hover,
+		.list-group-item.active:focus,
+		.list-group-item.done,
+		.list-group-item.done:hover,
+		.list-group-item.done:focus {
+			color: contrast(@color,@text-color,@white, @color-threshold);
+			background-color: @color;
+			border-color: @color;
+
+			// Force color to inherit for custom content
+			.list-group-item-text {
+				color: contrast(@color,@text-color,@white, @color-threshold);
+			}
+		}
+	}
+}
+
+
+// Checkboxes & radiobuttons variants
+// -------------------------
+
+.checkbox-radio-variant(@name; @color) {
+	.btn.active {
+		&.btn-checkbox-@{name}:before,
+			&.btn-radio-@{name}:before {
+			color: @color;
+		}
+	}
+	.btn:hover {
+		&.btn-checkbox-@{name}:before,
+			&.btn-radio-@{name}:before {
+			border-color: darken(@color, 20%);
+		}
+	}
+}
+
+
+// Checkboxes & radiobuttons inverse variants
+// -------------------------
+
+.checkbox-radio-variant-inverse(@name; @color) {
+	.btn {
+		&.btn-checkbox-@{name}:before {
+			border-color: darken(@color, 5%);
+			.active& {	
+				color: #fff;
+				background: contrast(@color,@color,darken(@color, 60%), @color-threshold);
+			}
+			:hover& {	border-color: darken(@color, 20%); }
+		}
+		&.btn-radio-@{name}:before {
+			border-color: darken(@color, 10%);
+			background: #fff;
+			.active& {	
+				background: @color;
+				color: @color;
+			}
+			:hover& {	border-color: darken(@color, 20%); }
+		}
+	}
+}
+
+
+// Text variants
+// -------------------------
+.text-variants(@name; @color) {
+	.@{name} {
+		color: @color;
+	}
+	.@{name}-track {
+		border-color: @color;
+	}
+}
+
+
+// Knob variants
+// -------------------------
+
+.knob-variants(@name; @color) {
+	.@{name} {
+		color: @color;
+	}
+	.@{name}-track {
+		border-color: @color;
+	}
+}

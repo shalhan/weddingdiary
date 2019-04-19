@@ -1,0 +1,267 @@
+//
+// Header navigation
+// --------------------------------------------------
+
+// Header
+// -------------------------
+
+#header {
+	position: absolute;
+	left: @sidebar-width; 
+	right: 0;
+	height: @headerbar-height;
+	z-index: @zindex-header;
+	.transition(left @sidebar-collapse-speed @sidebar-collapse-ease);
+
+	.navbar-fixed-top {
+		left: @sidebar-width;
+		padding-right: @navbar-padding-horizontal;
+	}
+	
+	.navbar-default {
+		border: none;
+		background-color: @headerbar-bg;
+		color: contrast(@headerbar-bg, @text-color, @white, @color-threshold);
+		
+		.dropdown-toggle {
+			border: 1px solid transparent;
+			margin: -1px 0;
+		}
+		.open > .dropdown-toggle {
+			position: relative;
+			z-index: 9999;
+			background: white;
+			border: 1px solid @dropdown-fallback-border; // IE8 fallback
+			border: 1px solid @dropdown-border;
+			border-bottom-color: transparent;
+		}
+		.dropdown-menu {
+			min-width: 200px;
+		}
+		
+		.navbar-header {
+			a{
+				padding: @headerbar-padding-vertical;
+				width: auto;
+				margin: 0;
+				border: none;
+			}			
+		}
+		
+		.navbar-brand {
+			display: none;
+		}
+			
+		@media (max-width: @grid-float-breakpoint-max) {
+			[class^="width-"],
+			[class*=" width-"] {
+				width: auto;
+			}
+		}
+
+		.navbar-devider {
+			border-top:1px solid @gray-light;
+			border-top-color:rgba(255,255,255,0.2);
+			display: block;
+		}
+
+		.navbar-input {
+			border-color: transparent;
+			background-color: rgba(0, 0, 0, 0.02);
+
+			&:focus {
+				background-color: rgba(0, 0, 0, 0.05);
+				border-color: rgba(0, 0, 0, 0.1);
+			}
+		}
+
+		@media (min-width: @grid-float-breakpoint) {
+			.navbar-devider {
+				border-top: none;
+				border-left:1px solid @gray-light;
+				border-left-color:rgba(0,0,0,0.2);
+				margin-top: @headerbar-padding-vertical;
+				height: 18px;
+			}
+		}
+
+		.navbar-profile {
+			position: relative;
+			padding-right: @headerbar-height;
+
+			img {
+				position: absolute;
+				top: 10%; right: 5px;
+				height: 80%;
+			}
+		}
+		
+		.navbar-nav {
+			> li > a {
+				color: contrast(@headerbar-bg, @text-color, @white, @color-threshold);
+
+				&:hover,
+				&:focus {
+					color: contrast(@headerbar-bg, @text-color, @white, @color-threshold);
+					background-color: contrast(@headerbar-bg, rgba(0, 0, 0, 0.05), rgba(255, 255, 255, 0.15), @color-threshold);
+				}
+			}
+			> .active > a {
+				&,
+				&:hover,
+					&:focus {
+					color: @headerbar-link-active-color;
+					background-color: @headerbar-link-active-bg;
+				}
+			}
+			> .disabled > a {
+				&,
+				&:hover,
+					&:focus {
+					color: @headerbar-link-disabled-color;
+					background-color: @headerbar-link-disabled-bg;
+				}
+			}
+		}
+	}
+
+	@media (max-width: @grid-float-breakpoint-max) {
+		// Inverse navbar
+		.navbar-default {
+			color: contrast(@headerbar-inverse-bg, @text-color, @white, @color-threshold);
+			background-color: @headerbar-inverse-bg;
+			border: none;
+			
+			.navbar-header {
+				text-align: center;
+			}
+			.btn-menu {
+				float: left;
+			}
+			.navbar-brand {
+				display: inline-block;
+				height: @headerbar-height;
+				padding: 0;
+				float: none;
+			}
+
+			.navbar-text {
+				color: contrast(@headerbar-inverse-bg, @text-color, @white, @color-threshold);
+			}
+
+			.navbar-nav {
+				> li > a {
+					color: contrast(@headerbar-inverse-bg, @text-color, @white, @color-threshold);
+
+					&:hover,
+					&:focus {
+						color: contrast(@headerbar-inverse-bg, @text-color, @white, @color-threshold);
+						background-color: contrast(@headerbar-inverse-bg, rgba(0, 0, 0, 0.05), rgba(255, 255, 255, 0.15), @color-threshold);
+					}
+				}
+				> .active > a {
+					&,
+					&:hover,
+						&:focus {
+						color: contrast(@headerbar-inverse-bg, @text-color, @white, @color-threshold);
+						background-color: @headerbar-inverse-link-active-bg;
+					}
+				}
+				> .disabled > a {
+					&,
+					&:hover,
+						&:focus {
+						color: @headerbar-inverse-link-disabled-color;
+						background-color: @headerbar-inverse-link-disabled-bg;
+					}
+				}
+			}
+
+			// Darken the responsive nav toggle
+			.navbar-toggle {
+				border-color: @headerbar-inverse-toggle-border-color;
+				&:hover,
+					&:focus {
+					background-color: @headerbar-inverse-toggle-hover-bg;
+				}
+				.icon-bar {
+					background-color: @headerbar-inverse-toggle-icon-bar-bg;
+				}
+			}
+
+			.navbar-collapse,
+			.navbar-form {
+				border-color: darken(@headerbar-inverse-bg, 7%);
+			}
+
+			// Dropdowns
+			.navbar-nav {
+				> .open > a {
+					&,
+					&:hover,
+						&:focus {
+						background-color: @headerbar-inverse-link-active-bg;
+						color: contrast(@headerbar-inverse-bg, @text-color, @white, @color-threshold);
+					}
+				}
+
+				@media (max-width: @grid-float-breakpoint-max) {
+					// Dropdowns get custom display
+					.open .dropdown-menu {
+						> .dropdown-header {
+							border-color: @headerbar-inverse-border;
+						}
+						.divider {
+							background-color: @headerbar-inverse-border;
+						}
+						> li > a {
+							color: contrast(@headerbar-inverse-bg, @text-color, @white, @color-threshold);
+							&:hover,
+								&:focus {
+								color: contrast(@headerbar-inverse-bg, @text-color, @white, @color-threshold);
+								background-color: contrast(@headerbar-inverse-bg, rgba(0, 0, 0, 0.05), rgba(255, 255, 255, 0.15), @color-threshold);
+							}
+						}
+						> .active > a {
+							&,
+							&:hover,
+								&:focus {
+								color: contrast(@headerbar-inverse-bg, @text-color, @white, @color-threshold);
+								background-color: @headerbar-inverse-link-active-bg;
+							}
+						}
+						> .disabled > a {
+							&,
+							&:hover,
+								&:focus {
+								color: @headerbar-inverse-link-disabled-color;
+								background-color: @headerbar-inverse-link-disabled-bg;
+							}
+						}
+					}
+				}
+			}
+
+			.navbar-link {
+				color: contrast(@headerbar-inverse-bg, @text-color, @white, @color-threshold);
+				&:hover {
+					color: contrast(@headerbar-inverse-bg, @text-color, @white, @color-threshold);
+				}
+			}
+		}
+	}
+}
+
+
+// Header when sidebar is collapsed
+// -------------------------
+
+.sidebar-collapsed {
+	#header {
+		left: @sidebar-width-collapsed;
+		
+		.navbar-fixed-top {
+			left: @sidebar-width-collapsed;
+		}
+	}
+}

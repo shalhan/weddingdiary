@@ -1,0 +1,43 @@
+/**
+ * Wysihtml5
+ * MIT License
+ */
+
+// Core variables and mixins
+@import "../../shared/variables.less";
+@import "../../shared/mixins.less";
+
+
+.wysihtml5-toolbar {
+	position: relative;
+	margin-bottom: 10px;
+
+	.panel-bar {
+		position: absolute;
+		width: 100%;
+		margin-top: 1px;
+
+		> div {
+			display: block;
+			padding: 0 10px;
+			background: #fff;
+			border: 1px solid @input-border;
+			margin-top: -1px;
+			overflow:hidden;
+			max-height: 0;
+			
+			&.panel-visible {
+				max-height: 100px;
+				padding: 5px 10px;
+				.transition(all 0.3s ease);
+			}
+			
+			label {
+				margin-right: 5px;
+			}
+			.form-control {
+				margin-right: 10px;
+			}
+		}
+	}
+}

@@ -1,0 +1,41 @@
+//
+// Layout
+// --------------------------------------------------
+
+
+// Base
+// -------------------------
+
+section {
+	border-top: 1px solid darken(@body-color, 10%);
+	background: @body-color;
+}
+
+.section-header,
+.section-body {
+	padding-left: @grid-gutter-width;
+	padding-right: @grid-gutter-width;
+}
+.section-body {
+	padding-top: @grid-gutter-width;
+	padding-bottom: @grid-gutter-width;
+}
+
+.body-white {
+	#content > section { background: @white; border-top-color: @body-color; }
+}
+.body-striped {
+	#content > section { border-top-color: @body-color; }
+	#content > section:nth-child(odd){ background: @white; }
+}
+.body-striped-inverse {
+	#content > section { border-top-color: @body-color; }
+	#content > section:nth-child(even){ background: @white; }
+}
+
+// Page header
+// -------------------------
+
+.section-header {
+	margin: (@line-height-computed / 2) 0 @line-height-computed;
+}

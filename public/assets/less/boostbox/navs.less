@@ -1,0 +1,38 @@
+//
+// Navs
+// --------------------------------------------------
+
+.navbar-image img {
+	margin: 5px;
+}
+
+// Nav Stacked
+// --------------------------------------------------
+
+.nav-stacked {
+	border-bottom: none;
+	> li {
+		margin-bottom: 0;
+		+ li {
+			margin-top: 1px;
+			margin-bottom: 0;
+		}
+		> a {
+			margin-right: 0;
+		}
+	}
+
+	&.nav-tabs > li.active > a, 
+	&.nav-tabs > li.active > a:hover, 
+		&.nav-tabs > li.active > a:focus {
+		border: none;
+	}
+}
+
+// Colors
+// --------------------------------------------------
+
+.nav-transparent {
+	a {			color: inherit; border-bottom: 1px solid rgba(0, 0, 0, 0.05); }
+	a:hover {	color: @text-color; }
+}

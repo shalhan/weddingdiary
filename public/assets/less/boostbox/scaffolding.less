@@ -1,0 +1,86 @@
+//
+// Scaffolding
+// --------------------------------------------------
+
+
+// Common
+// -------------------------
+
+.fuelphp-dump {
+	position: relative;
+	z-index: 999;
+}
+
+
+// Body styles
+// -------------------------
+
+body {
+	background-color: @body-color;
+}
+
+.body-white,
+.body-striped,
+.body-striped-inverse {
+	.main-menu > li ul > li {
+		background: @white;
+	}
+}
+
+.body-dark {
+	background: lighten(@brand-inverse, 3%);
+}
+
+
+
+// Links
+// -------------------------
+
+a {
+  color: inherit;
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    color: inherit;
+  }
+}
+
+
+// Images
+// -------------------------
+
+.img-backdrop {
+	position: absolute;
+	left: 0; right: 0; top: 0; bottom: 0;
+	background-repeat:no-repeat;
+	background-size:cover;
+	background-position: center;
+	
+	img {
+		display: block;
+		min-width: 100%;
+		min-height: 100%;
+		height: auto;
+	}
+}
+
+// Docs
+// -------------------------
+
+.doc-section {
+	margin-bottom: 80px;
+	&.doc-lead {
+		margin-bottom: 20px;
+	}
+	
+	h3 {
+		margin-top: 20px;
+	}
+	h4 {
+		margin-top: 17px;
+	}
+	h5 {
+		margin-top: 15px;
+	}
+}

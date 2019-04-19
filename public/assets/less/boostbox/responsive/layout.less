@@ -1,0 +1,90 @@
+//
+// Layout
+// --------------------------------------------------
+
+// From Small Devices Up To Medium Devices
+// -------------------------
+
+@media (min-width: (@screen-xs+1)) and (max-width: @screen-lg) { 
+	body:not(.sidebar-expanded) {
+		// Content
+		// -------------------------
+
+		#content {
+			display: block;
+		}
+
+		// Sidebar
+		// -------------------------
+
+		#sidebar {
+			width: @sidebar-width-collapsed;
+
+			.nav-brand a span { display: none; }
+		}
+
+		// Header
+		// -------------------------
+
+		#header {
+			left: @sidebar-width-collapsed;
+			.navbar-fixed-top {
+				left: @sidebar-width-collapsed;
+			}
+		}
+	}
+}
+
+
+// Extra Small Devices Only
+// -------------------------
+
+@media (max-width: @screen-xs) {
+
+	// HTML
+	// -------------------------
+
+	html {
+		overflow-x: hidden;
+	}
+
+	// Base
+	// -------------------------
+
+	#base {
+		left: -@sidebar-width;
+		.transition(left @sidebar-collapse-speed @sidebar-collapse-ease);
+
+		.open-menu & {
+			left: 0;
+		}
+	}
+
+	// Header
+	// -------------------------
+
+	#header {
+		left: 0;
+		width: 100%;
+		
+		.navbar-fixed-top {
+			left: 0;
+		}
+	}
+	.open-menu {
+		#header {
+			left: @sidebar-width;
+		}
+		.navbar-fixed-top {
+			position: absolute;
+		}
+	}
+
+	// Content
+	// -------------------------
+
+	#content {
+		position: absolute;
+		width: 100%;
+	}
+}

@@ -1,0 +1,140 @@
+//
+// Sidebar
+// --------------------------------------------------
+
+
+// From Small Devices Up To Medium Devices
+// -------------------------
+
+@media (min-width: (@screen-xs+1)) and (max-width: @screen-lg) {
+	body:not(.sidebar-expanded) {
+		// Main-menu when collapsed
+		.sidebar-back {
+			width: @sidebar-width-collapsed;
+		}
+
+		// Search
+		// -------------------------
+		
+		.sidebar-search {
+			position: relative;
+			margin: 0;
+			
+			
+			> a {
+				display: block;
+				padding: 7px 20px 7px 20px;
+				margin-bottom: 10px;
+				background-color: @sidebar-bg;
+				color: @sidebar-color;
+				.close-icon {display: none;}
+			}
+			> .form-group {
+				display: none;
+			}
+			
+			&.open {
+				> a {
+					background-color: @sidebar-sub-bg;
+					.search-icon {display: none;}
+					.close-icon {display: inline-block;}
+				}
+				
+				> .form-group {
+					position: absolute;
+					z-index: 10;
+					display: block;
+					width: @sidebar-width;
+					top: 0;
+					left: @sidebar-width-collapsed;
+				}
+			}
+		}
+		
+		// Main-menu when collapsed
+		.main-menu {
+			> li {
+				position: relative;
+
+				// Hide badges on all first menu elements
+				.badge {
+					display: none;
+				}
+
+				&.expanded > a {
+					background-color: @sidebar-sub-bg;
+					.title { 
+						display: block;
+						position: absolute;
+						left: @sidebar-width-collapsed;
+						padding: 12px 12px 12px 25px;
+						top: -35px;
+						height: 35px;
+						background-color: @sidebar-sub-bg;
+						color: contrast(@sidebar-sub-bg, @black, @white, @color-threshold);
+						white-space: nowrap;
+						text-transform: initial;
+						font-size: 14px;
+						font-weight: 400;
+						min-width: @sidebar-width;
+					}
+				}
+				&.active > a {
+					background-color: lighten(@sidebar-bg, 20%);
+					color: contrast(lighten(@sidebar-bg, 20%), @black, @white, @color-threshold);
+				}
+
+				// Main menu button markup when collapsed
+				> a {
+					.clearfix();
+					padding: 20px 20px 20px 40px;
+					.transition(padding @sidebar-collapse-speed @sidebar-collapse-ease);
+
+					.title { 
+						display: none;
+					}
+
+					&:hover {
+						background-color: darken(@sidebar-sub-bg, 10%);
+					}
+					.fa:first-child {
+						color: inherit;
+						margin-left: -20px;
+					}
+				}
+
+				> ul {
+					position: absolute;
+					top: 0;
+					left: @sidebar-width-collapsed;
+
+					.transition(left @sidebar-collapse-speed @sidebar-collapse-ease);
+
+					// Hide submenu styling arrows when collapsed
+					&:before { display: none; }
+					&:after { display: none; }
+
+					li { 
+						padding: 0;
+						min-width: @sidebar-width;
+					}
+				}
+			}
+		}
+	}
+}
+
+
+// Extra Small Devices Only
+// -------------------------
+
+@media (max-width: @screen-xs) {
+	// Main-menu when collapsed
+	.sidebar-back {
+		width: 0;
+
+		.open-menu & {
+			width: @sidebar-width;
+		}
+	}
+}

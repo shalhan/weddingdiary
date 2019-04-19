@@ -1,0 +1,21 @@
+//
+// Breadcrumbs
+// --------------------------------------------------
+
+.breadcrumb {
+	padding: 10px 20px 0;
+	margin-bottom: 0;
+	color: @gray-light;
+	> li {
+		display: inline-block;
+		
+		+ li:before {
+			font-family: FontAwesome;
+			font-weight: normal;
+			font-style: normal;
+			-webkit-font-smoothing: antialiased;
+			content: "\f105";
+			padding: 0 10px;
+		}
+	}
+}

@@ -1,0 +1,65 @@
+
+-- img1.jpg --
+
+license:     Public Domain CC0
+author:      hansiline
+url:         http://pixabay.com/fr/varigotti-italie-plage-de-vacances-207034/
+
+-- img2.jpg --
+
+license:     Public Domain CC0
+author:      PDPhotos
+url:         http://pixabay.com/nl/boten--s-avonds-nacht-verlichting-3727/
+
+-- img3.jpg --
+
+license:     Public Domain CC0
+author:      eacuna
+url:         http://pixabay.com/nl/ipanema-beach-rio-de-janeiro-99388/
+
+-- img4.jpg --
+
+license:     Public Domain CC0
+author:      WikiImages
+url:         http://pixabay.com/nl/stad-gebouw-nacht-uitzicht-nacht-11087/
+
+-- img5.jpg --
+
+license:     Public Domain CC0
+author:      tpsdave
+url:         http://pixabay.com/nl/park-zion-utah-bergen-landschap-139012/
+
+-- img6.jpg --
+
+license:     Public Domain CC0
+author:      Simon
+url:         http://pixabay.com/nl/india-varenblad-palm-zie-boot-337/
+
+-- img7.jpg --
+
+license:     Public Domain CC0
+author:      WikiImages
+url:         http://pixabay.com/nl/keizerspingu%C3%AFn-penguin-62982/
+
+-- img8.jpg --
+
+author:      AntonioGuillem
+url:         http://photodune.net/item/facial-portrait-of-an-attractive-adult-man/6364232
+
+-- avatar1.jpg --
+
+author:      AntonioGuillem
+url:         http://photodune.net/item/facial-portrait-of-an-attractive-adult-man/6364232
+
+-- avatar2.jpg --
+
+license:     Public Domain CC0
+author:      tpsdave
+url:         http://pixabay.com/nl/park-zion-utah-bergen-landschap-139012/
+
+-- avatar3.jpg --
+
+license:     Public Domain CC0
+author:      WikiImages
+url:         http://pixabay.com/nl/keizerspingu%C3%AFn-penguin-62982/
+

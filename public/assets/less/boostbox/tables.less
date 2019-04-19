@@ -1,0 +1,86 @@
+//
+// Tables
+// --------------------------------------------------
+
+// Baseline styles
+
+.table {
+	thead {
+		color: @gray-light;
+		> tr > th {
+			color: inherit;
+			font-weight: 600;
+		}
+	}
+}
+
+// Bordered version
+//
+// Add borders all around the table and between all the columns.
+
+.table-bordered {
+	border-color: darken(@table-border-color, 10%);
+	> thead,
+	> tbody,
+	> tfoot {
+		> tr {
+			> th,
+			> td {
+				border-color: darken(@table-border-color, 10%);
+			}
+		}
+	}
+}
+
+// Banded-striping
+//
+// Default Banded-stripe styles (alternating gray and transparent backgrounds)
+
+.table-banded {
+	> tbody {
+		> tr {
+			> td:nth-child(odd),
+				> th:nth-child(odd) {
+				background-color: @table-bg-accent;
+			}
+		}
+	}
+}
+
+// Realign .btn-xs
+
+.table > tbody td {
+	.btn-xs {
+		margin: -5px 0 -2px 0;
+	}
+}
+
+
+.table-no-border {
+	border-color: transparent;
+	> thead,
+	> tbody,
+	> tfoot {
+		> tr {
+			> th,
+			> td {
+				border-color: transparent;
+			}
+		}
+	}
+}
+
+// Hover effect
+//
+// Placed here since it has to come after the potential zebra striping
+
+.table-hover {
+	> tbody {
+		> tr:hover {
+			> td,
+			> th {
+				background-color: @table-bg-hover ;
+			}
+		}
+	}
+}

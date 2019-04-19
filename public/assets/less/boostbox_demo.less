@@ -1,0 +1,31 @@
+// Core variables and mixins
+@import "shared/variables.less";
+
+// Demo - Icons
+.fontawesome-icon-list {
+
+	.fa-hover {
+		line-height: 32px;
+		height: 32px;
+		padding-left: 10px;
+
+		.fa {
+			width: 32px;
+			font-size: 14px;
+			display: inline-block;
+			text-align: right;
+			margin-right: 10px;
+		}
+
+		&:hover {
+			background: @brand-primary;
+			cursor:default;
+			color: @white;
+				
+			.fa {
+				font-size: 26px;
+				vertical-align: -4px;
+			}
+		}
+	}
+}
