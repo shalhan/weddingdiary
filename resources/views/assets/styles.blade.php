@@ -4,4 +4,7 @@
 <link type="text/css" rel="stylesheet" href="/assets/css/theme-default/boostbox.css?1403937765" />
 <link type="text/css" rel="stylesheet" href="/assets/css/theme-default/boostbox_responsive.css?1403937765" />
 <link type="text/css" rel="stylesheet" href="/assets/css/theme-default/font-awesome.min.css?1401481653" />
+<!-- Custom Utilities CSS -->
+<link type="text/css" rel="stylesheet" href="/css/utilities.css" />
+@stack('style')
 <!-- END STYLESHEETS -->

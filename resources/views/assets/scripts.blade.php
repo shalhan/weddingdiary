@@ -7,4 +7,5 @@
 <script src="/assets/js/libs/slimscroll/jquery.slimscroll.min.js"></script>
 <script src="/assets/js/core/App.js"></script>
 <script src="/assets/js/core/demo/Demo.js"></script>
+@stack('script')
 <!-- END JAVASCRIPT -->
