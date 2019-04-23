@@ -32,20 +32,20 @@
                     <div class="box-body">
                         <div class="form-vertical">
                             <div class="form-group">
-                                <label for="MT_VENUE">Matrimony Venue</label>
-                                <input type="text" name="MT_VENUE" id="MT_VENUE" class="form-control" placeholder="Matrimony Venue">
+                                <label for="WEDDING_MATRIMONY_VENUE">Matrimony Venue</label>
+                                <input type="text" name="WEDDING_MATRIMONY_VENUE" id="WEDDING_MATRIMONY_VENUE" class="form-control" placeholder="Matrimony Venue">
                             </div>
                             <div class="form-group">
-                                <label for="MT_VENUE_ADDRESS">Matrimony Venue Address</label>
-                                <textarea name="MT_VENUE_ADDRESS" id="MT_VENUE_ADDRESS" class="form-control" rows="3" placeholder="Matrimony Venue Address"></textarea>
+                                <label for="WEDDING_MATRIMONY_VENUE_ADDRESS">Matrimony Venue Address</label>
+                                <textarea name="WEDDING_MATRIMONY_VENUE_ADDRESS" id="WEDDING_MATRIMONY_VENUE_ADDRESS" class="form-control" rows="3" placeholder="Matrimony Venue Address"></textarea>
                             </div>
                             <div class="form-group">
-                                <label for="MT_TIME">Matrimony Time</label>
-                                <input type="text" name="MT_TIME" placeholder="Matrimony Time" class="form-control" id='demo-date-inline-first' />
+                                <label for="WEDDING_MATRIMONY_TIME">Matrimony Time</label>
+                                <input type="text" name="WEDDING_MATRIMONY_TIME" placeholder="Matrimony Time" class="form-control" id='demo-date-inline-first' />
                             </div>
                             <div class="form-group">
-                                <label for="MT_TIMEZONE">Matrimony Timezone</label>
-                                <select name="MT_TIMEZONE" id="MT_TIMEZONE" class="form-control">
+                                <label for="WEDDING_MATRIMONY_TIMEZONE">Matrimony Timezone</label>
+                                <select name="WEDDING_MATRIMONY_TIMEZONE" id="WEDDING_MATRIMONY_TIMEZONE" class="form-control">
                                     <option>WIB</option>
                                     <option>WITA</option>
                                     <option>WIT</option>
@@ -59,26 +59,26 @@
                 <div class="box">
                     <div class="box-head">
                         <header>
-                            <h4 class="text-light">Form Wedding</strong></h4>
+                            <h4 class="text-light">Form Reception</strong></h4>
                         </header>
                     </div>
                     <div class="box-body">
                         <div class="form-vertical">
                             <div class="form-group">
-                                <label for="WD_VENUE">Wedding Venue</label>
-                                <input type="text" name="WD_VENUE" id="WD_VENUE" class="form-control" placeholder="Wedding Venue">
+                                <label for="WEDDING_RECEPTION_VENUE">Reception Venue</label>
+                                <input type="text" name="WEDDING_RECEPTION_VENUE" id="WEDDING_RECEPTION_VENUE" class="form-control" placeholder="Reception Venue">
                             </div>
                             <div class="form-group">
-                                <label for="WD_VENUE_ADDRESS">Wedding Venue Address</label>
-                                <textarea name="WD_VENUE_ADDRESS" id="WD_VENUE_ADDRESS" class="form-control" rows="3" placeholder="Wedding Venue Address"></textarea>
+                                <label for="WEDDING_RECEPTION_VENUE_ADDRESS">Reception Venue Address</label>
+                                <textarea name="WEDDING_RECEPTION_VENUE_ADDRESS" id="WEDDING_RECEPTION_VENUE_ADDRESS" class="form-control" rows="3" placeholder="Reception Venue Address"></textarea>
                             </div>
                             <div class="form-group">
-                                <label for="WD_TIME">Wedding Time</label>
-                                <input type="text" name="WD_TIME" placeholder="Wedding Time" class="form-control" id='demo-date-inline-second' />
+                                <label for="WEDDING_RECEPTION_TIME">Reception Time</label>
+                                <input type="text" name="WEDDING_RECEPTION_TIME" placeholder="Reception Time" class="form-control" id='demo-date-inline-second' />
                             </div>
                             <div class="form-group">
-                                <label for="WD_TIMEZONE">Wedding Timezone</label>
-                                <select name="WD_TIMEZONE" id="WD_TIMEZONE" class="form-control">
+                                <label for="WEDDING_RECEPTION_TIMEZONE">Reception Timezone</label>
+                                <select name="WEDDING_RECEPTION_TIMEZONE" id="WEDDING_RECEPTION_TIMEZONE" class="form-control">
                                     <option>WIB</option>
                                     <option>WITA</option>
                                     <option>WIT</option>
