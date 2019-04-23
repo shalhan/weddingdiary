@@ -58,7 +58,7 @@ class WeddingController extends Controller
             $step = $this->FIRST_STEP;  
         else
             $step = $req->step;
-
+            
         return view($this->views[$step]);
     }
 

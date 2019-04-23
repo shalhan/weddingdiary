@@ -169,7 +169,9 @@
 		}
 		$('#demo-date').datetimepicker();
 		$('#demo-datetime').datetimepicker({pickDate: false});
-		$('#demo-date-inline').datetimepicker();
+		
+		$('#demo-date-inline-first').datetimepicker();
+		$('#demo-date-inline-second').datetimepicker();
 
 		$('#demo-date-start').datetimepicker();
 		$('#demo-date-end').datetimepicker();
