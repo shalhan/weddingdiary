@@ -8,11 +8,10 @@ class Service
      * @param Array Sarr => ServiceException
      */
     public function getErrors($arr) {
-        $result = [];
-        foreach($arr as $a) {
-            $result[$a->data[0]] = $a->getMessage();            
-        }
-        return $result;
+        return array(
+            "errors" => true,
+            "data" => $arr
+        );
     }
     
     public function getResponse($status, $message, $data = []) {

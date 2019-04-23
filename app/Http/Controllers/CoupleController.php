@@ -60,7 +60,13 @@ class CoupleController extends Controller
         ];
 
         $coupleService = $this->coupleService->save($dataGroom, $dataBride, $dataCouple);
-        return $coupleService;
+        
+        if(isset($coupleService["errors"])) {
+            return back()
+                    ->withInput()
+                    ->withErrors($coupleService["data"]);
+        }
+
         return redirect()->back();
     }
 }

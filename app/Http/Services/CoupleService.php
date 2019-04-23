@@ -45,16 +45,24 @@ class CoupleService extends Service
         try {
             $savedGroom = $this->groomService->save($dataGroom);
             $savedBride = $this->brideService->save($dataBride);
-            if(isset($savedGroom->error) || isset($savedBride->error)) {
-                $errors  = $this->getErrors([$savedGroom, $savedBride]);
+            if(isset($savedGroom["errors"]) || isset($savedBride["errors"])) {
+                $groomErrors = isset($savedGroom["errors"]) ? $savedGroom["data"] : array();
+                $brideErrors = isset($savedBride["errors"]) ? $savedBride["data"] : array();
+                
+                $errors  = $this->getErrors( array_merge($groomErrors, $brideErrors) );
                 return $errors;
             }
-            \Log::info($savedGroom);
+            return $savedBride["errors"];
             $dataCouple["MSGROOM_GUID"] = $savedGroom["data"]->GUID;
             $dataCouple["MSBRIDE_GUID"] = $savedBride["data"]->GUID;
 
-            $this->validateData($dataCouple);
-            $this->coupleRepo->save($dataCouple);
+            $validations = $this->validateData($dataCouple);
+            if(count($validations) > 0) {
+                return $this->getErrors($validations);
+            }
+
+            $savedCouple = $this->coupleRepo->save($dataCouple);
+
             return $this->getResponse(200, 'Save couple success', $this->coupleRepo->getCouple());
         }
         catch(ServiceException $e) {
@@ -63,15 +71,18 @@ class CoupleService extends Service
     }
     
     private function validateData($data) {
+        $validation = [];
         if(!isset($data["MSGROOM_GUID"]))
-            throw (new ServiceException('Groom id is required'))->withData(['MSGROOM_GUID']);
+            $validation['MSGROOM_GUID'] = 'Groom id is required';
         if(!isset($data["MSBRIDE_GUID"]))
-            throw (new ServiceException('Bride id is required'))->withData(['MSBRIDE_GUID']);
+            $validation['MSBRIDE_GUID'] = 'Bride id name required';
         if(!isset($data["EXPIRED_DATE"]))
-            throw (new ServiceException('Expired date is required'))->withData(['EXPIRED_DATE']);
+            $validation['EXPIRED_DATE'] = 'Expired date required';
         if(!isset($data["PREWEDPHOTO_AMOUNT"]))
-            throw (new ServiceException('Photo amount is required'))->withData(['PREWEDPHOTO_AMOUNT']);
+            $validation['PREWEDPHOTO_AMOUNT'] = 'Photo amount is required';
         if(!isset($data["MSTEMPLATE_GUID"]))
-            throw (new ServiceException('Template id is required'))->withData(['MSTEMPLATE_GUID']);
+            $validation['MSTEMPLATE_GUID'] = 'Template id is required';
+        
+        return $validation;
     }
 }
