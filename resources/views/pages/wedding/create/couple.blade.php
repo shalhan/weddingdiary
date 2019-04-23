@@ -18,7 +18,8 @@
 </div>
 <div class="section-body">
 
-    <form role="form" method="POST">
+    <form role="form" method="POST" action="{{route('saveCouple')}}">
+        @csrf
         <div class="row">
             <div class="col-lg-6">
                 <div class="box">
@@ -30,20 +31,25 @@
                     <div class="box-body">
                         <div class="form-vertical">
                             <div class="form-group">
-                                <label for="GROOM_NAME">Groom's Name</label>
-                                <input type="text" name="GROOM_NAME" id="GROOM_NAME" class="form-control" placeholder="Groom's Name">
+                                <label for="GROOM_REALNAME">Real Name</label>
+                                <input type="text" name="GROOM_REALNAME" id="GROOM_REALNAME" class="form-control" placeholder="Real Name">
                             </div>
                             <div class="form-group">
-                                <label for="GROOM_FACEBOOK">Groom's Facebook</label>
-                                <input type="text" name="GROOM_FACEBOOK" id="GROOM_FACEBOOK" class="form-control" placeholder="Groom's Facebook">
+                                <label for="GROOM_NAME">Name</label>
+                                <input type="text" name="GROOM_NAME" id="GROOM_NAME" class="form-control" placeholder="Name">
+                            </div>
+                            <hr>
+                            <div class="form-group">
+                                <label for="GROOM_FACEBOOK">Facebook</label>
+                                <input type="text" name="GROOM_FACEBOOK" id="GROOM_FACEBOOK" class="form-control" placeholder='e.g "https://facebook.com/weddingdiary"''>
                             </div>
                             <div class="form-group">
-                                <label for="GROOM_INSTAGRAM">Groom's Instagram</label>
-                                <input type="text" name="GROOM_INSTAGRAM" id="GROOM_INSTAGRAM" class="form-control" placeholder="Groom's Instagram">
+                                <label for="GROOM_INSTAGRAM">Instagram</label>
+                                <input type="text" name="GROOM_INSTAGRAM" id="GROOM_INSTA" class="form-control" placeholder='e.g "https://instagram.com/weddingdiary"'>
                             </div>
                             <div class="form-group">
-                                <label for="GROOM_TWTITER">Groom's Twitter</label>
-                                <input type="text" name="GROOM_TWTITER" id="GROOM_TWTITER" class="form-control" placeholder="Groom's Twitter">
+                                <label for="GROOM_TWTITER">Twitter</label>
+                                <input type="text" name="GROOM_TWTITER" id="GROOM_TWTITER" class="form-control" placeholder='e.g "https://twitter.com/weddingdiary"'>
                             </div>
                         </div>
                     </div>
@@ -59,20 +65,25 @@
                     <div class="box-body">
                         <div class="form-vertical">
                             <div class="form-group">
-                                <label for="BRIDE_NAME">Bride's Name</label>
-                                <input type="text" name="BRIDE_NAME" id="BRIDE_NAME" class="form-control" placeholder="Bride's Name">
+                                <label for="BRIDE_REALNAME">Real Name</label>
+                                <input type="text" name="BRIDE_REALNAME" id="BRIDE_REALNAME" class="form-control" placeholder="Real Name">
                             </div>
                             <div class="form-group">
-                                <label for="BRIDE_FACEBOOK">Bride's Facebook</label>
-                                <input type="text" name="BRIDE_FACEBOOK" id="BRIDE_FACEBOOK" class="form-control" placeholder="Bride's Facebook">
+                                <label for="BRIDE_NAME">Name</label>
+                                <input type="text" name="BRIDE_NAME" id="BRIDE_NAME" class="form-control" placeholder="Name">
+                            </div>
+                            <hr>
+                            <div class="form-group">
+                                <label for="BRIDE_FACEBOOK">Facebook</label>
+                                <input type="text" name="BRIDE_FACEBOOK" id="BRIDE_FACEBOOK" class="form-control" placeholder='e.g "https://facebook.com/weddingdiary"'>
                             </div>
                             <div class="form-group">
-                                <label for="BRIDE_INSTAGRAM">Bride's Instagram</label>
-                                <input type="text" name="BRIDE_INSTAGRAM" id="BRIDE_INSTAGRAM" class="form-control" placeholder="Bride's Instagram">
+                                <label for="BRIDE_INSTAGRAM">Instagram</label>
+                                <input type="text" name="BRIDE_INSTAGRAM" id="BRIDE_INSTA" class="form-control" placeholder='e.g "https://instagram.com/weddingdiary"'>
                             </div>
                             <div class="form-group">
-                                <label for="BRIDE_TWTITER">Bride's Twitter</label>
-                                <input type="text" name="BRIDE_TWTITER" id="BRIDE_TWTITER" class="form-control" placeholder="Bride's Twitter">
+                                <label for="BRIDE_TWTITER">Twitter</label>
+                                <input type="text" name="BRIDE_TWTITER" id="BRIDE_TWTITER" class="form-control" placeholder='e.g "https://twitter.com/weddingdiary"'>
                             </div>
                         </div>
                     </div>
@@ -92,36 +103,28 @@
                         <div class="form-vertical">
                             <div class="form-group">
                                 <label for="URL">URL</label>
-                                <input type="text" name="URL" id="URL" class="form-control" placeholder="URL">
+                                <input type="text" name="SUBFOLDER2" id="URL" class="form-control" placeholder='e.g "https://yourdomain.com/diary?wedding=URL"'>
                             </div>
                             <div class="form-group">
-                                <label for="TOTAL_PHOTO">Total Photo</label>
-                                <select name="TOTAL_PHOTO" id="TOTAL_PHOTO" class="form-control">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
+                                <label for="PREWEDPHOTO_AMOUNT">Total Photo</label>
+                                <select id="PREWEDPHOTO_AMOUNT" class="form-control" disabled>
+                                    <option value="24" selected>24</option>
                                 </select>
+                                <input type="hidden" name="PREWEDPHOTO_AMOUNT" value="20" />
                             </div>
                             <div class="form-group">
-                                <label for="EXP_DATE">Expired Date</label>
-                                <select name="EXP_DATE" id="EXP_DATE" class="form-control">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
+                                <label for="EXPIRED_DATE">Expired Date</label>
+                                <select id="EXPIRED_DATE" class="form-control" disabled>
+                                    @php $date1MonthLater = date('d-m-Y', strtotime("+1 months", strtotime("NOW") )) @endphp
+                                    <option value="{{$date1MonthLater}}">{{$date1MonthLater}}</option>
                                 </select>
+                                <input type="hidden" name="EXPIRED_DATE" value="{{$date1MonthLater}}" />
                             </div>
                             <div class="form-group">
-                                <label for="TEMPLATE">Template</label>
-                                <select name="TEMPLATE" id="TEMPLATE" class="form-control">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
+                                <label for="MSTEMPLATE_GUID">Template</label>
+                                <select name="MSTEMPLATE_GUID" id="MSTEMPLATE_GUID" class="form-control">
+                                    <option value="1" selected>1</option>
+                                    <option value="2">2</option>
                                 </select>
                             </div>
                         </div>
@@ -130,7 +133,7 @@
             </div>
         </div>
         <div class="u-flex u-flexJustifyContentEnd">
-            <button type="button" class="btn btn-inverse">Save</button>
+            <button type="submit" class="btn btn-inverse">Save</button>
         </div>
     </form>
 

@@ -37,5 +37,7 @@ class GroomService extends Service
     private function validateData($data) {
         if(!isset($data["GROOM_NAME"]))
             throw (new ServiceException('Groom name required'))->withData(['GROOM_NAME']);
+        if(!isset($data["GROOM_REALNAME"]))
+            throw (new ServiceException('Groom real name required'))->withData(['GROOM_REALNAME']);
     }
 }

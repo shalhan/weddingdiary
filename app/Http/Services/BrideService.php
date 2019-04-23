@@ -37,5 +37,7 @@ class BrideService extends Service
     private function validateData($data) {
         if(!isset($data["BRIDE_NAME"]))
             throw (new ServiceException('Bride name required'))->withData(['BRIDE_NAME']);
+        if(!isset($data["BRIDE_REALNAME"]))
+            throw (new ServiceException('Bride real name required'))->withData(['BRIDE_REALNAME']);
     }
 }
