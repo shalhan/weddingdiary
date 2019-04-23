@@ -1,7 +1,6 @@
 @extends("layouts.main")
 
 @push('style')
-
 @endpush
 
 @push('script')

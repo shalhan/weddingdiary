@@ -1,0 +1,7 @@
+.u-flex {
+  display: flex;
+}
+
+.u-flexJustifyContentEnd {
+  justify-content: flex-end;
+}
