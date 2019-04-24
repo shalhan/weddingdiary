@@ -33,19 +33,19 @@
                         <div class="form-vertical">
                             <div class="form-group">
                                 <label for="WEDDING_MATRIMONY_VENUE">Matrimony Venue</label>
-                                <input type="text" name="WEDDING_MATRIMONY_VENUE" id="WEDDING_MATRIMONY_VENUE" class="form-control" placeholder="Matrimony Venue">
+                                <input type="text" name="WEDDING_MATRIMONY_VENUE" id="WEDDING_MATRIMONY_VENUE" class="form-control" placeholder="Matrimony Venue" value={{ old('WEDDING_MATRIMONY_VENUE')}}>
                             </div>
                             <div class="form-group">
                                 <label for="WEDDING_MATRIMONY_VENUE_ADDRESS">Matrimony Venue Address</label>
-                                <textarea name="WEDDING_MATRIMONY_VENUE_ADDRESS" id="WEDDING_MATRIMONY_VENUE_ADDRESS" class="form-control" rows="3" placeholder="Matrimony Venue Address"></textarea>
+                                <textarea name="WEDDING_MATRIMONY_VENUE_ADDRESS" id="WEDDING_MATRIMONY_VENUE_ADDRESS" class="form-control" rows="3" placeholder="Matrimony Venue Address" value={{ old('WEDDING_MATRIMONY_VENUE_ADDRESS')}}></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="WEDDING_MATRIMONY_TIME">Matrimony Time</label>
-                                <input type="text" name="WEDDING_MATRIMONY_TIME" placeholder="Matrimony Time" class="form-control" id='demo-date-inline-first' />
+                                <input type="text" name="WEDDING_MATRIMONY_TIME" placeholder="Matrimony Time" class="form-control" id='demo-date-inline-first' value={{ old('WEDDING_MATRIMONY_TIME')}}>
                             </div>
                             <div class="form-group">
                                 <label for="WEDDING_MATRIMONY_TIMEZONE">Matrimony Timezone</label>
-                                <select name="WEDDING_MATRIMONY_TIMEZONE" id="WEDDING_MATRIMONY_TIMEZONE" class="form-control">
+                                <select name="WEDDING_MATRIMONY_TIMEZONE" id="WEDDING_MATRIMONY_TIMEZONE" class="form-control" value={{ old('WEDDING_MATRIMONY_TIMEZONE')}}>
                                     <option>WIB</option>
                                     <option>WITA</option>
                                     <option>WIT</option>
@@ -66,19 +66,19 @@
                         <div class="form-vertical">
                             <div class="form-group">
                                 <label for="WEDDING_RECEPTION_VENUE">Reception Venue</label>
-                                <input type="text" name="WEDDING_RECEPTION_VENUE" id="WEDDING_RECEPTION_VENUE" class="form-control" placeholder="Reception Venue">
+                                <input type="text" name="WEDDING_RECEPTION_VENUE" id="WEDDING_RECEPTION_VENUE" class="form-control" placeholder="Reception Venue" value={{ old('WEDDING_RECEPTION_VENUE')}}>
                             </div>
                             <div class="form-group">
                                 <label for="WEDDING_RECEPTION_VENUE_ADDRESS">Reception Venue Address</label>
-                                <textarea name="WEDDING_RECEPTION_VENUE_ADDRESS" id="WEDDING_RECEPTION_VENUE_ADDRESS" class="form-control" rows="3" placeholder="Reception Venue Address"></textarea>
+                                <textarea name="WEDDING_RECEPTION_VENUE_ADDRESS" id="WEDDING_RECEPTION_VENUE_ADDRESS" class="form-control" rows="3" placeholder="Reception Venue Address" value={{ old('WEDDING_RECEPTION_VENUE_ADDRESS')}}></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="WEDDING_RECEPTION_TIME">Reception Time</label>
-                                <input type="text" name="WEDDING_RECEPTION_TIME" placeholder="Reception Time" class="form-control" id='demo-date-inline-second' />
+                                <input type="text" name="WEDDING_RECEPTION_TIME" placeholder="Reception Time" class="form-control" id='demo-date-inline-second' value={{ old('WEDDING_RECEPTION_TIME')}}>
                             </div>
                             <div class="form-group">
                                 <label for="WEDDING_RECEPTION_TIMEZONE">Reception Timezone</label>
-                                <select name="WEDDING_RECEPTION_TIMEZONE" id="WEDDING_RECEPTION_TIMEZONE" class="form-control">
+                                <select name="WEDDING_RECEPTION_TIMEZONE" id="WEDDING_RECEPTION_TIMEZONE" class="form-control" value={{ old('WEDDING_RECEPTION_TIMEZONE')}}>
                                     <option>WIB</option>
                                     <option>WITA</option>
                                     <option>WIT</option>
@@ -102,11 +102,11 @@
                         <div class="form-vertical">
                             <div class="form-group">
                                 <label for="MAPS">Maps</label>
-                                <input type="text" name="MAPS" id="MAPS" class="form-control" placeholder="Maps">
+                                <input type="text" name="MAPS" id="MAPS" class="form-control" placeholder="Maps" value={{ old('MAPS')}}>
                             </div>
                             <div class="form-group">
                                 <label for="VIDEO">Video</label>
-                                <input type="text" name="VIDEO" id="VIDEO" class="form-control" placeholder="Video">
+                                <input type="text" name="VIDEO" id="VIDEO" class="form-control" placeholder="Video" value={{ old('VIDEO')}}>
                             </div>
                         </div>
                     </div>
@@ -114,7 +114,7 @@
             </div>
         </div>
         <div class="u-flex u-flexJustifyContentEnd">
-            <button type="button" class="btn btn-inverse">Save</button>
+            <button type="submit" class="btn btn-inverse">Save</button>
         </div>
     </form>
 
