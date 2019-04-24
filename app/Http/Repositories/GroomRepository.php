@@ -17,9 +17,10 @@ class GroomRepository extends Repository
      */
     public function save($data) {
         $this->groom->GROOM_NAME = $data["GROOM_NAME"];
-        $this->groom->GROOM_FACEBOOK = $data["GROOM_FACEBOOK"];
-        $this->groom->GROOM_TWITTER = $data["GROOM_TWITTER"];
-        $this->groom->GROOM_INSTA = $data["GROOM_INSTA"];
+        $this->groom->GROOM_REALNAME = $data["GROOM_REALNAME"];
+        $this->groom->GROOM_FACEBOOK = isset($data["GROOM_FACEBOOK"]) ? $data["GROOM_FACEBOOK"] : "#" ;
+        $this->groom->GROOM_TWITTER = isset($data["GROOM_TWITTER"]) ? $data["GROOM_TWITTER"] : "#" ;
+        $this->groom->GROOM_INSTA = isset($data["GROOM_INSTA"]) ? $data["GROOM_INSTA"] : "#" ;
         $this->groom->save();
     }   
 

@@ -25,7 +25,11 @@ class GroomService extends Service
 
     public function save($data) {
         try {
-            $this->validateData($data);
+            $validations = $this->validateData($data);
+            if(count($validations) > 0){
+                return $this->getErrors($validations);
+            }
+
             $this->groomRepo->save($data);
             return $this->getResponse(200, 'Save groom success', $this->groomRepo->getGroom());
         }
@@ -35,7 +39,12 @@ class GroomService extends Service
     }
     
     private function validateData($data) {
+        $validation = [];
         if(!isset($data["GROOM_NAME"]))
-            throw (new ServiceException('Groom name required'))->withData(['GROOM_NAME']);
+            $validation['GROOM_NAME'] = 'Groom name required';
+        if(!isset($data["GROOM_REALNAME"]))
+            $validation['GROOM_REALNAME'] = 'Groom real name required';
+        
+        return $validation;
     }
 }

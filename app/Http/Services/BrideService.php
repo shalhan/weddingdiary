@@ -25,7 +25,10 @@ class BrideService extends Service
 
     public function save($data) {
         try {
-            $this->validateData($data);
+            $validations = $this->validateData($data);
+            if(count($validations) > 0) {
+                return $this->getErrors($validations);
+            }
             $this->brideRepo->save($data);
             return $this->getResponse(200, 'Save bride success', $this->brideRepo->getBride());
         }
@@ -35,7 +38,12 @@ class BrideService extends Service
     }
     
     private function validateData($data) {
+        $validation = [];
         if(!isset($data["BRIDE_NAME"]))
-            throw (new ServiceException('Bride name required'))->withData(['BRIDE_NAME']);
+            $validation['BRIDE_NAME'] = 'Bride name required';
+        if(!isset($data["BRIDE_REALNAME"]))
+            $validation['BRIDE_REALNAME'] = 'Bride real name required';
+        
+        return $validation;
     }
 }

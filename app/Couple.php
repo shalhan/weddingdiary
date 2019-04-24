@@ -8,6 +8,7 @@ class Couple extends Model
 {
     protected $table = 'mscouple';
     protected $primaryKey = 'GUID';
+    protected $fillable = ['MSGROOM_GUID', 'MSBRIDE_GUID', 'PACKAGE_ID', 'EXPIRED_DATE', 'STATUS', 'LOVE_STORY', 'MSVENDOR_GUID', 'PREWEDPHOTO_AMOUNT', 'VIEW_AMOUNT', 'CREATED_DATE', 'SUBFOLDER', 'SUBFOLDER2', 'MSTEMPLATE_GUID'];
 
     public $timestamps = false;
     //subfolder2 is query on url. exp: '?couple=shalhan'
