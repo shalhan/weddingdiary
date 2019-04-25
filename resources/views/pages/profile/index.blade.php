@@ -54,7 +54,7 @@
                                 <input type="email" name="EMAIL" id="EMAIL" class="form-control" placeholder="Email Address" value={{ old('EMAIL')}}>
                             </div>
                         </div>
-                        <a href="/change-password" class="u-fontMedium text-primary">Change Password</a>
+                        <a href="/profile/change-password" class="u-fontMedium text-primary">Change Password</a>
                         <div class="u-flex u-flexJustifyContentEnd u-marginTop16">
                             <button type="submit" class="btn btn-inverse">Save</button>
                         </div>
