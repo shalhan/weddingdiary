@@ -6,10 +6,47 @@
   justify-content: flex-end;
 }
 
+.u-flexJustifyContentCenter {
+  justify-content: center !important;
+}
+
+.u-size128 {
+  width: 128px !important;
+  height: 128px !important;
+}
+
 .u-fullWidth {
   width: 100%;
+}
+
+.u-marginTop16 {
+  margin-top: 16px;
 }
 
 .u-marginTop64 {
   margin-top: 64px;
 }
+
+.u-backgroundColorGrey10 {
+  background: #FAFAFA !important;
+}
+
+.u-borderRadius50Percent {
+  border-radius: 50% !important;
+}
+
+.u-backgroundPositionCenter {
+  background-position: center !important;
+}
+
+.u-backgroundNoRepeat {
+  background-repeat: no-repeat !important;
+}
+
+.u-backgroundSizeCover {
+  background-size: cover !important;
+}
+
+.u-fontMedium {
+  font-weight: 600;
+} 
