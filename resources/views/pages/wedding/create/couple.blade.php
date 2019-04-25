@@ -32,24 +32,24 @@
                         <div class="form-vertical">
                             <div class="form-group">
                                 <label for="GROOM_REALNAME">Real Name</label>
-                                <input type="text" name="GROOM_REALNAME" id="GROOM_REALNAME" class="form-control" placeholder="Real Name">
+                                <input type="text" name="GROOM_REALNAME" id="GROOM_REALNAME" class="form-control" placeholder="Real Name" value={{ old('GROOM_REALNAME')}}>
                             </div>
                             <div class="form-group">
                                 <label for="GROOM_NAME">Name</label>
-                                <input type="text" name="GROOM_NAME" id="GROOM_NAME" class="form-control" placeholder="Name">
+                                <input type="text" name="GROOM_NAME" id="GROOM_NAME" class="form-control" placeholder="Name" value={{ old('GROOM_NAME')}}>
                             </div>
                             <hr>
                             <div class="form-group">
                                 <label for="GROOM_FACEBOOK">Facebook</label>
-                                <input type="text" name="GROOM_FACEBOOK" id="GROOM_FACEBOOK" class="form-control" placeholder='e.g "https://facebook.com/weddingdiary"''>
+                                <input type="text" name="GROOM_FACEBOOK" id="GROOM_FACEBOOK" class="form-control" placeholder='e.g "https://facebook.com/weddingdiary"' value={{ old('GROOM_FACEBOOK')}}>
                             </div>
                             <div class="form-group">
                                 <label for="GROOM_INSTAGRAM">Instagram</label>
-                                <input type="text" name="GROOM_INSTAGRAM" id="GROOM_INSTA" class="form-control" placeholder='e.g "https://instagram.com/weddingdiary"'>
+                                <input type="text" name="GROOM_INSTAGRAM" id="GROOM_INSTA" class="form-control" placeholder=' e.g "https://instagram.com/weddingdiary"' value={{ old('GROOM_INSTAGRAM')}}>
                             </div>
                             <div class="form-group">
                                 <label for="GROOM_TWTITER">Twitter</label>
-                                <input type="text" name="GROOM_TWTITER" id="GROOM_TWTITER" class="form-control" placeholder='e.g "https://twitter.com/weddingdiary"'>
+                                <input type="text" name="GROOM_TWTITER" id="GROOM_TWTITER" class="form-control" placeholder=' e.g "https://twitter.com/weddingdiary"' value={{ old('GROOM_TWTITER')}}>
                             </div>
                         </div>
                     </div>
@@ -66,24 +66,24 @@
                         <div class="form-vertical">
                             <div class="form-group">
                                 <label for="BRIDE_REALNAME">Real Name</label>
-                                <input type="text" name="BRIDE_REALNAME" id="BRIDE_REALNAME" class="form-control" placeholder="Real Name">
+                                <input type="text" name="BRIDE_REALNAME" id="BRIDE_REALNAME" class="form-control" placeholder="Real Name" value={{ old('BRIDE_REALNAME')}}>
                             </div>
                             <div class="form-group">
                                 <label for="BRIDE_NAME">Name</label>
-                                <input type="text" name="BRIDE_NAME" id="BRIDE_NAME" class="form-control" placeholder="Name">
+                                <input type="text" name="BRIDE_NAME" id="BRIDE_NAME" class="form-control" placeholder="Name" value={{ old('BRIDE_NAME')}}>
                             </div>
                             <hr>
                             <div class="form-group">
                                 <label for="BRIDE_FACEBOOK">Facebook</label>
-                                <input type="text" name="BRIDE_FACEBOOK" id="BRIDE_FACEBOOK" class="form-control" placeholder='e.g "https://facebook.com/weddingdiary"'>
+                                <input type="text" name="BRIDE_FACEBOOK" id="BRIDE_FACEBOOK" class="form-control" placeholder=' e.g "https://facebook.com/weddingdiary"' value={{ old('BRIDE_FACEBOOK')}}>
                             </div>
                             <div class="form-group">
                                 <label for="BRIDE_INSTAGRAM">Instagram</label>
-                                <input type="text" name="BRIDE_INSTAGRAM" id="BRIDE_INSTA" class="form-control" placeholder='e.g "https://instagram.com/weddingdiary"'>
+                                <input type="text" name="BRIDE_INSTAGRAM" id="BRIDE_INSTA" class="form-control" placeholder=' e.g "https://instagram.com/weddingdiary"' value={{ old('BRIDE_INSTAGRAM')}}>
                             </div>
                             <div class="form-group">
                                 <label for="BRIDE_TWTITER">Twitter</label>
-                                <input type="text" name="BRIDE_TWTITER" id="BRIDE_TWTITER" class="form-control" placeholder='e.g "https://twitter.com/weddingdiary"'>
+                                <input type="text" name="BRIDE_TWTITER" id="BRIDE_TWTITER" class="form-control" placeholder=' e.g "https://twitter.com/weddingdiary"' value={{ old('BRIDE_TWTITER')}}>
                             </div>
                         </div>
                     </div>
@@ -103,7 +103,7 @@
                         <div class="form-vertical">
                             <div class="form-group">
                                 <label for="URL">URL</label>
-                                <input type="text" name="SUBFOLDER2" id="URL" class="form-control" placeholder='e.g "https://yourdomain.com/diary?wedding=URL"'>
+                                <input type="text" name="SUBFOLDER2" id="URL" class="form-control" placeholder=' e.g "https://yourdomain.com/diary?wedding=URL"' value={{ old('SUBFOLDER2')}}>
                             </div>
                             <div class="form-group">
                                 <label for="PREWEDPHOTO_AMOUNT">Total Photo</label>
@@ -115,8 +115,7 @@
                             <div class="form-group">
                                 <label for="EXPIRED_DATE">Expired Date</label>
                                 <select id="EXPIRED_DATE" class="form-control" disabled>
-                                    @php $date1MonthLater = date('d-m-Y', strtotime("+1 months", strtotime("NOW") )) @endphp
-                                    <option value="{{$date1MonthLater}}">{{$date1MonthLater}}</option>
+                                    @php $date1MonthLater = date(' d-m-Y', strtotime("+1 months", strtotime("NOW") )) @endphp <option value="{{$date1MonthLater}}">{{$date1MonthLater}}</option>
                                 </select>
                                 <input type="hidden" name="EXPIRED_DATE" value="{{$date1MonthLater}}" />
                             </div>
