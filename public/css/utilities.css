@@ -5,3 +5,11 @@
 .u-flexJustifyContentEnd {
   justify-content: flex-end;
 }
+
+.u-fullWidth {
+  width: 100%;
+}
+
+.u-marginTop64 {
+  margin-top: 64px;
+}
