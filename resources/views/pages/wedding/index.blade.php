@@ -43,8 +43,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Jacob</td>
+                            <tr class="u-cursorPointer" onclick="window.location.href = '/dashboard'">
+                                <td>Thornton</td>
                                 <td>Thornton</td>
                                 <td>@fat</td>
                                 <td>
