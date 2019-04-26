@@ -26,7 +26,6 @@
         <div class="col-lg-12">
 
             <div class="box">
-
                 <div class="box-head">
                     <header>
                         <h4 class="text-light">Table <strong>Basic</strong></h4>
@@ -50,8 +49,17 @@
                                 <td>@fat</td>
                                 <td>
                                     <button type="button" class="btn btn-xs btn-inverse btn-equal" data-toggle="tooltip" data-placement="top" data-original-title="Edit row"><i class="fa fa-pencil"></i></button>
-                                    <button type="button" class="btn btn-xs btn-danger btn-equal" data-toggle="tooltip" data-placement="top" data-original-title="Delete row"><i class="fa fa-trash-o"></i></button>
+                                    <button type="button" class="btn btn-xs btn-danger btn-equal" data-toggle="modal" data-target="#dialog" data-placement="top" data-original-title="Delete row"><i class="fa fa-trash-o"></i></button>
                                 </td>
+                                @component('components.dialog')
+                                    @slot('action')
+                                        /weddings/1
+                                    @endslot
+                                    @slot('title')
+                                        Modal Delete
+                                    @endslot
+                                    My components with errors
+                                @endcomponent
                             </tr>
                             <tr>
                                 <td>Larry</td>
