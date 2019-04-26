@@ -52,6 +52,9 @@
                                     <button type="button" class="btn btn-xs btn-danger btn-equal" data-toggle="modal" data-target="#dialog" data-placement="top" data-original-title="Delete row"><i class="fa fa-trash-o"></i></button>
                                 </td>
                                 @component('components.dialog')
+                                    @slot('method')
+                                        DELETE
+                                    @endslot
                                     @slot('action')
                                         /weddings/1
                                     @endslot

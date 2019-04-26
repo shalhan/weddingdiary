@@ -12,7 +12,7 @@
         <form method="POST" action="{{$action}}">
           <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
           {{ csrf_field() }}
-          {{ method_field('DELETE') }}
+          {{ method_field($method) }}
           <button type="submit" class="btn btn-primary">Delete</button>
       </div>
     </div>
