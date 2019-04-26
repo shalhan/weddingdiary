@@ -14,8 +14,26 @@
     <li class="active">Dashboard</li>
 </ol>
 
-<div class="section-header">
-    <h3 class="text-standard">Dashboard</h3>
+<div class="section-header u-marginTop18 u-flex u-flexJustifyContentSpaceBetween u-flexAlignItemsCenter">
+    <h3 class="text-standard u-margin0">Dashboard</h3>
+    <div>
+        <a href="/">
+            <button class="btn btn-inverse">Edit</button>
+        </a>
+        <button class="btn btn-danger" data-toggle="modal" data-target="#dialog">Delete</button>
+        @component('components.dialog')
+        @slot('method')
+        DELETE
+        @endslot
+        @slot('action')
+        /weddings/1
+        @endslot
+        @slot('title')
+        Modal Delete
+        @endslot
+        My components with errors
+        @endcomponent
+    </div>
 </div>
 
 <div class="section-body">
@@ -83,14 +101,14 @@
                                 <td>Jacob</td>
                                 <td>Thornton</td>
                                 <td class="text-center">
-                                    <button type="button" class="btn btn-xs btn-danger btn-equal" data-toggle="tooltip" data-placement="top" data-original-title="Delete row"><i class="fa fa-trash-o"></i></button>
+                                    <button type="button" class="btn btn-xs btn-danger btn-equal" data-toggle="modal" data-target="#dialog" data-placement="top" data-original-title="Delete row"><i class="fa fa-trash-o"></i></button>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Larry</td>
                                 <td>the Bird</td>
                                 <td class="text-center">
-                                    <button type="button" class="btn btn-xs btn-danger btn-equal" data-toggle="tooltip" data-placement="top" data-original-title="Delete row"><i class="fa fa-trash-o"></i></button>
+                                    <button type="button" class="btn btn-xs btn-danger btn-equal" data-toggle="modal" data-target="#dialog" data-placement="top" data-original-title="Delete row"><i class="fa fa-trash-o"></i></button>
                                 </td>
                             </tr>
                         </tbody>
