@@ -18,7 +18,7 @@
     <h3 class="text-standard u-margin0">Dashboard</h3>
     <div>
         <a href="/">
-            <button class="btn btn-primary">Edit</button>
+            <button class="btn btn-inverse">Edit</button>
         </a>
         <button class="btn btn-danger" data-toggle="modal" data-target="#dialog">Delete</button>
         @component('components.dialog')
