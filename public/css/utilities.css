@@ -1,9 +1,21 @@
+.u-initial {
+  display: initial !important;
+}
+
 .u-flex {
-  display: flex;
+  display: flex !important;
 }
 
 .u-flexJustifyContentEnd {
-  justify-content: flex-end;
+  justify-content: flex-end !important;
+}
+
+.u-flexJustifyContentSpaceBetween {
+  justify-content: space-between !important;
+}
+
+.u-flexAlignItemsCenter {
+  align-items: center !important;
 }
 
 .u-flexJustifyContentCenter {
@@ -16,7 +28,23 @@
 }
 
 .u-fullWidth {
-  width: 100%;
+  width: 100% !important;
+}
+
+.u-margin0 {
+  margin: 0 !important;
+}
+
+.u-marginTop16 {
+  margin-top: 16px !important;
+}
+
+.u-marginTop18 {
+  margin-top: 18px !important;
+}
+
+.u-marginTop24 {
+  margin-top: 24px;
 }
 
 .u-marginTop16 {
@@ -50,3 +78,31 @@
 .u-fontMedium {
   font-weight: 600;
 } 
+  margin-top: 64px !important;
+}
+
+.u-marginBottom9 {
+  margin-bottom: 9px !important;
+}
+
+@media screen and (min-width: 800px) {
+  .u-md-initial {
+    display: initial !important;
+  }
+
+  .u-md-flex {
+    display: flex !important;
+  }
+  
+  .u-md-flexJustifyContentSpaceBetween {
+    justify-content: space-between !important;
+  }
+  
+  .u-md-flexAlignItemsCenter {
+    align-items: center !important;
+  }
+
+  .u-md-marginTop0 {
+    margin-top: 0 !important;
+  }
+}
