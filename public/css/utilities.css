@@ -31,6 +31,15 @@
   height: 128px !important;
 }
 
+.u-flexJustifyContentCenter {
+  justify-content: center !important;
+}
+
+.u-size128 {
+  width: 128px !important;
+  height: 128px !important;
+}
+
 .u-fullWidth {
   width: 100% !important;
 }
@@ -49,6 +58,10 @@
 
 .u-marginTop24 {
   margin-top: 24px;
+}
+
+.u-marginTop16 {
+  margin-top: 16px;
 }
 
 .u-marginTop64 {
