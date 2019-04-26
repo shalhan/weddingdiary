@@ -1,41 +1,9 @@
 @extends("layouts.main")
 
 @push('style')
-<link type="text/css" rel="stylesheet" href="/assets/css/theme-default/libs/toastr/toastr.css" />
 @endpush
 
 @push('script')
-<script>
-    function handleImageUpload() {
-        const reader = new FileReader();
-        const input = document.createElement('input');
-        input.setAttribute('type', 'file');
-        input.setAttribute('accept', 'image/*');
-        input.click();
-
-        input.addEventListener('change', (e) => {
-            const files = e.srcElement.files;
-
-            reader.addEventListener('load', async () => {
-                try {
-                    let picture = document.getElementById("PROFILE_PICTURE");
-
-                    if (reader.result) picture.removeAttribute('src');
-
-                    picture.setAttribute('src', reader.result);
-                    toastr.success('Successfully Saving Photo');
-                } catch (err) {
-                    console.log(err);
-                }
-            });
-
-            if (files && files.length > 0) {
-                reader.readAsDataURL(files[0]);
-            }
-        });
-    }
-</script>
-<script src="/assets/js/libs/toastr/toastr.min.js"></script>
 @endpush
 
 @section("content")
@@ -51,16 +19,7 @@
 <div class="section-body">
 
     <div class="row">
-        <div class="col-sm-3">
-            <div class="box">
-                <div class="box-body u-flex u-flexJustifyContentCenter">
-                    <div class="avatarContainer u-size128">
-                        <img id="PROFILE_PICTURE" class="avatarImage u-borderRadius50Percent u-backgroundColorGrey10 u-border0 u-cursorPointer" src="/images/img-placeholder.png" onclick="handleImageUpload()" />
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-9">
+        <div class="col-sm-12">
             <div class="box">
 
                 <div class="box-head">
