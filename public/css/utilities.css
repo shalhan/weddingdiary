@@ -2,6 +2,10 @@
   display: initial !important;
 }
 
+.u-displayNone {
+  display: none;
+}
+
 .u-flex {
   display: flex !important;
 }
@@ -16,6 +20,15 @@
 
 .u-flexAlignItemsCenter {
   align-items: center !important;
+}
+
+.u-flexJustifyContentCenter {
+  justify-content: center !important;
+}
+
+.u-size128 {
+  width: 128px !important;
+  height: 128px !important;
 }
 
 .u-fullWidth {
@@ -39,11 +52,43 @@
 }
 
 .u-marginTop64 {
-  margin-top: 64px !important;
+  margin-top: 64px;
 }
 
 .u-marginBottom9 {
   margin-bottom: 9px !important;
+}
+
+.u-backgroundColorGrey10 {
+  background: #fafafa !important;
+}
+
+.u-border0 {
+  border: none;
+}
+
+.u-borderRadius50Percent {
+  border-radius: 50% !important;
+}
+
+.u-backgroundPositionCenter {
+  background-position: center !important;
+}
+
+.u-backgroundNoRepeat {
+  background-repeat: no-repeat !important;
+}
+
+.u-backgroundSizeCover {
+  background-size: cover !important;
+}
+
+.u-fontMedium {
+  font-weight: 600;
+}
+
+.u-cursorPointer {
+  cursor: pointer;
 }
 
 @media screen and (min-width: 800px) {
@@ -54,11 +99,11 @@
   .u-md-flex {
     display: flex !important;
   }
-  
+
   .u-md-flexJustifyContentSpaceBetween {
     justify-content: space-between !important;
   }
-  
+
   .u-md-flexAlignItemsCenter {
     align-items: center !important;
   }
@@ -66,4 +111,19 @@
   .u-md-marginTop0 {
     margin-top: 0 !important;
   }
+}
+
+.avatarContainer {
+  position: relative;
+}
+
+.avatarImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  height: 100%;
+  width: 100%;
 }
