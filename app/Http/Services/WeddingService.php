@@ -7,8 +7,10 @@ use App\Exceptions\ServiceException;
 
 class WeddingService extends Service
 {
-    public function __construct() {
-        
+    private $weddingRepo;
+
+    public function __construct(WeddingRepository $wr) {
+        $this->weddingRepo = $wr;
     }
 
     /**

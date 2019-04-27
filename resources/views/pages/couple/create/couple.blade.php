@@ -10,14 +10,14 @@
 
 @section("content")
 <ol class="breadcrumb">
-    <li><a href="../../html/.html">home</a></li>
-    <li class="active">Dashboard</li>
+    <li><a href="{{route('showCouples')}}">couples</a></li>
+    <li><a href="{{route('showCreateCouple', ['step'=>1])}}">create</a></li>
+    <li class="active">step 1</li>
 </ol>
 <div class="section-header">
-    <h3 class="text-standard">Step couple</h3>
+    <h3 class="text-standard">Couple Information</h3>
 </div>
 <div class="section-body">
-
     <form role="form" method="POST" action="{{route('saveCouple')}}">
         @csrf
         <div class="row">
@@ -132,7 +132,8 @@
             </div>
         </div>
         <div class="u-flex u-flexJustifyContentEnd">
-            <button type="submit" class="btn btn-inverse">Save</button>
+            <a href="{{route('showCreateCouple', ['step'=>2])}}"><button type="button" class="btn btn-inverse">Save</button></a>
+            <!-- <button type="submit" class="btn btn-inverse">Save</button> -->
         </div>
     </form>
 

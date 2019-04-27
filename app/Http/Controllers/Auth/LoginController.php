@@ -25,7 +25,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/couples';
 
     /**
      * Create a new controller instance.
@@ -39,5 +39,19 @@ class LoginController extends Controller
 
     public function showLoginForm() {
         return view('pages.auth.login');
+    }
+
+    /**
+     * Get a validator for an incoming registration request.
+     *
+     * @param  array  $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'email' => 'required|email|max:255|unique:msvendor',
+            'password' => 'required|min:6|confirmed',
+        ]);
     }
 }

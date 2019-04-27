@@ -9,11 +9,69 @@ use App\Couple;
 class CoupleController extends Controller
 {
     private $coupleService;
+    private $FIRST_STEP = 1;
+    private $LAST_STEP = 4;
+    private  $views = [
+        1 => 'pages.couple.create.couple',
+        2 => 'pages.couple.create.wedding',
+        3 => 'pages.couple.create.photo',
+        4 => 'pages.couple.create.gallery',
+    ];
 
     public function __construct() {
         $couple = new Couple();
         $coupleRepo = new CoupleRepository($couple);
         $this->coupleService = new CoupleService($coupleRepo);
+    }
+
+    /**
+     * Show all couples
+     * @method GET /couples
+     * @param Request ?page
+     * @return view
+     */
+
+    public function showIndex(Request $req) {
+        $data = [
+            'page' => isset($req->page) ? isset($req->page) : 1
+        ];
+
+        $couples = $this->coupleService->getAll($data);
+        if(isset($couples["errors"])) {
+            abort(500);
+        }
+
+        return view("pages.couple.index", compact('couples'));
+    }
+
+    /**
+     *  Show create couple page
+     * @method GET /couples/create?step=xxx
+     * @param Request $req
+     * @return view
+     */
+
+    public function showCreate(Request $req) {
+        if(!isset($req->step) || $req->step < $this->FIRST_STEP || $req->step > $this->LAST_STEP)
+            $step = $this->FIRST_STEP;  
+        else
+            $step = $req->step;
+            
+        return view($this->views[$step]);
+    }
+
+    /**
+     * Show couple
+     * @method GET /couples/{couple_id}
+     * @return view
+     */
+
+    public function showCouple($id) {
+        if(!isset($id))
+            abort(404);
+        
+        $couple = $this->coupleService->getById($id);
+        return view("pages.couple.show", compact(['couple']));
     }
 
     /**

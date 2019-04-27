@@ -10,14 +10,13 @@
 
 @section("content")
 <ol class="breadcrumb">
-    <li><a href="../../html/.html">home</a></li>
-    <li class="active">Dashboard</li>
+    <li class="active">Couple</li>
 </ol>
 
 <div class="section-header u-md-flex u-md-flexJustifyContentSpaceBetween u-md-flexAlignItemsCenter u-marginTop18 u-marginBottom9">
-    <h3 class="text-standard u-margin0">List of Weddings</h3>
-    <a href="/weddings/create?step=1">
-        <button type="button" class="btn btn-inverse u-marginTop16 u-md-marginTop0">Create New Wedding</button>
+    <h3 class="text-standard u-margin0">List of Couples</h3>
+    <a href="{{route('showCreateCouple', ['step' => 1])}}">
+        <button type="button" class="btn btn-inverse u-marginTop16 u-md-marginTop0">Create New Couple</button>
     </a>
 </div>
 
@@ -28,7 +27,7 @@
             <div class="box">
                 <div class="box-head">
                     <header>
-                        <h4 class="text-light">Table <strong>Basic</strong></h4>
+                        <h4 class="text-light">Table <strong>Couples</strong></h4>
                     </header>
                 </div>
 
@@ -43,10 +42,11 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="u-cursorPointer" onclick="window.location.href = '/dashboard'">
-                                <td>Thornton</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
+                            @foreach($couples['data'] as $couple)
+                            <tr class="u-cursorPointer" onclick=" window.location.href = `{{ route('showCouple', $couple->GUID) }}` ">
+                                <td>{{$couple->groom->GROOM_NAME}}</td>
+                                <td>{{$couple->bride->BRIDE_NAME}}</td>
+                                <td>{{$couple->template->code_name}}</td>
                                 <td>
                                     <button type="button" class="btn btn-xs btn-inverse btn-equal" data-toggle="tooltip" data-placement="top" data-original-title="Edit row"><i class="fa fa-pencil"></i></button>
                                     <button type="button" class="btn btn-xs btn-danger btn-equal" data-toggle="modal" data-target="#dialog" data-placement="top" data-original-title="Delete row"><i class="fa fa-trash-o"></i></button>
@@ -59,20 +59,12 @@
                                         /weddings/1
                                     @endslot
                                     @slot('title')
-                                        Modal Delete
+                                        Alert!
                                     @endslot
-                                    My components with errors
+                                    Are you sure want to delete this couple?
                                 @endcomponent
                             </tr>
-                            <tr>
-                                <td>Larry</td>
-                                <td>the Bird</td>
-                                <td>@twitter</td>
-                                <td>
-                                    <button type="button" class="btn btn-xs btn-inverse btn-equal" data-toggle="tooltip" data-placement="top" data-original-title="Edit row"><i class="fa fa-pencil"></i></button>
-                                    <button type="button" class="btn btn-xs btn-danger btn-equal" data-toggle="tooltip" data-placement="top" data-original-title="Delete row"><i class="fa fa-trash-o"></i></button>
-                                </td>
-                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

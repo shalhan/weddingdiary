@@ -16,7 +16,7 @@
     <li class="active">Dashboard</li>
 </ol>
 <div class="section-header">
-    <h3 class="text-standard">Step wedding</h3>
+    <h3 class="text-standard">Wedding Information</h3>
 </div>
 <div class="section-body">
 
@@ -114,7 +114,8 @@
             </div>
         </div>
         <div class="u-flex u-flexJustifyContentEnd">
-            <button type="submit" class="btn btn-inverse">Save</button>
+            <a href="{{route('showCreateCouple', ['step'=>3])}}"><button type="button" class="btn btn-inverse">Save</button></a>
+            <!-- <button type="submit" class="btn btn-inverse">Save</button> -->
         </div>
     </form>
 

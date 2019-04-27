@@ -10,16 +10,10 @@
 
         <!-- BEGIN MAIN MENU -->
         <ul class="main-menu">
-            <!-- Menu Dashboard -->
-            <li class="pointer {{Route::getCurrentRoute()->uri == 'dashboard' ? 'active' : ''}}">
-                <a href="{{route('showDashboard')}}">
-                    <i class="fa fa-home fa-fw"></i><span class="title">Dashboard</span>
-                </a>
-            </li><!--end /menu-item -->
             <!-- Menu Add Wedding -->
-            <li class="pointer {{Route::getCurrentRoute()->uri == 'weddings' ? 'active' : ''}}">
-                <a href="{{route('showWedding')}}" >
-                    <i class="fa fa-laptop"></i><span class="title">Weddings</span>
+            <li class="pointer {{Route::getCurrentRoute()->uri == 'couples' ? 'active' : ''}}">
+                <a href="{{route('showCouples')}}" >
+                    <i class="fa fa-plus-square"></i><span class="title">Couples</span>
                 </a>
             </li><!--end /menu-item -->
             

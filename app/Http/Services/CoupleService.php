@@ -69,6 +69,36 @@ class CoupleService extends Service
             return $e;
         }
     }
+
+    /**
+     * Get all couple data per page
+     * @param Array request
+     * @return CoupleRepository $coupleRepo
+     */
+    public function getAll($data) {
+        try {
+            $couples = $this->coupleRepo->getAll($data);
+            return $this->getResponse(200, 'Get all couple success', $couples);
+        }
+        catch(ServiceException $e) {
+            return $e;
+        }
+    }
+
+    /**
+     * Get all couple data per page
+     * @param Int id
+     * @return CoupleRepository $coupleRepo
+     */
+    public function getById($id) {
+        try {
+            $couple = $this->coupleRepo->getById($id);
+            return $this->getResponse(200, 'Get couple by id success', $couple);
+        }
+        catch(ServiceException $e) {
+            return $e;
+        }
+    }
     
     private function validateData($data) {
         $validation = [];

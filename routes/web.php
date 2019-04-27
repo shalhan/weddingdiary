@@ -20,8 +20,6 @@ use App\VendorMenuVisit;
 // $DEV_CURRENT_URL = "http://abphotographs.com";
 // $DEV_CURRENT_URL = "http://localhost:8888";
 
-
-
 Route::get('/', function (Request $req) {
     $vendors = new Vendor();
     $vendor = $vendors->getByToken($req->token);
@@ -155,14 +153,19 @@ Route::group(['middleware'=> 'cors'], function() {
     });
 });
 
-Route::get("/weddings", "WeddingController@showIndex")->name("showWedding");
-Route::get("/weddings/create", "WeddingController@showCreate")->name("showCreateWedding");
-Route::get("/dashboard", "DashboardController@showIndex")->name("showDashboard");
+/**
+ * ADMIN SYSTEM
+ */
+Route::get("/couples", "CoupleController@showIndex")->name("showCouples");
+Route::get("/couples/create", "CoupleController@showCreate")->name("showCreateCouple");
+Route::get("/couples/{id}", "CoupleController@showCouple")->name("showCouple");
 
 Route::get("/profile", "VendorController@showProfile")->name("showProfile");
 Route::get("/profile/change-password", "VendorController@showChangePassword")->name("showChangePassword");
 
-Route::get("/login", "Auth\LoginController@showLoginForm")->name("login");
+Route::get("/login", "Auth\LoginController@showLoginForm")->name("viewLogin");
+Route::post("/login", "Auth\LoginController@login")->name("login");
+Route::post("/logout", "Auth\LoginController@logout")->name("logout");
 Route::get("/change-password", "Auth\LoginController@showLoginForm")->name("changePassword");
 
 Route::post("/save/couple", "CoupleController@save")->name("saveCouple");

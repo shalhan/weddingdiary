@@ -90,14 +90,19 @@
                 </li><!--end .dropdown -->
                 <li><span class="navbar-devider"></span></li>
                 <li class="dropdown">
-                    <a href="javascript:void(0);" class="navbar-profile dropdown-toggle text-bold" data-toggle="dropdown">Daniel Johnson <i class="fa fa-fw fa-angle-down"></i> <img class="img-circle" src="../../assets/img/avatar1.jpg?1401481655" alt="" /></a>
+                    <a href="javascript:void(0);" class="navbar-profile dropdown-toggle text-bold" data-toggle="dropdown">{{Auth::user()->VENDOR_NAME2}} <i class="fa fa-fw fa-angle-down"></i> <img class="img-circle" src="../../assets/img/avatar1.jpg?1401481655" alt="" /></a>
                     <ul class="dropdown-menu animation-slide">
                         <li class="dropdown-header">Config</li>
                         <li><a href="../../html/pages/profile.html">My profile</a></li>
                         <li><a href="../../html/pages/blog/post.html">My blog <span class="badge badge-danger pull-right">16</span></a></li>
                         <li><a href="../../html/pages/calendar.html">My appointments</a></li>
                         <li class="divider"></li>
-                        <li><a href="../../html/pages/login.html"><i class="fa fa-fw fa-power-off text-danger"></i> Logout</a></li>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit" class="btn">
+                                <i class="fa fa-fw fa-power-off text-danger"></i> Logout</a>
+                            </button>
+                        </form>      
                     </ul><!--end .dropdown-menu -->
                 </li><!--end .dropdown -->
             </ul><!--end .nav -->

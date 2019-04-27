@@ -10,12 +10,12 @@
 
 @section("content")
 <ol class="breadcrumb">
-    <li><a href="../../html/.html">home</a></li>
-    <li class="active">Dashboard</li>
+    <li><a href="{{route('showCouples')}}">couples</a></li>
+    <li class="active">{{$couple['data']->groom->GROOM_NAME}} & {{$couple['data']->bride->BRIDE_NAME}}</li>
 </ol>
 
 <div class="section-header u-marginTop18 u-flex u-flexJustifyContentSpaceBetween u-flexAlignItemsCenter">
-    <h3 class="text-standard u-margin0">Dashboard</h3>
+    <h3 class="text-standard u-margin0">{{$couple['data']->groom->GROOM_NAME}} & {{$couple['data']->bride->BRIDE_NAME}}</h3>
     <div>
         <a href="/">
             <button class="btn btn-inverse">Edit</button>
