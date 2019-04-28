@@ -41,6 +41,14 @@ class LoginController extends Controller
         return view('pages.auth.login');
     }
 
+    public function showForgotPassword() {
+        return view('pages.auth.forgotPassword');
+    }
+
+    public function showChangePassword() {
+        return view('pages.auth.changePassword');
+    }
+
     /**
      * Get a validator for an incoming registration request.
      *

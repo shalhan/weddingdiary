@@ -108,6 +108,9 @@
   cursor: pointer;
 }
 
+.u-textAlignCenter {
+  text-align: center;
+}
 
 .avatarContainer {
   position: relative;
@@ -151,4 +154,3 @@
     margin-top: 0 !important;
   }
 }
-
