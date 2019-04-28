@@ -1,0 +1,194 @@
+//
+// Tabbar
+// --------------------------------------------------
+
+// General 
+// -------------------------
+
+.nav-tabs a small {
+	color: inherit;
+}
+
+// Tabs Left, Right and 
+// -------------------------
+
+.tabs-below > .nav-tabs,
+.tabs-right > .nav-tabs,
+.tabs-left > .nav-tabs {
+	border-bottom: 0;
+}
+
+.tab-content > .tab-pane,
+.pill-content > .pill-pane {
+	display: none;
+}
+
+.tab-content > .active,
+.pill-content > .active {
+	display: block;
+}
+
+.tabs-left > .tab-content,
+.tabs-right > .tab-content {
+	overflow: auto;
+}
+
+.tabs-below > .nav-tabs {
+	border-top: none;
+}
+
+.tabs-below > .nav-tabs > li {
+	margin-top: -1px;
+	margin-bottom: 0;
+}
+
+.tabs-below > .nav-tabs > li > a:hover,
+.tabs-below > .nav-tabs > li > a:focus {
+	border-top-color: @nav-tabs-border-color;
+	border-bottom-color: transparent;
+}
+
+.tabs-below > .nav-tabs > .active > a,
+.tabs-below > .nav-tabs > .active > a:hover,
+.tabs-below > .nav-tabs > .active > a:focus {
+	border-color: @nav-tabs-border-color;
+	border-top-color: transparent;
+}
+
+.tabs-left > .nav-tabs > li,
+.tabs-right > .nav-tabs > li {
+	float: none;
+}
+
+.tabs-left > .nav-tabs > li > a,
+.tabs-right > .nav-tabs > li > a {
+	min-width: 74px;
+	margin-right: 0;
+	margin-bottom: 3px;
+}
+
+.tabs-left > .nav-tabs {
+	float: left;
+	border-right: 1px solid @nav-tabs-border-color;
+}
+
+.tabs-left > .nav-tabs > li > a {
+	margin-right: -1px;
+}
+
+.tabs-left > .nav-tabs > li > a:hover,
+.tabs-left > .nav-tabs > li > a:focus {
+	border-color: transparent;
+	border-right-color: @nav-tabs-border-color;
+}
+
+.tabs-left > .nav-tabs .active > a,
+.tabs-left > .nav-tabs .active > a:hover,
+.tabs-left > .nav-tabs .active > a:focus {
+	border-color: @nav-tabs-border-color;
+	border-right-color: transparent;
+}
+
+.tabs-right > .nav-tabs {
+	float: right;
+	border-left: 1px solid #ddd;
+}
+
+.tabs-right > .nav-tabs > li > a {
+	margin-left: -1px;
+}
+
+.tabs-right > .nav-tabs > li > a:hover,
+.tabs-right > .nav-tabs > li > a:focus {
+	border-color: transparent;
+	border-left-color: @nav-tabs-border-color;
+}
+
+.tabs-right > .nav-tabs .active > a,
+.tabs-right > .nav-tabs .active > a:hover,
+.tabs-right > .nav-tabs .active > a:focus {
+	border-color: @nav-tabs-border-color;
+	border-left-color: transparent;
+}
+
+// Box Tabs
+// -------------------------
+
+.box .nav-tabs a {
+	color: inherit;
+	&:hover { color: @text-color; }
+}
+
+.box-head.nav-tabs,
+.box-head > .nav-tabs {
+	background: darken(@gray-lighter, 3%);
+	color: darken(@gray-lighter, 30%);
+	border-color: transparent;
+	
+	> li {
+		&.active > a {
+			&,
+			&:hover,
+			&:focus {
+				border-color: transparent;
+			}
+		}
+	}
+}
+
+
+// Tab shadows
+// -------------------------
+.box-head.nav-tabs,
+.box-head > .nav-tabs {
+	.active > a,
+	.active > a:hover,
+	.active > a:focus {
+		.box-shadow(1px -1px 1px rgba(0,0,0,.1));
+	}
+}
+.tabs-left > .nav-tabs {
+	.active > a,
+	.active > a:hover,
+	.active > a:focus {
+		.box-shadow(-1px 1px 1px rgba(0,0,0,.1));
+	}
+}
+.tabs-right > .nav-tabs {
+	.active > a,
+	.active > a:hover,
+	.active > a:focus {
+		.box-shadow(1px 1px 1px rgba(0,0,0,.1));
+	}
+}
+.tabs-below > .nav-tabs {
+	.active > a,
+	.active > a:hover,
+	.active > a:focus {
+		.box-shadow(1px 1px 1px rgba(0,0,0,.1));
+	}
+}
+
+// Tab colors
+// -------------------------
+
+.tab-variant(tabs-primary,	@brand-primary);
+.tab-variant(tabs-success,	@brand-success);
+.tab-variant(tabs-warning,	@brand-warning);
+.tab-variant(tabs-danger,	@brand-danger);
+.tab-variant(tabs-info,		@brand-info);
+.tab-variant(tabs-black,	@black);
+.tab-variant(tabs-white,	@white);
+.tab-variant(tabs-gray,		@gray-lighter);
+.tab-variant(tabs-inverse,	@brand-inverse);
+.tab-variant(tabs-body,		@body-color);
+.tab-variant(tabs-support1,	@brand-support1);
+.tab-variant(tabs-support2,	@brand-support2);
+.tab-variant(tabs-support3,	@brand-support3);
+.tab-variant(tabs-support4,	@brand-support4);
+.tab-variant(tabs-support5,	@brand-support5);
+
+.nav-tabs.tabs-transparent {
+	background: transparent;
+	color: inherit;
+}

@@ -1,0 +1,416 @@
+//
+// Sidebar
+// --------------------------------------------------
+
+
+// Main
+// -------------------------
+
+#sidebar {
+	position: relative;
+	display:table-cell;
+	vertical-align: top;
+	width: @sidebar-width;
+	padding: 0;
+	z-index: @zindex-sidebar;
+	.transition(width @sidebar-collapse-speed @sidebar-collapse-ease);
+
+	.nav-brand {
+		height: @headerbar-height;
+		background-color: @sidebar-bg;
+		text-align: center;
+	}
+}
+
+
+// Fixed sidebar
+// -------------------------
+
+.sidebar-fixed .sidebar-content{
+	position: fixed;
+	width: inherit;
+}
+
+
+// Main sidebar background
+// -------------------------
+
+.sidebar-back {
+	position: fixed;
+	width: @sidebar-width;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	background: @sidebar-bg;
+	z-index: -1;
+	.transition(width @sidebar-collapse-speed @sidebar-collapse-ease);
+}
+
+
+// Search
+// -------------------------
+
+.sidebar-search {
+	margin: 0 20px 20px 20px;
+	
+	input {
+		background-color: @sidebar-sub-bg;
+		border-color: @sidebar-sub-bg;
+		color: contrast(@sidebar-sub-bg, @black, @white, @color-threshold);
+		.placeholder(lighten(@sidebar-sub-bg, 16%));
+		
+		&:focus {
+			outline: none;
+			border-color: lighten(@sidebar-sub-bg, 10%);
+			outline: 0;
+		}
+	}
+	
+	.btn {
+		background-color: @sidebar-sub-bg;
+		color: contrast(@sidebar-sub-bg, @text-color, @white, @color-threshold);
+		border-color: transparent;
+		
+		&:hover {
+			border-color: lighten(@sidebar-sub-bg, 10%);
+		}
+	}
+	
+	> a {
+		display: none;
+	}
+}
+
+// Main brand
+// -------------------------
+
+.main-brand {
+	display: block;
+	padding: 10px 0 !important;
+	h3 { margin: 0 !important; }
+}
+
+
+// Main menu
+// -------------------------
+
+.main-menu { 
+	font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	padding: 0;
+
+	// Menu badge markup
+	.badge {
+		position: absolute;
+		right: 10px;
+		color: @text-color;
+		background-color: @white;
+		border-radius: 0;
+		padding: 2px 4px;
+		font-size: 10px;
+		text-shadow: none;
+	}
+
+	// All menu items
+	li { 
+		margin: 0; 
+		list-style: none;
+
+		// Collapse/Expand sign
+		.expand-sign {
+			display: inline-block;
+			margin-left: 5px;
+			vertical-align: bottom;
+			color: inherit;
+			font-size: 12px;
+			font-weight: inherit;
+			.rotate(0deg);
+			.transition(all .15s linear);
+		}
+		&.expanded > a .expand-sign,
+		&.expanding > a .expand-sign {
+			font-size: 18px;
+			font-weight: 300;
+			.rotate(-45deg);
+			.transition(all 0.10s linear);
+		}
+
+		// Expanded menu items
+		&.expanded {
+			> a {
+				color: contrast(@sidebar-bg, @black, @white, @color-threshold);
+			}
+			> ul {
+				display: block;
+			}
+		}
+
+		// Active menu links
+		&.active {
+			> a {
+				color: contrast(@sidebar-bg, @black, @white, @color-threshold);
+			}
+		}
+	}
+
+	// Menu items
+	> li {
+		// Main menu button markup
+		> a {
+			position: relative;
+			display: block;
+			background-color: @sidebar-bg;
+			color: @sidebar-color;
+			text-decoration: none;
+			.button-size(12px; 20px; 13px; 13px; 0);
+			padding-left: 40px;
+
+			&.active {
+				background-color: @sidebar-color-selected;
+				color: contrast(@sidebar-color-selected, @text-color, @white, @color-threshold);
+				.fa:first-child { color: @white; }
+			}
+			.fa:first-child {
+				color: @sidebar-color-icon;
+				font-size: 14px;
+				float: left;
+				margin-left: -27px;
+			}
+		}
+		&:hover > a,
+		&:focus > a {
+			background-color: lighten(@sidebar-bg, 5%);
+			color: contrast(lighten(@sidebar-bg, 5%), @text-color, @white, @color-threshold);
+		}
+		&.active > a {
+			background-color: darken(@sidebar-bg, 10%);
+			color: contrast(darken(@sidebar-bg, 10%), @text-color, @white, @color-threshold);
+		}
+
+		// Level 1 submenu markup
+		> ul {
+			//3D menu arrows
+			&:before {
+				position: absolute;
+				top: 0; right: 0px;
+				#triangle > .tl(darken(@sidebar-sub-bg, 15%));
+			}
+			&:after {
+				position: absolute;
+				bottom: 0; right: 0px;
+				#triangle > .bl(darken(@sidebar-sub-bg, 15%));
+			}
+
+			// Item markup
+			> li {
+				background: @body-color;
+				padding-right: @navigation-overlap;
+			}
+		}
+
+		// Level 2 submenu markup
+		> ul > li > ul a { 
+			background-color: darken(@sidebar-sub-bg, 5%);
+			padding-left: 50px; 
+		}
+
+		// Level 3 submenu markup
+		> ul > li > ul > li > ul a { 
+			background-color: darken(@sidebar-sub-bg, 10%);
+			padding-left: 60px; 
+		}
+
+		// Level 4 submenu markup
+		> ul > li > ul > li > ul > li > ul a { 
+			background-color: darken(@sidebar-sub-bg, 12%);
+			padding-left: 65px; 
+		}
+
+		// Level 5 submenu markup
+		> ul > li > ul > li > ul > li > ul > li > ul a { 
+			background-color: darken(@sidebar-sub-bg, 14%);
+			padding-left: 70px; 
+		}
+
+		// Submenu markup
+		ul {
+			display: none;
+			position: relative;
+			padding: 0;
+
+			> li {
+				&.expanded {
+					> a {
+						color: contrast(@sidebar-sub-bg, @black, @white, @color-threshold);
+					}
+				}
+				
+				// Expanded menu items
+				> a {
+					position: relative;
+					display: block;
+					background-color: @sidebar-sub-bg;
+					color: @sidebar-sub-color;
+					text-decoration: none;
+					.button-size(12px; 17px; 13px; 13px; 0);
+					padding-left: 40px;
+
+					.expand-sign { 
+						position: absolute;
+						margin-left: -20px; 
+					}
+
+					&:active,
+					&.active {
+						background-color: @sidebar-color-selected;
+						color: contrast(@sidebar-color-selected, @text-color, @white, @color-threshold);
+					}
+					&:hover,
+						&:focus {
+						background-color: lighten(@sidebar-sub-bg, 20%);
+						color: contrast(lighten(@sidebar-sub-bg, 20%), @text-color, @white, @color-threshold);
+					}
+				}
+			}
+		}
+	}
+}
+
+// Collapsed sidebar
+// -------------------------
+
+.sidebar-collapsed {
+
+	// Content
+	// -------------------------
+
+	#content {
+		display: block;
+	}
+
+	// Sidebar
+	// -------------------------
+
+	#sidebar {
+		width: @sidebar-width-collapsed;
+		.transition(all @sidebar-collapse-speed @sidebar-collapse-ease);
+
+		.nav-brand a span { display: none; }
+	}
+
+	// Main-menu when collapsed
+	.sidebar-back {
+		width: @sidebar-width-collapsed;
+		.transition(width @sidebar-collapse-speed @sidebar-collapse-ease);
+	}
+
+	// Search
+	// -------------------------
+
+	.sidebar-search {
+		position: relative;
+		margin: 0;
+
+
+		> a {
+			display: block;
+			padding: 7px 20px 7px 20px;
+			margin-bottom: 10px;
+			background-color: @sidebar-bg;
+			color: @sidebar-color;
+			.close-icon {display: none;}
+		}
+		> .form-group {
+			display: none;
+		}
+
+		&.open {
+			> a {
+				background-color: @sidebar-sub-bg;
+				.search-icon {display: none;}
+				.close-icon {display: inline-block;}
+			}
+
+			> .form-group {
+				position: absolute;
+				z-index: 10;
+				display: block;
+				width: @sidebar-width;
+				top: 0;
+				left: @sidebar-width-collapsed;
+			}
+		}
+	}
+
+	// Main-menu when collapsed
+	.main-menu {
+		> li {
+			position: relative;
+
+			// Hide badges on all first menu elements
+			.badge {
+				display: none;
+			}
+			
+			&.expanded > a {
+				background-color: @sidebar-sub-bg;
+				.title { 
+					display: block;
+					position: absolute;
+					left: @sidebar-width-collapsed;
+					padding: 12px 12px 12px 25px;
+					top: -35px;
+					height: 35px;
+					background-color: @sidebar-sub-bg;
+					color: contrast(@sidebar-sub-bg, @black, @white, @color-threshold);
+					white-space: nowrap;
+					text-transform: initial;
+					font-size: 14px;
+					font-weight: 400;
+					min-width: @sidebar-width;
+				}
+			}
+			&.active > a {
+				background-color: lighten(@sidebar-bg, 20%);
+				color: contrast(lighten(@sidebar-bg, 20%), @black, @white, @color-threshold);
+			}
+
+			// Main menu button markup when collapsed
+			> a {
+				.clearfix();
+				padding: 20px 20px 20px 40px;
+				.transition(padding @sidebar-collapse-speed @sidebar-collapse-ease);
+
+				.title { 
+					display: none;
+				}
+
+				&:hover {
+					background-color: darken(@sidebar-sub-bg, 10%);
+				}
+				.fa:first-child {
+					color: inherit;
+					margin-left: -20px;
+				}
+			}
+
+			> ul {
+				position: absolute;
+				top: 0;
+				left: @sidebar-width-collapsed;
+
+				.transition(left @sidebar-collapse-speed @sidebar-collapse-ease);
+
+				// Hide submenu styling arrows when collapsed
+				&:before { display: none; }
+				&:after { display: none; }
+
+				// 
+				li { 
+					padding: 0;
+					min-width: @sidebar-width;
+				}
+			}
+		}
+	}
+}

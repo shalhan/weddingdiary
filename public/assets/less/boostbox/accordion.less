@@ -1,0 +1,43 @@
+//
+// Accordion /* Accordion */
+// --------------------------------------------------
+
+
+// Base
+// -------------------------
+
+.accordion {
+	.panel-heading {
+		padding: 0;
+		
+		a {
+			display: block;
+			padding: 11px 15px;
+		}
+	}
+	.fa-angle-down,
+	.fa-chevron-down,
+	.fa-caret-down {
+		.rotate(0deg);
+		.transition(all 0.10s linear);
+	}
+	
+	.collapsed .fa-angle-down,
+	.collapsed .fa-chevron-down,
+	.collapsed .fa-caret-down{
+		.rotate(-90deg);
+	}
+	.collapsed .fa-angle-down.pull-right,
+	.collapsed .fa-chevron-down.pull-right,
+	.collapsed .fa-caret-down.pull-right {
+		.rotate(90deg);
+	}
+}
+
+.accordion-title {
+	margin-top: 0;
+	margin-bottom: 0;
+	> a {
+		color: inherit;
+	}
+}

@@ -38,7 +38,7 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'vendors',
         ],
 
         'api' => [
@@ -69,6 +69,10 @@ return [
             'driver' => 'eloquent',
             'model' => App\User::class,
         ],
+        'vendors' => [
+            'driver' => 'eloquent',
+            'model' => App\Vendor::class
+        ]
 
         // 'users' => [
         //     'driver' => 'database',
@@ -96,7 +100,7 @@ return [
             'provider' => 'users',
             'table' => 'password_resets',
             'expire' => 60,
-        ],
+        ]
     ],
 
 ];

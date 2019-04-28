@@ -1,0 +1,179 @@
+//
+// List groups
+// --------------------------------------------------
+
+// Custom content options
+// -------------------------
+
+.list-group {
+	.fa {
+		margin-right: 5px;
+	}
+	.btn {
+		&[class^="btn-radio"],
+		&[class^="btn-checkbox"],
+		&[class*=" btn-radio"],
+		&[class*=" btn-checkbox"] {
+			padding: 0;
+		}
+	}
+}
+.list-group-item {
+	color: @text-color;
+	// Active class on item itself, not parent
+	&.done,
+	&.done:hover,
+		&.done:focus {
+		z-index: 2; // Place active items above their siblings for proper border styling
+		color: @list-group-done-color;
+		background-color: @list-group-done-bg;
+		.transition(background-color .15s ease-in);
+
+		// Force color to inherit for custom content
+		.list-group-item-heading {
+			color: inherit;
+		}
+		.list-group-item-text {
+			color: lighten(@list-group-done-bg, 40%);
+		}
+	}
+}
+
+.list-variant(list-primary,		@brand-primary);
+.list-variant(list-success,		@brand-success);
+.list-variant(list-warning,		@brand-warning);
+.list-variant(list-danger,		@brand-danger);
+.list-variant(list-info,		@brand-info);
+.list-variant(list-black,		@black);
+.list-variant(list-white,		@white);
+.list-variant(list-gray,		@gray-lighter);
+.list-variant(list-inverse,		@brand-inverse);
+.list-variant(list-body,		@body-color);
+.list-variant(list-support1,	@brand-support1);
+.list-variant(list-support2,	@brand-support2);
+.list-variant(list-support3,	@brand-support3);
+.list-variant(list-support4,	@brand-support4);
+.list-variant(list-support5,	@brand-support5);
+
+.box-body {
+	// We dont want any bottom margin when its the only element in a box-body
+	.list-group:first-child:nth-last-child(1) {
+		margin-bottom: 0;
+	}
+}
+
+// Task list
+// -------------------------
+
+.list-tasks {
+	display: table;
+	width: 100%;
+
+	.list-group-item {
+		padding: 0;
+		cursor: pointer;
+
+		&.done {
+			span {
+				text-decoration: line-through;
+			}
+			.label {
+				text-decoration: none;
+			}
+		}
+
+		> [class^="task-"] {
+			display: table-cell;
+			table-layout: fixed;
+			padding: 10px;
+		}
+	}
+
+	.task-checkbox {
+		width: 20px;
+	}
+
+	.label {
+		margin-left: 5px;
+	}
+}
+
+.ui-sortable {
+	.ui-state-highlight {
+		list-style: none;
+		background: @gray-lighter;
+		border: none;
+	}
+}
+
+// Tags list
+// -------------------------
+
+.list-tags {
+	.btn {
+		margin-bottom: 3px;
+	}
+}
+
+// Comments list
+// -------------------------
+
+.list-comments {
+	padding-left: 0;
+	list-style: none;
+
+	// Comment container
+	> li {
+		margin-bottom: 20px;
+
+		// Reply list
+		ul {
+			padding-top: 10px;
+			padding-left: 60px;
+			list-style: none;
+			border-left: 1px solid lighten(#000, 85%);
+			
+			li {
+				padding-top: 10px;
+			}
+		}
+	}
+
+	// Comment markup
+	.box {
+		margin: 0;
+	}
+	.comment-title {
+		margin: 0 50px 7px 0;
+		small { 
+			font-size: 11px;
+			margin-left: 7px;
+		}
+	}
+	.comment-avatar {
+		position: relative;
+		float: left; 
+		width: 60px;
+		height: 60px;
+		margin: 20px 0 0 20px;
+		text-align: center;
+		border: 1px solid lighten(#000, 85%);
+		border-radius: 999px;
+
+		img {
+			width: 100%;
+		}
+		.fa {
+			line-height: 60px;
+			font-size: 28px;
+		}
+		.glyphicon {
+			line-height: 52px;
+			font-size: 20px;
+		}
+	}
+
+	.box-body {
+		margin-left: 80px;
+	}
+}

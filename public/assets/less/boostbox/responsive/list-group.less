@@ -1,0 +1,38 @@
+//
+// List groups
+// --------------------------------------------------
+
+// Extra Small Devices Only
+// -------------------------
+
+@media (max-width: @screen-xs) {
+	// Comments list
+	// -------------------------
+
+	.list-comments {
+		// Comment container
+		> li {
+			// Reply list
+			ul {
+				padding-left: 20px;
+			}
+		}
+
+		// Comment markup
+		.comment-title {
+			margin: 0 0 7px 0;
+		}
+		.comment-reply {
+			top: -80px;
+		}
+		.comment-avatar {
+			position: relative;
+			float: none;
+			display: block;
+		}
+
+		.box-body {
+			margin-left: 0;
+		}
+	}
+}

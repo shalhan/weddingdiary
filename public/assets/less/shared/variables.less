@@ -1,0 +1,276 @@
+//
+// Shared Variables
+// --------------------------------------------------
+
+@import "../bootstrap/variables.less";
+
+
+// GLOBAL VALUES
+// --------------------------------------------------
+
+// Grays
+// -------------------------
+
+@black:							#0c0c0c;
+@gray-darkest:					lighten(#000, 10%);
+@gray-darker:					lighten(#000, 13.5%);
+@gray-dark:						lighten(#000, 20%);
+@gray:							lighten(#000, 33.5%);
+@gray-light:					lighten(#000, 60%);
+@gray-lighter:					lighten(#000, 93.5%);
+@gray-lightest:					lighten(#000, 95%);
+@white:							#fff;
+
+
+// Brand colors
+// -------------------------
+
+@brand-primary:				    #35a6f1;
+@brand-success:					#339933;//#5bac2a;
+@brand-warning:					#f09609;//#ffa735;
+@brand-danger:					#e51400;//#c41a1a;
+@brand-info:					#0d8dd7;
+@brand-inverse:					#2E383D;
+
+@brand-support1:				#70bc99;
+@brand-support2:				#f8576c;
+@brand-support3:				#6bafbd;
+@brand-support4:				#ab93eb;
+@brand-support5:				#45677f;
+
+
+// Scaffolding
+// -------------------------
+
+@body-color:					@gray-lightest;
+
+@color-threshold:				72%;
+
+
+// Typography
+// -------------------------
+
+@font-family-sans-serif:		"Open Sans", Helvetica, Arial, sans-serif;
+@font-size-base:				13px;
+
+@headings-font-weight:			600;
+
+
+
+// COMPONENT VARIABLES
+// --------------------------------------------------
+
+// Border radius
+// -------------------------
+
+@border-radius-base:			0px;
+@border-radius-large:			0px;
+@border-radius-small:			0px;
+
+
+// Z-index
+// -------------------------
+
+@zindex-header:					900;
+@zindex-sidebar:				901;
+
+
+
+// COMPONENTS
+// --------------------------------------------------
+
+// Grid system
+// -------------------------
+
+// Padding, to be divided by two and applied to the left and right of all columns
+@grid-gutter-width:				20px;
+
+
+// Dimensions
+// -------------------------
+@dimensions-steps:				(@font-size-base * @line-height-base) * 2;
+
+// List group
+// -------------------------
+@list-group-done-color:			desaturate(@brand-success, 50%);
+@list-group-done-bg:			lighten(@brand-success, 50%);
+
+
+// Typography
+// -------------------------
+
+@strong-weight3:				800;
+@strong-weight2:				700;
+@strong-weight:					600;
+@standard-weight:				400;
+@light-weight:					300;
+
+
+// Sidebar
+// -------------------------
+@sidebar-width:					270px;
+@sidebar-width-collapsed:		60px;
+@sidebar-bg:					darken(@brand-inverse, 10%);
+@sidebar-color:					contrast(@sidebar-bg, multiply(@sidebar-bg, #888888), screen(@sidebar-bg, #777777), @color-threshold);
+@sidebar-color-selected:		@brand-support1;
+@sidebar-color-icon:			contrast(@sidebar-bg, darken(@sidebar-bg, 20%), lighten(@sidebar-bg, 20%), @color-threshold);
+@sidebar-sub-bg:				screen(@sidebar-bg, #3f3f3f);
+@sidebar-sub-color:				contrast(@sidebar-sub-bg, multiply(@sidebar-sub-bg, #888888), lighten(@sidebar-sub-bg, 40%), @color-threshold);
+@sidebar-collapse-speed:		0.15s;
+@sidebar-collapse-ease:			ease-in;
+
+
+// Box
+// -------------------------
+@box-header-color:				@gray;
+@box-default-border:			@gray-light;
+@box-back-color:				#fff;
+@box-gutter:					20px;
+
+
+// Navigation
+// -------------------------
+@navigation-overlap:			20px;
+
+
+// Pager
+// -------------------------
+
+@pager-border-radius:			0px;
+
+
+// Pagination
+// -------------------------
+
+@pagination-active-bg:			@brand-inverse;
+@pagination-active-color:		contrast(@pagination-active-bg, @text-color, @white, @color-threshold);
+@pagination-disabled-color:		@gray-light;
+
+
+// Buttons
+// -------------------------
+@btn-default-color:				@gray-darker;
+@btn-default-bg:				@gray-lighter;
+@btn-default-border:			darken(@btn-default-bg, 10%);
+
+// Custom
+@btn-inverse-color:				#fff;
+@btn-inverse-bg:				@brand-inverse;
+@btn-inverse-border:			darken(@brand-inverse, 5%);
+
+
+// Tables
+// -------------------------
+
+@table-cell-padding:			10px 8px;
+@table-condensed-cell-padding:	5px;
+
+@table-bg:						transparent; // overall background-color
+@table-bg-accent:				@gray-lightest; // for striping
+@table-bg-hover:				@gray-lighter;
+@table-bg-hover-color:			@text-color;
+@table-bg-active:				@table-bg-hover;
+
+@table-border-color:			@gray-lightest; // table and cell border
+
+@table-theme-head:				darken(desaturate(@brand-primary, 10%), 5%);
+@table-theme-head-border:		lighten(@table-theme-head, 30);
+
+
+// Forms
+// -------------------------
+
+@input-bg:						#f7f7f7;
+@input-bg-disabled:				#ffffff;
+
+@input-color:					@gray;
+@input-border:					lighten(#000000, 75%);
+@input-border-radius:			@border-radius-base;
+@input-border-focus:			#66afe9;
+@input-border-disabled:			#e5e5e5;
+
+@input-color-placeholder:		@gray-light;
+
+@input-height-base:				(@line-height-computed + (@padding-base-vertical * 2) + 2);
+@input-height-large:			(floor(@font-size-large * @line-height-large) + (@padding-large-vertical * 2) + 2);
+@input-height-small:			(floor(@font-size-small * @line-height-small) + (@padding-small-vertical * 2) + 2);
+
+@legend-color:					@gray-dark;
+@legend-border-color:			#e5e5e5;
+
+@input-group-addon-bg:			#ffffff;
+@input-group-addon-border-color:@input-border;
+
+@form-help-color:				lighten(@text-color, 40%);
+@form-back-alt:					@gray-lightest;
+@form-border:					lighten(#000000, 90%);
+
+
+// Lock screen
+// -------------------------
+
+@lock-header-height:			100px;
+@lock-body-height:				330px;
+@lock-body-width:				500px;
+@lock-body-spacer:				25px;
+
+
+// Login screen
+// -------------------------
+
+@login-header-height:			100px;
+@login-body-height:				275px;
+@login-body-width:				500px;
+@login-body-spacer:				25px;
+
+
+// Carousel
+// ------------------------
+
+@carousel-text-shadow:			0 1px 5px rgba(0,0,0,.4);
+@carousel-control-width:		5%;
+
+
+// Breadcrumbs
+// -------------------------
+@breadcrumb-bg:					transparent;
+@breadcrumb-color:				@text-color;
+@breadcrumb-active-color:		@text-color;
+
+
+// Headerbar
+// -------------------------
+
+// Basics of a navbar
+@headerbar-height:				50px;
+@headerbar-padding-vertical:	((@headerbar-height - @line-height-computed) / 2);
+@headerbar-bg:					@white;
+
+// Navbar links
+@headerbar-link-active-color:	#555;
+@headerbar-link-active-bg:		darken(@navbar-default-bg, 6.5%);
+@headerbar-link-disabled-color:	#ccc;
+@headerbar-link-disabled-bg:	transparent;
+
+
+// Inverted headerbar
+@headerbar-inverse-bg:						@sidebar-bg;
+@headerbar-inverse-border:					darken(@headerbar-inverse-bg, 10%);
+
+// Inverted navbar links
+@headerbar-inverse-link-active-bg:			darken(@headerbar-inverse-bg, 10%);
+@headerbar-inverse-link-disabled-color:		#444;
+@headerbar-inverse-link-disabled-bg:		transparent;
+
+// Inverted navbar toggle
+@headerbar-inverse-toggle-hover-bg:			rgba(0, 0, 0, 0.05);
+@headerbar-inverse-toggle-icon-bar-bg:		@white;
+@headerbar-inverse-toggle-border-color:		rgba(0, 0, 0, 0.05);
+
+
+
+//
+// THEME VARIABLES
+// --------------------------------------------------
+
+@import "themes/theme-default.less";

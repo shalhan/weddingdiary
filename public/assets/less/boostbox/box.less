@@ -1,0 +1,423 @@
+//
+// Box
+// --------------------------------------------------
+
+// Common
+// -------------------------
+
+.box {
+	position: relative;
+	margin-bottom: @grid-gutter-width;
+	background-color: @white;
+	.clearfix();
+
+	.btn-group-transparent > .btn,
+	.btn-group-transparent > .btn-group > .btn { 
+		color: inherit;
+
+		&:hover { 
+			color: @white;
+			background-color: @text-color;
+		}
+	}
+}
+
+
+// Box head
+// -------------------------
+
+.box-head {
+	position: relative;
+	line-height: 40px;
+	.clearfix();
+	vertical-align: middle;
+	header {
+		display: inline-block;
+		padding: 11px (@box-gutter - 5px);
+		line-height: 17px;
+		margin-top: -4px;
+		vertical-align: middle;
+
+		> h1, > h2, > h3, > h4, > h5, > h6 {
+			vertical-align: middle;
+			margin: 0;
+			line-height: 1;
+
+		}
+	}
+	> div {
+		display: inline-block;
+		line-height: normal;
+	}
+
+	.tools {
+		padding: 0;
+		float: right;
+		line-height: 37px;
+
+		> .btn-group { margin-right: 4px; }
+		> .btn-group-xs { margin-right: 10px; }
+		> .btn-group-sm { margin-right: 4px; }
+		> .btn-group-lg { margin-right: 0; }
+	}
+
+	&.box-head-xs {	
+		line-height: 30px;
+		header { padding-top: 8px; padding-bottom: 8px; }
+		.tools { line-height: 27px; }
+	}
+	&.box-head-sm {	
+		line-height: 36px;
+		.tools { line-height: 33px; }
+	}
+	&.box-head-lg {	
+		line-height: 48px;
+		.tools { line-height: 46px; margin-right: 5px; }
+	}
+	&.box-head-xl {	line-height: 60px; }
+	&.box-head-xxl { line-height: 72px; }
+}
+
+
+// Box body
+// -------------------------
+
+.box-body {
+	padding: @box-gutter;
+	position: relative;
+	.clearfix();
+
+	&.table-responsive {
+		margin: 0;
+	}
+}
+
+
+// Box tiles & Box masonry
+// -------------------------
+// Removes padding & margin
+
+.box-tiles,
+.box-type-blog-masonry {
+	> .row {
+		margin: 0;
+		> [class^="col-"] {
+			padding: 0;
+		}
+	}
+}
+
+
+// Box underline
+// -------------------------
+
+.box-underline {
+	.box-head {
+		border-bottom: 1px solid @gray-light;
+		border-bottom-color: rgba(0,0,0,.2);
+	}
+}
+
+
+// Box bordered & outlined
+// -------------------------
+
+.box-bordered,
+.box-outlined {
+	border: 2px solid @box-default-border;
+}
+
+
+// Box padding styles
+// -------------------------
+
+.box .no-padding {
+	padding: 0;
+}
+.box .force-padding {
+	padding: @box-gutter;
+}
+.box .small-padding {
+	padding: (@box-gutter/2);
+}
+
+
+// Box variants
+// -------------------------
+
+.box-variant(style-primary,	@brand-primary);
+.box-variant(style-success,	@brand-success);
+.box-variant(style-warning,	@brand-warning);
+.box-variant(style-danger,	@brand-danger);
+.box-variant(style-info,		@brand-info);
+.box-variant(style-black,		@black);
+.box-variant(style-white,		@white);
+.box-variant(style-gray,		darken(@gray-lighter, 4%));
+.box-variant(style-inverse,	@brand-inverse);
+.box-variant(style-body,		@body-color);
+.box-variant(style-support1,	@brand-support1);
+.box-variant(style-support2,	@brand-support2);
+.box-variant(style-support3,	@brand-support3);
+.box-variant(style-support4,	@brand-support4);
+.box-variant(style-support5,	@brand-support5);
+
+.box-gradient-variant(style-primary-gradient,		@brand-primary);
+.box-gradient-variant(style-support1-gradient,	@brand-support1);
+.box-gradient-variant(style-support2-gradient,	@brand-support2);
+.box-gradient-variant(style-support3-gradient,	@brand-support3);
+.box-gradient-variant(style-support4-gradient,	@brand-support4);
+.box-gradient-variant(style-support5-gradient,	@brand-support5);
+
+
+.box.style-transparent,
+.box .style-transparent { 
+	background-color: transparent;
+}
+
+
+// Outlined
+// -------------------------
+
+.box.box-outlined {
+	background-color: @white;
+	background-image: none;
+	color: @text-color;
+}
+
+
+
+// ADD-ONS
+// --------------------------------------------------
+
+// Loader
+// -------------------------
+// Add an box overlay for the loader
+
+.box-loader {
+	display: block;
+	position: absolute;
+	left: 0; right: 0; top: 0; bottom: 0;
+	background-color: @white;
+	background-color: rgba(255,255,255,0.6);
+	z-index: 999;
+}
+
+
+// Centered
+// -------------------------
+// Will center a box in its parent
+
+.box-centered {
+	position: absolute;
+	margin: auto;
+	left: 0; right: 0; top: 0; bottom: 0;
+	height: 330px;
+	max-height: 100%;
+	width: 500px;
+	max-width: 100%;
+}
+
+
+// Collapsed
+// -------------------------
+// Add animation to the '.btn-collapse'
+
+.box {
+	.btn-collapse {
+		.transition(all .1s ease-out);
+	}
+}
+.box-collapsed {
+	.btn-collapse {
+		.rotate(180deg);
+		.transition(all .3s ease-in);
+	}
+}
+
+// Prettyprint style inside a box
+// -------------------------
+.box .prettyprint {
+	margin: 0;
+	border-left: none;
+	border-right: none;
+	border-bottom: none;
+}
+
+// BOX TYPES
+// --------------------------------------------------
+
+// Pricing
+// -------------------------
+
+.box-type-pricing {
+	.list-unstyled {
+		margin: 0;
+		li {
+			padding: 15px 30px;
+			border-top: 1px solid @gray-lighter;
+		}
+		li:first-child {
+			border-top: none;
+		}
+	}
+
+	.price {
+		h1, h2, h3, h4, h5, h6 {
+			display: inline-block;
+			margin: 0;
+		}
+	}
+	
+	// Pricing Indented
+	// -------------------------
+	&.indent-bottom,
+	&.indent-top {
+		margin-left: 20px;
+	}
+
+	&.indent-bottom {
+		> .box-body:first-child {
+			position: relative;
+			margin-left: -20px;
+
+			&:after {
+				position: absolute;
+				bottom: -7px; left: 0;
+				#triangle > .tr(lighten(@brand-inverse, 20%));
+			}
+		}
+	}
+	&.indent-top {
+		> .box-body + .box-body {
+			margin-left: -20px;
+		}
+		> .box-body:first-child {
+			z-index: 1;
+		}
+		> .box-body:first-child + .box-body {
+			position: relative;
+			&:after {
+				position: absolute;
+				top: -7px; left: 0;
+				#triangle > .br(@gray-light);
+				z-index: 0;
+			}
+		}
+	}
+}
+
+
+// Bog Masonry
+// -------------------------
+
+.box-type-blog-masonry {
+	article .blog-image {
+		img {
+			width: 100%; 
+		}
+	}
+
+	article .blog-text {
+		position: relative;
+	}
+	article > div + div.blog-text:before {
+		position: absolute;
+		margin: auto;
+		top: -20px; left: 0; right: 0;
+		#triangle > .t(@white, 20px, 20px);
+		z-index: 1;
+	}
+	article .blog-text:first-child:before {
+		position: absolute;
+		margin: auto;
+		bottom: -20px; left: 0; right: 0;
+		#triangle > .b(@white, 20px, 20px);
+		z-index: 1;
+	}
+}
+
+
+// Locked
+// -------------------------
+
+.box-type-locked {
+	position: absolute;
+	left: 0; right: 0; top: 0; bottom: 0;
+	height: 100%;
+	min-height: (@lock-body-height + (@lock-body-spacer * 2)) + (@lock-header-height * 2);
+
+	&:before {
+		content: "";
+		position: absolute;
+		margin: auto;
+		left: 0; right: 0; top: 0; bottom: 0;
+		height: (@lock-body-height + (@lock-body-spacer * 2));
+		max-height: 100%;
+		width: 100%;
+		#gradient>.directional(@white, @brand-primary, 160deg);
+
+		.animation(lock-collapse, 800ms, cubic-bezier(.41,0,.18,1.2));
+	}
+	.box {
+		position: static;
+
+		.box-head {
+			position: absolute;
+			margin: auto;
+			left: 0; right: 0; bottom: 0; top: -(@lock-body-height + (@lock-body-spacer * 2) + @lock-header-height);
+			height: @lock-header-height;
+		}
+		.box-body {
+			width: @lock-body-width;
+			height: @lock-body-height;
+
+			.animation(fadeIn, 1.2s);
+		}
+	}
+}
+
+
+// Login
+// -------------------------
+
+.box-type-login {
+	position: absolute;
+	left: 0; right: 0; top: 0; bottom: 0;
+	height: 100%;
+	min-height: (@login-body-height + (@login-body-spacer * 2)) + (@login-header-height * 2);
+
+	&:before {
+		content: "";
+		position: absolute;
+		margin: auto;
+		left: 0; right: 0; top: 0; bottom: 0;
+		height: (@login-body-height + (@login-body-spacer * 2));
+		max-height: 100%;
+		width: 100%;
+		#gradient>.directional(@white, @gray-light, 20deg);
+
+		.animation(login-expand, 800ms, cubic-bezier(.41,0,.18,1.2));
+	}
+	.box {
+		position: static;
+
+		.box-head {
+			position: absolute;
+			margin: auto;
+			left: 0; right: 0; bottom: 0; top: -(@login-body-height + (@login-body-spacer * 2) + @login-header-height);
+			height: @login-header-height;
+		}
+		.box-body {
+			width: @login-body-width;
+			height: @login-body-height;
+
+			.animation(fadeIn, 1.2s);
+		}
+		.box-footer {
+			position: absolute;
+			margin: auto;
+			left: 0; right: 0; bottom:  -(@login-body-height + (@login-body-spacer * 2) + @login-header-height); top: 0;
+			height: @login-header-height;
+		}
+	}
+}
