@@ -1,19 +1,11 @@
 @extends("layouts.main")
 
 @push('style')
-<link type="text/css" rel="stylesheet" href="/assets/css/theme-default/libs/DataTables/jquery.dataTables.css?1403937875" />
+
 @endpush
 
 @push('script')
-<script src="/assets/js/libs/DataTables/jquery.dataTables.min.js"></script>
-<script>
-    $(document).ready(function() {
-        $('#COUPLE_TABLE').DataTable({
-            "bSort": false,
-            "bFilter": false,
-        });
-    });
-</script>
+
 @endpush
 
 @section("content")
@@ -40,7 +32,7 @@
                 </div>
 
                 <div class="box-body table-responsive">
-                    <table id="COUPLE_TABLE" class="table table-hover">
+                    <table class="table table-hover">
                         <thead>
                             <tr>
                                 <th>Groom Name</th>
@@ -75,6 +67,10 @@
                             @endforeach
                         </tbody>
                     </table>
+                    <div class="u-flex u-flexJustifyContentEnd u-marginTop24">
+                        <button class="btn btn-default" disabled>Previous</button>
+                        <button class="btn btn-default">Next</button>
+                    </div>
                 </div>
 
             </div>
