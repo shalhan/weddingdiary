@@ -92,11 +92,11 @@ Route::group(['middleware'=> 'cors'], function() {
     Route::get('/check', function (Request $req) {
         $vendors = new Vendor();
         $vendor = $vendors->getByToken($req->token);
-        if(!$vendor)
-            return [
-                'code' => 0,
-                'msg' => 'Token is not valid'
-            ];
+        // if(!$vendor)
+        //     return [
+        //         'code' => 0,
+        //         'msg' => 'Token is not valid'
+        //     ];
         $couples = new Couple();
         $vendorCouples = $couples->getByVendorId($vendor->GUID);
         //check if token exist in db
