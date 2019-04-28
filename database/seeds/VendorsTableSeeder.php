@@ -15,7 +15,7 @@ class VendorsTableSeeder extends Seeder
         $vendors = Vendor::get();
         foreach($vendors as $vendor) {
             $vendor->TOKEN = md5($vendor->VENDOR_WEBSITE . $vendor->GUID);
-            $vendor->email = strtolower($vendor->VENDOR_NAME2) . '@gmail.com';
+            $vendor->email = str_replace(" ", "", strtolower($vendor->VENDOR_NAME2) . '@gmail.com');
             $vendor->password = bcrypt("123456");
             $vendor->VENDOR_URL = $vendor->VENDOR_WEBSITE;
             $vendor->update();
