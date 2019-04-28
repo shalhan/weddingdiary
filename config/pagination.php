@@ -1,5 +1,6 @@
 <?php 
 
 return [
-    'couples' => 12
+    'couples' => 5,
+    'messages' => 5
 ];

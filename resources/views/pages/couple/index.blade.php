@@ -9,6 +9,12 @@
 @endpush
 
 @section("content")
+@php
+    $nextPage = $couples['data']['nextPage'];
+    $prevPage = $couples['data']['prevPage'];
+    $couples = $couples['data']['pagination'];
+@endphp
+
 <ol class="breadcrumb">
     <li class="active">Couple</li>
 </ol>
@@ -42,34 +48,53 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($couples['data'] as $couple)
-                            <tr class="u-cursorPointer" onclick=" window.location.href = `{{ route('showCouple', $couple->GUID) }}` ">
-                                <td>{{$couple->groom->GROOM_NAME}}</td>
-                                <td>{{$couple->bride->BRIDE_NAME}}</td>
-                                <td>{{$couple->template->code_name}}</td>
-                                <td>
-                                    <button type="button" class="btn btn-xs btn-inverse btn-equal" data-toggle="tooltip" data-placement="top" data-original-title="Edit row"><i class="fa fa-pencil"></i></button>
-                                    <button type="button" class="btn btn-xs btn-danger btn-equal" data-toggle="modal" data-target="#dialog" data-placement="top" data-original-title="Delete row"><i class="fa fa-trash-o"></i></button>
-                                </td>
-                                @component('components.dialog')
-                                @slot('method')
-                                DELETE
-                                @endslot
-                                @slot('action')
-                                /weddings/1
-                                @endslot
-                                @slot('title')
-                                Alert!
-                                @endslot
-                                Are you sure want to delete this couple?
-                                @endcomponent
-                            </tr>
-                            @endforeach
+                            @if(count($couples) > 0)
+                                @foreach($couples as $couple)
+                                <tr class="u-cursorPointer" onclick=" window.location.href = `{{ route('showCouple', $couple->GUID) }}` ">
+                                    <td>{{$couple->groom->GROOM_NAME}}</td>
+                                    <td>{{$couple->bride->BRIDE_NAME}}</td>
+                                    <td>{{$couple->template->code_name}}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-xs btn-inverse btn-equal" data-toggle="tooltip" data-placement="top" data-original-title="Edit row"><i class="fa fa-pencil"></i></button>
+                                        <button type="button" class="btn btn-xs btn-danger btn-equal" data-toggle="modal" data-target="#dialog" data-placement="top" data-original-title="Delete row"><i class="fa fa-trash-o"></i></button>
+                                    </td>
+                                    @component('components.dialog')
+                                    @slot('method')
+                                    DELETE
+                                    @endslot
+                                    @slot('action')
+                                    /weddings/1
+                                    @endslot
+                                    @slot('title')
+                                    Alert!
+                                    @endslot
+                                    Are you sure want to delete this couple?
+                                    @endcomponent
+                                </tr>
+                                @endforeach
+                            @else
+                                <td colspan="4" class="text-center">Couples still empty</td>
+                            @endif
                         </tbody>
                     </table>
                     <div class="u-flex u-flexJustifyContentEnd u-marginTop24">
-                        <button class="btn btn-default" disabled>Previous</button>
-                        <button class="btn btn-default">Next</button>
+                        @component('components.btnPagination')
+                            @slot('redirectPrev')
+                                {{ route('showCouples', ['page' => $prevPage] ) }}
+                            @endslot
+                            @slot('redirectNext')
+                                {{ route('showCouples', ['page' => $nextPage] ) }}
+                            @endslot
+                            @slot('prevPage')
+                                {{$prevPage}}
+                            @endslot
+                            @slot('nextPage')
+                                {{$nextPage}}
+                            @endslot
+                            @slot('data')
+                                {{$couples}}
+                            @endslot
+                        @endcomponent
                     </div>
                 </div>
 

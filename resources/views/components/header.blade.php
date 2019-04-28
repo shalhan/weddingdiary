@@ -19,83 +19,11 @@
                 <li><a href="../../html/dashboards/dashboard.html"><i class="fa fa-home fa-lg"></i></a></li>
             </ul><!--end .nav -->
             <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
-                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-lg fa-flask"></i></a>
-                    <ul class="dropdown-menu animation-slide theme-selector">
-                        <li class="dropdown-header">Themes</li>
-                        <li><a href="theme-default">Theme default</a></li>
-                        <li><a href="theme-1">Theme 1</a></li>
-                        <li><a href="theme-2">Theme 2</a></li>
-                        <li><a href="theme-3">Theme 3</a></li>
-                        <li><a href="theme-4">Theme 4</a></li>
-                        <li><a href="theme-5">Theme 5</a></li>
-                    </ul><!--end .dropdown-menu -->
-                </li><!--end .dropdown -->
-                <li><span class="navbar-devider"></span></li>
-                <li class="dropdown">
-                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-lg fa-envelope"></i><sup class="badge badge-support2">2</sup></a>
-                    <ul class="dropdown-menu animation-zoom">
-                        <li class="dropdown-header">Today's messages</li>
-                        <li>
-                            <a class="alert alert-warning" href="javascript:void(0);">
-                                <img class="pull-right img-circle dropdown-avatar" src="../../assets/img/avatar2.jpg?1401481650" alt="" />
-                                <strong>Alex Anistor</strong><br/>
-                                <small>Testing functionality...</small>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="alert alert-info" href="javascript:void(0);">
-                                <img class="pull-right img-circle dropdown-avatar" src="../../assets/img/avatar3.jpg?1401481654" alt="" />
-                                <strong>Alicia Adell</strong><br/>
-                                <small>Reviewing last changes...</small>
-                            </a>
-                        </li>
-                        <li class="dropdown-header">Options</li>
-                        <li><a href="../../html/pages/login.html">View all messages <span class="pull-right"><i class="fa fa-arrow-right"></i></span></a></li>
-                        <li><a href="../../html/pages/login.html">Mark as read <span class="pull-right"><i class="fa fa-arrow-right"></i></span></a></li>
-                    </ul><!--end .dropdown-menu -->
-                </li><!--end .dropdown -->
-                <li class="dropdown">
-                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-lg fa-dashboard"></i></a>
-                    <ul class="dropdown-menu animation-dock">
-                        <li class="dropdown-header">Server load</li>
-                        <li class="dropdown-progress">
-                            <a href="javascript:void(0);">
-                                <div class="dropdown-label">
-                                    <span class="text-light">Server load <strong>Today</strong></span>
-                                    <strong class="pull-right">93%</strong>
-                                </div>
-                                <div class="progress"><div class="progress-bar progress-bar-danger" style="width: 93%"></div></div>
-                            </a>
-                        </li><!--end .dropdown-progress -->
-                        <li class="dropdown-progress">
-                            <a href="javascript:void(0);">
-                                <div class="dropdown-label">
-                                    <span class="text-light">Server load <strong>Yesterday</strong></span>
-                                    <strong class="pull-right">30%</strong>
-                                </div>
-                                <div class="progress"><div class="progress-bar progress-bar-success" style="width: 30%"></div></div>
-                            </a>
-                        </li><!--end .dropdown-progress -->
-                        <li class="dropdown-progress">
-                            <a href="javascript:void(0);">
-                                <div class="dropdown-label">
-                                    <span class="text-light">Server load <strong>Lastweek</strong></span>
-                                    <strong class="pull-right">74%</strong>
-                                </div>
-                                <div class="progress"><div class="progress-bar progress-bar-warning" style="width: 74%"></div></div>
-                            </a>
-                        </li><!--end .dropdown-progress -->
-                    </ul><!--end .dropdown-menu -->
-                </li><!--end .dropdown -->
                 <li><span class="navbar-devider"></span></li>
                 <li class="dropdown">
                     <a href="javascript:void(0);" class="navbar-profile dropdown-toggle text-bold" data-toggle="dropdown">{{Auth::user()->VENDOR_NAME2}} <i class="fa fa-fw fa-angle-down"></i> <img class="img-circle" src="../../assets/img/avatar1.jpg?1401481655" alt="" /></a>
                     <ul class="dropdown-menu animation-slide">
-                        <li class="dropdown-header">Config</li>
-                        <li><a href="../../html/pages/profile.html">My profile</a></li>
-                        <li><a href="../../html/pages/blog/post.html">My blog <span class="badge badge-danger pull-right">16</span></a></li>
-                        <li><a href="../../html/pages/calendar.html">My appointments</a></li>
+                        <li><a href="{{route('showProfile')}}">My profile</a></li>
                         <li class="divider"></li>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf

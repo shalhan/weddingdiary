@@ -17,13 +17,14 @@ class MessageRepository extends Repository
      * @param Array data
      */
     public function getByCoupleId($coupleId, $data) {
-        return $this->message
-                    ->select('GUID', 'MSCOUPLE_GUID', 'TEXT', 'DATE', 'TIME', 'EMAIL', 'NAME', 'GUEST')
-                    ->where('MSCOUPLE_GUID', $coupleId)
-                    ->skip($data['skip'])
-                    ->take($data['take'])
-                    ->orderBy('date', 'desc')
-                    ->get();
+        $messages = $this->message
+                        ->select('GUID', 'MSCOUPLE_GUID', 'TEXT', 'DATE', 'TIME', 'EMAIL', 'NAME', 'GUEST')
+                        ->where('MSCOUPLE_GUID', $coupleId)
+                        ->skip($data['skip'])
+                        ->take($data['take'])
+                        ->orderBy('date', 'desc')
+                        ->get();
+        return $this->getResponse($messages, $data);        
     }
 
     /**

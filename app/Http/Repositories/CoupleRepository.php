@@ -44,13 +44,15 @@ class CoupleRepository extends Repository
         $take = Config::get('pagination.couples');
         $skip = ( $data['page'] - 1 ) * $take;
 
-        return $this->couple
+        $couples = $this->couple
                     ->select('GUID','MSGROOM_GUID', 'MSBRIDE_GUID', 'PACKAGE_ID', 'EXPIRED_DATE', 'STATUS', 'LOVE_STORY', 'MSVENDOR_GUID', 'PREWEDPHOTO_AMOUNT', 'VIEW_AMOUNT', 'CREATED_DATE', 'SUBFOLDER', 'SUBFOLDER2', 'MSTEMPLATE_GUID')
                     ->where('MSVENDOR_GUID', Auth::user()->GUID)
                     ->with(['bride', 'groom', 'template'])
                     ->skip($skip)
                     ->take($take)
                     ->get();
+
+        return $this->getResponse($couples, $data);
     }
     
     /**

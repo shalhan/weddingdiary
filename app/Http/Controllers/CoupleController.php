@@ -37,7 +37,8 @@ class CoupleController extends Controller
 
     public function showIndex(Request $req) {
         $data = [
-            'page' => isset($req->page) ? isset($req->page) : 1
+            'page' => isset($req->page) ? $req->page : 1,
+            'isPagination' => isset($req->isPagination) ? $req->isPagination : true
         ];
 
         $couples = $this->coupleService->getAll($data);
@@ -77,9 +78,9 @@ class CoupleController extends Controller
             abort(404);
 
         $data = [
-            'page' => isset($req->page) ? isset($req->page) : 1
+            'page' => isset($req->page) ? $req->page : 1,
+            'isPagination' => isset($req->isPagination) ? $req->isPagination : true
         ];
-
         $couple = $this->coupleService->getById($id);
 
         $message = new Message();

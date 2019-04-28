@@ -19,7 +19,7 @@ class MessageService extends Service
      */
     public function getByCoupleId($coupleId, $data) {
         try {
-            $data['take'] = Config::get('pagination.couples');
+            $data['take'] = Config::get('pagination.messages');
             $data['skip'] = ( $data['page'] - 1 ) * $data['take'];
 
             $messages = $this->messageRepo->getByCoupleId($coupleId, $data);

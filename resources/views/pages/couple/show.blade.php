@@ -12,7 +12,9 @@
 
 @php
     $couple = $couple['data'];
-    $messages = $messages['data'];
+    $nextPage = $messages['data']['nextPage'];
+    $prevPage = $messages['data']['prevPage'];
+    $messages = $messages['data']['pagination'];
 @endphp
 
 <ol class="breadcrumb">
@@ -102,34 +104,53 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($messages as $message)
-                            <tr>
-                                <td>{{$message->NAME}}</td>
-                                <td>{{$message->TEXT}}</td>
-                                <td>{{dateFormat($message->DATE)}}</td>
-                                <td>{{timeFormat($message->TIME)}}</td>
-                                <td class="text-center">
-                                    <button type="button" class="btn btn-xs btn-danger btn-equal" data-toggle="modal" data-target="#dialog{{$message->GUID}}" data-placement="top" data-original-title="Delete row"><i class="fa fa-trash-o"></i></button>
-                                </td>
-                            </tr>
-                            @component('components.dialog')
-                                @slot('id')
-                                    dialog{{$message->GUID}}
-                                @endslot
-                                @slot('action')
-                                    /messages/{{$message->GUID}}
-                                @endslot
-                                @slot('title')
-                                Modal Delete
-                                @endslot
-                                Are you sure want to delete this message?
-                            @endcomponent
-                            @endforeach
+                            @if(count($messages) > 0)
+                                @foreach($messages as $message)
+                                <tr>
+                                    <td>{{$message->NAME}}</td>
+                                    <td>{{$message->TEXT}}</td>
+                                    <td>{{dateFormat($message->DATE)}}</td>
+                                    <td>{{timeFormat($message->TIME)}}</td>
+                                    <td class="text-center">
+                                        <button type="button" class="btn btn-xs btn-danger btn-equal" data-toggle="modal" data-target="#dialog{{$message->GUID}}" data-placement="top" data-original-title="Delete row"><i class="fa fa-trash-o"></i></button>
+                                    </td>
+                                </tr>
+                                @component('components.dialog')
+                                    @slot('id')
+                                        dialog{{$message->GUID}}
+                                    @endslot
+                                    @slot('action')
+                                        /messages/{{$message->GUID}}
+                                    @endslot
+                                    @slot('title')
+                                    Modal Delete
+                                    @endslot
+                                    Are you sure want to delete this message?
+                                @endcomponent
+                                @endforeach
+                            @else
+                                <td colspan="5" class="text-center">Messages still empty</td>
+                            @endif
                         </tbody>
                     </table>
                     <div class="u-flex u-flexJustifyContentEnd u-marginTop24">
-                        <button class="btn btn-default" disabled>Previous</button>
-                        <button class="btn btn-default">Next</button>
+                    @component('components.btnPagination')
+                            @slot('redirectPrev')
+                                {{ route('showCouple', ['id' => $couple->GUID, 'page' => $prevPage] ) }}
+                            @endslot
+                            @slot('redirectNext')
+                                {{ route('showCouple', ['id' => $couple->GUID, 'page' => $nextPage] ) }}
+                            @endslot
+                            @slot('prevPage')
+                                {{$prevPage}}
+                            @endslot
+                            @slot('nextPage')
+                                {{$nextPage}}
+                            @endslot
+                            @slot('data')
+                                {{$couple}}
+                            @endslot
+                        @endcomponent
                     </div>
                 </div>
             </div>
