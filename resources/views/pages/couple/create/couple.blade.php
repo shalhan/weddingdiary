@@ -25,7 +25,7 @@
                 <div class="box">
                     <div class="box-head">
                         <header>
-                            <h4 class="text-light">Form Groom</strong></h4>
+                            <h4 class="text-light">Form Groom</h4>
                         </header>
                     </div>
                     <div class="box-body">
@@ -59,7 +59,7 @@
                 <div class="box">
                     <div class="box-head">
                         <header>
-                            <h4 class="text-light">Form Bride</strong></h4>
+                            <h4 class="text-light">Form Bride</h4>
                         </header>
                     </div>
                     <div class="box-body">
@@ -96,7 +96,7 @@
                 <div class="box">
                     <div class="box-head">
                         <header>
-                            <h4 class="text-light">Form Settings</strong></h4>
+                            <h4 class="text-light">Form Settings</h4>
                         </header>
                     </div>
                     <div class="box-body">
