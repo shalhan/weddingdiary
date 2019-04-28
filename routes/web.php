@@ -165,7 +165,8 @@ Route::get("/profile/change-password", "VendorController@showChangePassword")->n
 Route::get("/login", "Auth\LoginController@showLoginForm")->name("viewLogin");
 Route::post("/login", "Auth\LoginController@login")->name("login");
 Route::post("/logout", "Auth\LoginController@logout")->name("logout");
-Route::get("/change-password", "Auth\LoginController@showLoginForm")->name("changePassword");
+Route::get("/forgot-password", "Auth\LoginController@showForgotPassword")->name("forgotPassword");
+Route::get("/change-password", "Auth\LoginController@showChangePassword")->name("changePassword");
 
 Route::post("/save/couple", "CoupleController@save")->name("saveCouple");
 

@@ -21,6 +21,7 @@
             </div>
           </div>
           <button type="submit" class="btn btn-inverse u-fullWidth">Login</button>
+          <p class="u-marginTop16 u-textAlignCenter">Help, I <a href="/forgot-password" class="u-fontMedium text-primary">forgot my password</a></p>
         </div>
     </form>
 
