@@ -27,6 +27,8 @@ function getIp(){
 }
 
 function getClientMeta($defaultIp) {
+
+
     $u_agent = $_SERVER['HTTP_USER_AGENT'];
     $bname = 'Unknown';
     $platform = 'Unknown';
@@ -87,3 +89,11 @@ function getClientMeta($defaultIp) {
     'ipAddress' => getIp() ? getIp() : $defaultIp
     );
   }
+
+function dateFormat($date) {
+  return date("d-M-Y", strtotime($date));
+}
+
+function timeFormat($time) {
+  return date("H:i A", strtotime($time));
+}

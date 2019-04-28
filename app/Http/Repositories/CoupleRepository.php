@@ -38,6 +38,7 @@ class CoupleRepository extends Repository
     
     /**
      * @param Array $data
+     * @return Array Couple
      */
     public function getAll($data) {
         $take = Config::get('pagination.couples');
@@ -54,6 +55,7 @@ class CoupleRepository extends Repository
     
     /**
      * @param Int $id
+     * @return Object Couple
      */
     public function getById($id) {
         return $this->couple
@@ -62,8 +64,6 @@ class CoupleRepository extends Repository
                     ->with(['bride', 'groom', 'template'])
                     ->find($id);
     }
-
-
 
     /*)*
      * @return Couple

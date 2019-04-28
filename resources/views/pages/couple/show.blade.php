@@ -1,17 +1,26 @@
 @extends("layouts.main")
 
 @push('style')
-
+<link type="text/css" rel="stylesheet" href="/assets/css/theme-default/libs/DataTables/jquery.dataTables.css?1403937875" />
 @endpush
 
 @push('script')
-
+<script src="/assets/js/libs/DataTables/jquery.dataTables.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#COUPLE_DETAIL_TABLE').DataTable({
+            "bSort": false,
+            "bFilter": false,
+        });
+    });
+</script>
 @endpush
 
 @section("content")
 
 @php
-    $couple = $couple['data']
+    $couple = $couple['data'];
+    $messages = $messages['data'];
 @endphp
 
 <ol class="breadcrumb">
@@ -27,16 +36,13 @@
         </a>
         <button class="btn btn-danger" data-toggle="modal" data-target="#dialog">Delete</button>
         @component('components.dialog')
-        @slot('method')
-        DELETE
-        @endslot
-        @slot('action')
-        /weddings/1
-        @endslot
-        @slot('title')
-        Modal Delete
-        @endslot
-        My components with errors
+            @slot('action')
+            /couples/1
+            @endslot
+            @slot('title')
+            Modal Delete
+            @endslot
+        Are you sure want to delete this couple?
         @endcomponent
     </div>
 </div>
@@ -92,30 +98,41 @@
                         <h4 class="text-light">List of Comments</h4>
                     </header>
                 </div>
-                <div class="box-body">
-                    <table class="table table-hover">
+                <div class="box-body table-responsive">
+                    <table id="COUPLE_DETAIL_TABLE" class="table table-hover">
                         <thead>
                             <tr>
                                 <th>From</th>
                                 <th>Message</th>
+                                <th>Data</th>
+                                <th>Time</th>
                                 <th class="text-right1" style="width:90px">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach($messages as $message)
                             <tr>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
+                                <td>{{$message->NAME}}</td>
+                                <td>{{$message->TEXT}}</td>
+                                <td>{{dateFormat($message->DATE)}}</td>
+                                <td>{{timeFormat($message->TIME)}}</td>
                                 <td class="text-center">
-                                    <button type="button" class="btn btn-xs btn-danger btn-equal" data-toggle="modal" data-target="#dialog" data-placement="top" data-original-title="Delete row"><i class="fa fa-trash-o"></i></button>
+                                    <button type="button" class="btn btn-xs btn-danger btn-equal" data-toggle="modal" data-target="#dialog{{$message->GUID}}" data-placement="top" data-original-title="Delete row"><i class="fa fa-trash-o"></i></button>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>Larry</td>
-                                <td>the Bird</td>
-                                <td class="text-center">
-                                    <button type="button" class="btn btn-xs btn-danger btn-equal" data-toggle="modal" data-target="#dialog" data-placement="top" data-original-title="Delete row"><i class="fa fa-trash-o"></i></button>
-                                </td>
-                            </tr>
+                            @component('components.dialog')
+                                @slot('id')
+                                    dialog{{$message->GUID}}
+                                @endslot
+                                @slot('action')
+                                    /messages/{{$message->GUID}}
+                                @endslot
+                                @slot('title')
+                                Modal Delete
+                                @endslot
+                                Are you sure want to delete this message?
+                            @endcomponent
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

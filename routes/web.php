@@ -162,6 +162,8 @@ Route::get("/couples/{id}", "CoupleController@showCouple")->name("showCouple");
 Route::get("/profile", "VendorController@showProfile")->name("showProfile");
 Route::get("/profile/change-password", "VendorController@showChangePassword")->name("showChangePassword");
 
+Route::delete("/messages/{id}", "MessageController@dropById")->name("showChangePassword");
+
 Route::get("/login", "Auth\LoginController@showLoginForm")->name("viewLogin");
 Route::post("/login", "Auth\LoginController@login")->name("login");
 Route::post("/logout", "Auth\LoginController@logout")->name("logout");

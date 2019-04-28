@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use App\Http\Services\CoupleService;
 use App\Http\Repositories\CoupleRepository;
 use App\Couple;
+use App\Http\Services\MessageService;
+use App\Http\Repositories\MessageRepository;
+use App\Message;
+
 class CoupleController extends Controller
 {
     private $coupleService;
@@ -63,15 +67,26 @@ class CoupleController extends Controller
     /**
      * Show couple
      * @method GET /couples/{couple_id}
+     * @param Request req
+     * @param Int id
      * @return view
      */
 
-    public function showCouple($id) {
+    public function showCouple(Request $req, $id) {
         if(!isset($id))
             abort(404);
-        
+
+        $data = [
+            'page' => isset($req->page) ? isset($req->page) : 1
+        ];
+
         $couple = $this->coupleService->getById($id);
-        return view("pages.couple.show", compact(['couple']));
+
+        $message = new Message();
+        $messageRepo = new MessageRepository($message);
+        $messageService = new MessageService($messageRepo);
+        $messages = $messageService->getByCoupleId($id, $data);
+        return view("pages.couple.show", compact(['couple', 'messages']));
     }
 
     /**
