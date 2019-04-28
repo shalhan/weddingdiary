@@ -1,11 +1,19 @@
 @extends("layouts.main")
 
 @push('style')
-
+<link type="text/css" rel="stylesheet" href="/assets/css/theme-default/libs/DataTables/jquery.dataTables.css?1403937875" />
 @endpush
 
 @push('script')
-
+<script src="/assets/js/libs/DataTables/jquery.dataTables.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#COUPLE_TABLE').DataTable({
+            "bSort": false,
+            "bFilter": false,
+        });
+    });
+</script>
 @endpush
 
 @section("content")
@@ -27,12 +35,12 @@
             <div class="box">
                 <div class="box-head">
                     <header>
-                        <h4 class="text-light">Table <strong>Couples</strong></h4>
+                        <h4 class="text-light">Table Couples</h4>
                     </header>
                 </div>
 
-                <div class="box-body">
-                    <table class="table table-hover">
+                <div class="box-body table-responsive">
+                    <table id="COUPLE_TABLE" class="table table-hover">
                         <thead>
                             <tr>
                                 <th>Groom Name</th>
@@ -52,16 +60,16 @@
                                     <button type="button" class="btn btn-xs btn-danger btn-equal" data-toggle="modal" data-target="#dialog" data-placement="top" data-original-title="Delete row"><i class="fa fa-trash-o"></i></button>
                                 </td>
                                 @component('components.dialog')
-                                    @slot('method')
-                                        DELETE
-                                    @endslot
-                                    @slot('action')
-                                        /weddings/1
-                                    @endslot
-                                    @slot('title')
-                                        Alert!
-                                    @endslot
-                                    Are you sure want to delete this couple?
+                                @slot('method')
+                                DELETE
+                                @endslot
+                                @slot('action')
+                                /weddings/1
+                                @endslot
+                                @slot('title')
+                                Alert!
+                                @endslot
+                                Are you sure want to delete this couple?
                                 @endcomponent
                             </tr>
                             @endforeach
