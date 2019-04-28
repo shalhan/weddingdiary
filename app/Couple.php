@@ -40,6 +40,30 @@ class Couple extends Model
         return $this->belongsTo('App\Template', 'MSTEMPLATE_GUID', 'id');
     }
 
+    public function messages() {
+        return $this->hasMany('App\Message', 'MSCOUPLE_GUID', 'GUID');
+    }
+
+    public function visitors() {
+        return $this->hasMany('App\Visitor', 'MSCOUPLE_GUID', 'GUID');
+    }
+
+    public function vendorMenuVisits() {
+        return $this->hasMany('App\vendorMenuVisit', 'MSCOUPLE_GUID', 'GUID');
+    }
+
+    public function totalVisitors() {
+        return count($this->visitors());
+    }
+
+    public function totalMessages() {
+        return count($this->messages());
+    }
+
+    public function totalVendorMenuVisits() {
+        return count($this->vendorMenuVisits());
+    }
+
     public function getCouplePic($code) {
         //code == groom / bride
         return url($this->getImageVendorPath() .'/'.$code.'/'.$code.'.jpg');

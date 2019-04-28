@@ -9,13 +9,18 @@
 @endpush
 
 @section("content")
+
+@php
+    $couple = $couple['data']
+@endphp
+
 <ol class="breadcrumb">
     <li><a href="{{route('showCouples')}}">couples</a></li>
-    <li class="active">{{$couple['data']->groom->GROOM_NAME}} & {{$couple['data']->bride->BRIDE_NAME}}</li>
+    <li class="active">{{$couple->groom->GROOM_NAME}} & {{$couple->bride->BRIDE_NAME}}</li>
 </ol>
 
 <div class="section-header u-marginTop18 u-flex u-flexJustifyContentSpaceBetween u-flexAlignItemsCenter">
-    <h3 class="text-standard u-margin0">{{$couple['data']->groom->GROOM_NAME}} & {{$couple['data']->bride->BRIDE_NAME}}</h3>
+    <h3 class="text-standard u-margin0">{{$couple->groom->GROOM_NAME}} & {{$couple->bride->BRIDE_NAME}}</h3>
     <div>
         <a href="/">
             <button class="btn btn-inverse">Edit</button>
@@ -48,7 +53,7 @@
                     </header>
                 </div>
                 <div class="box-body u-flex u-flexJustifyContentEnd">
-                    <h1 class="text-boldest">1000</h1>
+                    <h1 class="text-boldest">{{$couple->totalVisitors()}}</h1>
                 </div>
             </div>
         </div>
@@ -60,7 +65,7 @@
                     </header>
                 </div>
                 <div class="box-body u-flex u-flexJustifyContentEnd">
-                    <h1 class="text-boldest">92</h1>
+                    <h1 class="text-boldest">{{$couple->totalVendorMenuVisits()}}</h1>
                 </div>
             </div>
         </div>
@@ -72,7 +77,7 @@
                     </header>
                 </div>
                 <div class="box-body u-flex u-flexJustifyContentEnd">
-                    <h1 class="text-boldest">1256</h1>
+                    <h1 class="text-boldest">{{$couple->totalMessages()}}</h1>
                 </div>
             </div>
         </div>
