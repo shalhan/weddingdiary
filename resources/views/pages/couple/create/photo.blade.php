@@ -51,7 +51,7 @@
 <ol class="breadcrumb">
     <li><a href="{{route('showCouples')}}">couples</a></li>
     <li><a href="{{route('showCreateCouple', ['step'=>1])}}">create</a></li>
-    <li class="active">step 2</li>
+    <li class="active">step 3</li>
 </ol>
 <div class="section-header">
     <h3 class="text-standard">Couple Photo</h3>
@@ -114,5 +114,4 @@
         <a href="{{route('showCreateCouple', ['step'=>4])}}"><button type="button" class="btn btn-inverse">Save</button></a>
     </div>
 </div>
-<!--end .section-body -->
 @endsection
