@@ -10,6 +10,7 @@
     $(document).ready(function() {
         $('#COUPLE_TABLE').DataTable({
             "bSort": false,
+            "bFilter": false,
         });
     });
 </script>
