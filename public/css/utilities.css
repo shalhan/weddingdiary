@@ -26,18 +26,22 @@
   justify-content: center !important;
 }
 
+.u-height300 {
+  height: 300px;
+}
+
+.u-height400 {
+  height: 400px;
+}
+
 .u-size128 {
   width: 128px !important;
   height: 128px !important;
 }
 
-.u-flexJustifyContentCenter {
-  justify-content: center !important;
-}
-
-.u-size128 {
-  width: 128px !important;
-  height: 128px !important;
+.u-sizeFull {
+  width: 100%;
+  height: 100%;
 }
 
 .u-fullWidth {
@@ -104,6 +108,28 @@
   cursor: pointer;
 }
 
+
+.avatarContainer {
+  position: relative;
+}
+
+.avatarImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  height: 100%;
+  width: 100%;
+}
+
+.uploadPhoto-warpper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 @media screen and (min-width: 800px) {
   .u-md-initial {
     display: initial !important;
@@ -126,17 +152,3 @@
   }
 }
 
-.avatarContainer {
-  position: relative;
-}
-
-.avatarImage {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin: auto;
-  height: 100%;
-  width: 100%;
-}
