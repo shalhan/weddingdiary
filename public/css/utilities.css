@@ -104,6 +104,10 @@
   cursor: pointer;
 }
 
+.u-textAlignCenter {
+  text-align: center;
+}
+
 @media screen and (min-width: 800px) {
   .u-md-initial {
     display: initial !important;
