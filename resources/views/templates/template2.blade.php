@@ -1,4 +1,4 @@
-@extends("index")
+@extends("layouts.template")
 @push('style')
 <!-- Library CSS -->
 <link href="{{ url('/template2/css/glanz_library.css') }}" rel="stylesheet">

@@ -1,4 +1,4 @@
-@extends("index")
+@extends("layouts.template")
 @push('style')
 <!-- Plugins for this template -->
 <link href="{{ url('/template1/css/animate.css') }}" rel="stylesheet">
