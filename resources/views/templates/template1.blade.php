@@ -253,9 +253,9 @@
                             <ul>
                                 <li><i class="fa fa-calendar"></i>
                                 
-                                <?php echo $wedding->WEDDINGDAYNAME_MATRIMONY; ?>, 
+                                <?php echo date("D, d M Y", strtotime($wedding->WEDDING_MATRIMONY_TIME)); ?>, 
                                 <?php echo $wedding->WEDDINGDATE_LONG_MATRIMONY; ?><br />
-                                <?php echo $wedding->WEDDINGHOUR_MATRYMONY; ?></li>
+                                <?php echo date("H:i A", strtotime($wedding->WEDDING_MATRYMONY_TIME)); ?></li>
                                 <li><i class="fa fa-location-arrow"></i>
                                 <?php echo $wedding->WEDDING_MATRIMONY_VENUE; ?><br />
                                 <?php echo $wedding->WEDDING_MATRIMONY_ADDRESS; ?> 
@@ -267,9 +267,9 @@
                             <ul>
                                 <li><i class="fa fa-calendar"></i> 
                                 
-                                <?php echo $wedding->WEDDINGDAYNAME_RECEPTION; ?>, 
+                                <?php echo date("D, d M Y",strtotime($wedding->WEDDING_RECEPTION_TIME)); ?>, 
                                 <?php echo $wedding->WEDDINGDATE_LONG_RECEPTION; ?><br />
-                                <?php echo $wedding->WEDDINGHOUR_RECEPTION; ?>
+                                <?php echo date("H:i A", strtotime($wedding->WEDDING_RECEPTION_TIME)); ?>
                                 </li>
                                 <li><i class="fa fa-location-arrow"></i> 
                                 <?php echo $wedding->WEDDING_RECEPTION_VENUE; ?> <br />

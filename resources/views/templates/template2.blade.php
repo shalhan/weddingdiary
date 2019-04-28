@@ -43,7 +43,7 @@
             <div class="container">
                 
                 <div class="gla_logo_container clearfix">
-                    <img src="{{ $couple->getVendorLogo() }}" alt="" class="gla_logo_rev">
+                    
                     <div class="gla_logo_txt">
                         <!-- Logo -->
 
@@ -87,6 +87,7 @@
             <div class="gla_slide_txt gla_slide_center_bottom text-center gla_main">
                 <div class="gla_slide_title"> We're getting married</div>
                 <div class="gla_slide_midtitle"><?php echo $couple->groom->GROOM_NAME; ?> &amp; <?php echo $couple->bride->BRIDE_NAME ?></div>
+
                 <img src="{{ $couple->getVendorLogo('white') }}" style="width:80px;margin-bottom:20px;" />
                 <div class="gla_slide_date"> <?php echo $wedding->WEDDINGDATE_LONG; ?></div>
 
@@ -105,10 +106,35 @@
 
     <div class="gla_section" style="padding:0px;margin:0px;">
         <div class="gla_countdown_title">
-            <h2 class="countdown-title">Our Big Day</h2>   
+            <h2 class="countdown-title">Our Big Day </h2>   
         </div>
-        <div class="gla_countdown" data-year="2018" data-month="9" data-day="30"></div>
+        <?php
+        $today = date("Y-m-d");
+		$expire = $wedding->WEDDING_MATRIMONY_TIME;
+
+		$today_time = strtotime($today);
+		$expire_time = strtotime($expire);
+
+		$tahun = date("Y", strtotime($wedding->WEDDING_MATRIMONY_TIME));
+		$bulan = date("m", strtotime($wedding->WEDDING_MATRIMONY_TIME));
+		$tanggal = date("d", strtotime($wedding->WEDDING_MATRIMONY_TIME));
+
+		if ($expire_time < $today_time) { ?> 
+			<div class="gla_countdown2" data-year="<?php echo $tahun; ?>" data-month="<?php echo $bulan; ?>" data-day="<?php echo $tanggal; ?>"></div>
+			
+
+		<?php } else { ?> 
+
+			<div class="gla_countdown" data-year="<?php echo $tahun; ?>" data-month="<?php echo $bulan; ?>" data-day="<?php echo $tanggal; ?>"></div>
+			
+
+		<?php } ?>
+       
+         
+    
     </div>
+
+   
 
     <!-- Content -->
     <section id="gla_content" class="gla_content">
@@ -208,7 +234,7 @@
                                 <span class="gla_over" data-image="{{$wedding->getWeddingStylePic()}}"></span>    
                             </span>
                             <span class="gla_news_title">Holy Matrimony</span>                            
-                            <p><strong><?php echo $wedding->WEDDINGDAYNAME_MATRIMONY; ?>, <?php echo $wedding->WEDDINGDATE_LONG_MATRIMONY; ?><br /><?php echo $wedding->WEDDINGHOUR_MATRYMONY; ?></strong><br />
+                            <p><strong><?php echo date("D, d M Y", strtotime($wedding->WEDDING_MATRIMONY_TIME)); ?><br /><?php echo date("H:i A", strtotime($wedding->WEDDING_MATRIMONY_TIME)); ?></strong><br />
                             <?php echo $wedding->WEDDING_MATRIMONY_VENUE; ?><br />
                             <?php echo $wedding->WEDDING_MATRIMONY_ADDRESS; ?>                            
                             </p>
@@ -222,7 +248,7 @@
                                 <span class="gla_over" data-image="{{url('/images/venue/00.jpg')}}"></span>    
                             </span>
                             <span class="gla_news_title">Wedding Reception</span>
-                            <p><strong><?php echo $wedding->WEDDINGDAYNAME_RECEPTION; ?>, <?php echo $wedding->WEDDINGDATE_LONG_RECEPTION; ?> <br /><?php echo $wedding->WEDDINGHOUR_RECEPTION; ?></strong>
+                            <p><strong><?php echo date("D, d M Y", strtotime($wedding->WEDDING_RECEPTION_TIME)); ?> <br /><?php echo date("H:i A", strtotime($wedding->WEDDING_RECEPTION_TIME)); ?></strong>
                             <br /><?php echo $wedding->WEDDING_RECEPTION_VENUE; ?><br />
                             <?php echo $wedding->WEDDING_RECEPTION_ADDRESS; ?>
                             
@@ -282,7 +308,7 @@
                     <div class="col-xs-6 col-sm-3 gla_anim_box grid-item ceremony">
                         <div class="gla_shop_item">
                             <a href="{{ $couple->getGalleryPic($PICNAME) }}" class="lightbox">
-                                <img src="{{ $couple->getGalleryPic($PICNAME, true) }}" alt="">
+                                <img src="{{ $couple->getGalleryPic($PICNAME,1, true) }}" alt="">
                             </a>
                         </div>
                     </div>
@@ -306,7 +332,7 @@
             <div class="gla_over" data-color="#282828" data-opacity="0.8"></div>
 
             <div class="container text-center">
-                <h2>Guest Book</h2>
+                <h2>Guest Book</h2><br /><br />
                 <h3 class="gla_subtitle">Sign Our Guest Book And leave a couple words</h3>
                 
                 
