@@ -120,6 +120,10 @@
   text-decoration: none;
 }
 
+.u-input--isError {
+  border: 1px solid red;
+}
+
 .avatarContainer {
   position: relative;
 }
