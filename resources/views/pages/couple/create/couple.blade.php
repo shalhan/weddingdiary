@@ -17,6 +17,7 @@
 <div class="section-header">
     <h3 class="text-standard">Couple Information</h3>
 </div>
+{{$errors->any() ? $errors->first('GROOM_NAME') : ''}}
 <div class="section-body">
     <form role="form" method="POST" action="{{route('saveCouple')}}">
         @csrf
@@ -32,7 +33,11 @@
                         <div class="form-vertical">
                             <div class="form-group">
                                 <label for="GROOM_REALNAME">Real Name</label>
+                                @if($errors->any() && $errors->first('GROOM_NAME'))
+                                <input type="text" name="GROOM_REALNAME" id="GROOM_REALNAME" class="form-control u-input-isError" placeholder="Real Name" value={{ old('GROOM_REALNAME')}}>
+                                @else
                                 <input type="text" name="GROOM_REALNAME" id="GROOM_REALNAME" class="form-control" placeholder="Real Name" value={{ old('GROOM_REALNAME')}}>
+                                @endif
                             </div>
                             <div class="form-group">
                                 <label for="GROOM_NAME">Name</label>
@@ -132,8 +137,8 @@
             </div>
         </div>
         <div class="u-flex u-flexJustifyContentEnd">
-            <a href="{{route('showCreateCouple', ['step'=>2])}}"><button type="button" class="btn btn-inverse">Save</button></a>
-            <!-- <button type="submit" class="btn btn-inverse">Save</button> -->
+            <!-- <a href="{{route('showCreateCouple', ['step'=>2])}}"><button type="button" class="btn btn-inverse">Save</button></a> -->
+            <button type="submit" class="btn btn-inverse">Save</button>
         </div>
     </form>
 
