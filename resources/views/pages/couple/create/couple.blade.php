@@ -32,7 +32,7 @@
                         <div class="form-vertical">
                             <div class="form-group">
                                 <label for="GROOM_REALNAME">Real Name</label>
-                                <input type="text" name="GROOM_REALNAME" id="GROOM_REALNAME" class="form-control" placeholder="Real Name" value={{ old('GROOM_REALNAME')}}>
+                                <input type="text" name="GROOM_REALNAME" id="GROOM_REALNAME" class="form-control u-input--isError" placeholder="Real Name" value={{ old('GROOM_REALNAME')}}>
                             </div>
                             <div class="form-group">
                                 <label for="GROOM_NAME">Name</label>
