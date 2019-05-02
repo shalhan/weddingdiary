@@ -52,6 +52,10 @@ class Couple extends Model
         return $this->hasMany('App\vendorMenuVisit', 'MSCOUPLE_GUID', 'GUID');
     }
 
+    public function getPrettyLinkAttribute() {
+        return explode("=", $this->SUBFOLDER2)[1];
+    }
+
     public function totalVisitors() {
         return count($this->visitors());
     }
@@ -63,6 +67,7 @@ class Couple extends Model
     public function totalVendorMenuVisits() {
         return count($this->vendorMenuVisits());
     }
+
 
     public function getCouplePic($code) {
         //code == groom / bride

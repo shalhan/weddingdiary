@@ -35,6 +35,28 @@ class CoupleRepository extends Repository
         $this->couple->MSTEMPLATE_GUID = $data["MSTEMPLATE_GUID"];
         $this->couple->save();
     }
+
+    /**
+     * @param Array $data
+     */
+    public function edit($data) {
+        $couple = $this->couple->find($data["GUID"]);
+        $couple->MSGROOM_GUID = $data["MSGROOM_GUID"];
+        $couple->MSBRIDE_GUID = $data["MSBRIDE_GUID"];
+        $couple->PACKAGE_ID = 1;
+        $couple->EXPIRED_DATE = date("Y-m-d",strtotime($data["EXPIRED_DATE"]));
+        $couple->STATUS = Auth::user()->GUID;
+        $couple->LOVE_STORY = "";
+        $couple->MSVENDOR_GUID = 2; //temporary
+        $couple->PREWEDPHOTO_AMOUNT = $data["PREWEDPHOTO_AMOUNT"];
+        $couple->VIEW_AMOUNT = 0;
+        $couple->CREATED_DATE = date("Y-m-d");
+        $couple->SUBFOLDER = $this->DEFAULT_SUBFOLDER;
+        $couple->SUBFOLDER2 = $this->DEFAULT_SUBFOLDER2 . $data["SUBFOLDER2"];
+        $couple->MSTEMPLATE_GUID = $data["MSTEMPLATE_GUID"];
+        $couple->update();
+        $this->couple = $couple;
+    }
     
     /**
      * @param Array $data
@@ -50,6 +72,7 @@ class CoupleRepository extends Repository
                     ->with(['bride', 'groom', 'template'])
                     ->skip($skip)
                     ->take($take)
+                    ->orderBy('GUID', 'desc')
                     ->get();
 
         return $this->getResponse($couples, $data);

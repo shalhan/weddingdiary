@@ -29,7 +29,11 @@ class BrideService extends Service
             if(count($validations) > 0) {
                 return $this->getErrors($validations);
             }
-            $this->brideRepo->save($data);
+            if(!isset($data["GUID"]))
+                $this->brideRepo->save($data);
+            else
+                $this->brideRepo->edit($data);
+
             return $this->getResponse(200, 'Save bride success', $this->brideRepo->getBride());
         }
         catch(ServiceException $e) {

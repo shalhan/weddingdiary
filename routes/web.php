@@ -158,6 +158,7 @@ Route::group(['middleware'=> 'cors'], function() {
 Route::get("/couples", "CoupleController@showIndex")->name("showCouples");
 Route::get("/couples/create", "CoupleController@showCreate")->name("showCreateCouple");
 Route::get("/couples/{id}", "CoupleController@showCouple")->name("showCouple");
+Route::get("/couples/{coupleId}/edit", "CoupleController@showEdit")->name("showEditCouple");
 
 Route::get("/profile", "VendorController@showProfile")->name("showProfile");
 Route::get("/profile/change-password", "VendorController@showChangePassword")->name("showChangePassword");
@@ -171,5 +172,6 @@ Route::get("/forgot-password", "Auth\LoginController@showForgotPassword")->name(
 Route::get("/change-password", "Auth\LoginController@showChangePassword")->name("changePassword");
 
 Route::post("/save/couple", "CoupleController@save")->name("saveCouple");
+Route::post("/save/wedding", "WeddingController@save")->name("saveWedding");
 
 

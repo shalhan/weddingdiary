@@ -30,7 +30,12 @@ class GroomService extends Service
                 return $this->getErrors($validations);
             }
 
-            $this->groomRepo->save($data);
+            if(!isset($data["GUID"])) {
+                $this->groomRepo->save($data);
+            }
+            else {
+                $this->groomRepo->edit($data);
+            }
             return $this->getResponse(200, 'Save groom success', $this->groomRepo->getGroom());
         }
         catch(ServiceException $e) {
