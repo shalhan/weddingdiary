@@ -90,7 +90,14 @@ class CoupleController extends Controller
             $data = $this->coupleService->getById($coupleId);
         else if($step == 2)
             $data = $this->weddingService->getByCoupleId($coupleId);
-
+        else if($step == 3) {
+            $coupleService = $this->coupleService->getById($coupleId);
+            $data = [
+              "coupleImage" =>  $coupleService["data"]->coverImage,
+              "groomImage" =>  $coupleService["data"]->groom->GROOM_PHOTO,
+              "brideImage" =>  $coupleService["data"]->bride->BRIDE_PHOTO,
+            ];
+        }
         return view($this->views[$step], compact(['data', 'coupleId']));
     }
 
@@ -171,6 +178,17 @@ class CoupleController extends Controller
                     ->withErrors($coupleService["data"]);
         }
         return redirect()->route("showEditCouple", ["step" => 2, 'coupleId' => $coupleService["data"]->GUID]);
-        return redirect()->to($req->current_url."?step=2&MSCOUPLE_GUID=");
+    }
+    /**
+     * @param int $id => couple id
+     */
+    public function dropById($id) {
+        $couple = $this->coupleService->dropById($id);
+
+        if(isset($couple["errors"])) {
+            abort(500);
+        }
+
+        return redirect()->back();
     }
 }

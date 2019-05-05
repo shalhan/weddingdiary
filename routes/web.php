@@ -158,12 +158,13 @@ Route::group(['middleware'=> 'cors'], function() {
 Route::get("/couples", "CoupleController@showIndex")->name("showCouples");
 Route::get("/couples/create", "CoupleController@showCreate")->name("showCreateCouple");
 Route::get("/couples/{id}", "CoupleController@showCouple")->name("showCouple");
+Route::delete("/couples/{id}", "CoupleController@dropById")->name("dropCouple");
 Route::get("/couples/{coupleId}/edit", "CoupleController@showEdit")->name("showEditCouple");
 
 Route::get("/profile", "VendorController@showProfile")->name("showProfile");
 Route::get("/profile/change-password", "VendorController@showChangePassword")->name("showChangePassword");
 
-Route::delete("/messages/{id}", "MessageController@dropById")->name("showChangePassword");
+Route::delete("/messages/{id}", "MessageController@dropById")->name("dropMessage");
 
 Route::get("/login", "Auth\LoginController@showLoginForm")->name("viewLogin");
 Route::post("/login", "Auth\LoginController@login")->name("login");
@@ -174,4 +175,6 @@ Route::get("/change-password", "Auth\LoginController@showChangePassword")->name(
 Route::post("/save/couple", "CoupleController@save")->name("saveCouple");
 Route::post("/save/wedding", "WeddingController@save")->name("saveWedding");
 
+
+Route::post("/api/upload-image", "ImageUploaderApi@upload")->name("upload");
 

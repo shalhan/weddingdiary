@@ -6,7 +6,7 @@
 
 @push('script')
 <script>
-    function handleImgUpload(type) {
+    function handleImgUpload(type, coupleId) {
         const reader = new FileReader();
         const input = document.createElement('input');
         input.setAttribute('type', 'file');
@@ -29,10 +29,37 @@
 
                         picture.removeAttribute('style');
                         picture.removeAttribute('src');
+
+                        const formData = new FormData();
+                        formData.append('imageBase64', reader.result)
+                        formData.append('coupleId', $('meta[name="_coupleId"]').attr('content'))
+                        formData.append('type', type)
+
+
+                        fetch("/api/upload-image", {
+                            method: 'POST',
+                            headers: {
+                                'X-CSRF-Token': $('meta[name="_token"]').attr('content')
+                            },
+                            body: formData
+                        }).then(response => {
+                            console.log(response)
+                        })
+
+                        // fetch("http://localhost:3000/api/v1/", {
+                        //     method: 'GET'
+                        // }).then(response => {
+                        //     return response.json()
+                        // }).then(resJson => {
+                        //     console.log(JSON.stringify(resJson))
+                        // })
+
+                        picture.setAttribute('src', reader.result);
+                        toastr.success('Successfully Saving Photo');
                     }
 
-                    picture.setAttribute('src', reader.result);
-                    toastr.success('Successfully Saving Photo');
+
+
                 } catch (err) {
                     console.log(err);
                 }
@@ -48,6 +75,13 @@
 @endpush
 
 @section("content")
+@php
+    $coupleImg = $data["coupleImage"];
+    $groomImg = $data["groomImage"];
+    $brideImg = $data["brideImage"];
+@endphp
+<meta name="_token" content="{{ csrf_token() }}">
+<meta name="_coupleId" content="{{ $coupleId }}">
 <ol class="breadcrumb">
     <li><a href="{{route('showCouples')}}">couples</a></li>
     <li><a href="{{route('showCreateCouple', ['step'=>1])}}">create</a></li>
@@ -67,10 +101,17 @@
                     </header>
                 </div>
                 <div class="box-body">
-                    <div class="uploadPhoto-warpper u-backgroundColorGrey10 u-border0 u-cursorPointer u-height300 u-relative" onclick="handleImgUpload('GROOM')">
-                        <p id="GROOM_LABEL">Click here to upload Groom Photo</p>
-                        <img id="GROOM_PHOTO" class="u-sizeFull" style="display: none">
-                    </div>
+                    @if(!isset($groomImg))
+                        <div class="uploadPhoto-warpper u-backgroundColorGrey10 u-border0 u-cursorPointer u-height300 u-relative" onclick="handleImgUpload('GROOM', {{$coupleId}})">
+                            <p id="GROOM_LABEL">Click here to upload Groom Photo</p>
+                            <img id="GROOM_PHOTO" class="u-sizeFull" style="display: none">
+                        </div>
+                    @else
+                        <div class="uploadPhoto-warpper u-backgroundColorGrey10 u-border0 u-cursorPointer u-height300 u-relative" onclick="handleImgUpload('BRIDE', {{$coupleId}})">
+                            <p id="GROOM_LABEL" style="display: none">Click here to upload Cover Photo</p>
+                            <img id="GROOM_PHOTO" class="u-sizeFull" src="{{$groomImg}}">
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -83,10 +124,17 @@
                     </header>
                 </div>
                 <div class="box-body">
-                    <div class="uploadPhoto-warpper u-backgroundColorGrey10 u-border0 u-cursorPointer u-height300 u-relative" onclick="handleImgUpload('BRIDE')">
-                        <p id="BRIDE_LABEL">Click here to upload Bride Photo</p>
-                        <img id="BRIDE_PHOTO" class="u-sizeFull" style="display: none">
-                    </div>
+                    @if(!isset($brideImg))
+                        <div class="uploadPhoto-warpper u-backgroundColorGrey10 u-border0 u-cursorPointer u-height300 u-relative" onclick="handleImgUpload('BRIDE', {{$coupleId}})">
+                            <p id="BRIDE_LABEL">Click here to upload Bride Photo</p>
+                            <img id="BRIDE_PHOTO" class="u-sizeFull" style="display: none">
+                        </div>
+                    @else
+                        <div class="uploadPhoto-warpper u-backgroundColorGrey10 u-border0 u-cursorPointer u-height300 u-relative" onclick="handleImgUpload('BRIDE', {{$coupleId}})">
+                            <p id="BRIDE_LABEL" style="display: none">Click here to upload Cover Photo</p>
+                            <img id="BRIDE_PHOTO" class="u-sizeFull" src="{{$brideImg}}">
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -102,16 +150,23 @@
                     </header>
                 </div>
                 <div class="box-body">
-                    <div class="uploadPhoto-warpper u-backgroundColorGrey10 u-border0 u-cursorPointer u-height400 u-relative" onclick="handleImgUpload('COVER')">
-                        <p id="COVER_LABEL">Click here to upload Cover Photo</p>
-                        <img id="COVER_PHOTO" class="u-sizeFull" style="display: none">
-                    </div>
+                    @if(!isset($coupleImg))
+                        <div class="uploadPhoto-warpper u-backgroundColorGrey10 u-border0 u-cursorPointer u-height400 u-relative" onclick="handleImgUpload('COVER', {{$coupleId}})">
+                            <p id="COVER_LABEL">Click here to upload Cover Photo</p>
+                            <img id="COVER_PHOTO" class="u-sizeFull" style="display: none">
+                        </div>
+                    @else
+                        <div class="uploadPhoto-warpper u-backgroundColorGrey10 u-border0 u-cursorPointer u-height400 u-relative" onclick="handleImgUpload('COVER', {{$coupleId}})">
+                            <p id="COVER_LABEL" style="display: none">Click here to upload Cover Photo</p>
+                            <img id="COVER_PHOTO" class="u-sizeFull" src="{{$coupleImg}}">
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
     </div>
     <div class="u-flex u-flexJustifyContentEnd">
-        <a href="{{route('showCreateCouple', ['step'=>4])}}"><button type="button" class="btn btn-inverse">Save</button></a>
+        <a href="{{route('showCreateCouple', ['step'=>4])}}"><button type="button" class="btn btn-inverse">Next</button></a>
     </div>
 </div>
 @endsection

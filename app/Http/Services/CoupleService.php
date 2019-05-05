@@ -111,6 +111,19 @@ class CoupleService extends Service
             return $e;
         }
     }
+
+    /**
+     * @param int $id => couple id 
+     */
+    public function dropById($id) {
+        try {
+            $this->coupleRepo->dropById($id);
+            return $this->getResponse(200, 'Delete couple success');
+        }
+        catch(ServiceException $e) {
+            return $e;
+        }
+    }
     
     private function validateData($data) {
         $validation = [];

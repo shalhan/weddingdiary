@@ -52,20 +52,28 @@ class Couple extends Model
         return $this->hasMany('App\vendorMenuVisit', 'MSCOUPLE_GUID', 'GUID');
     }
 
+    public function getCoverImageAttribute() {
+        return isset($this->COUPLE_COVER) ? asset($this->COUPLE_COVER) : null;
+    }
+
+    public function getCreatedDateForHumansAttribute() {
+        return date("d M Y", strtotime($this->CREATED_DATE));
+    }
+
     public function getPrettyLinkAttribute() {
         return explode("=", $this->SUBFOLDER2)[1];
     }
 
     public function totalVisitors() {
-        return count($this->visitors());
+        return count($this->visitors);
     }
 
     public function totalMessages() {
-        return count($this->messages());
+        return count($this->messages);
     }
 
     public function totalVendorMenuVisits() {
-        return count($this->vendorMenuVisits());
+        return count($this->vendorMenuVisits);
     }
 
 
