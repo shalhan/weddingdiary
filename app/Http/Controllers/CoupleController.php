@@ -6,9 +6,18 @@ use Illuminate\Http\Request;
 use App\Http\Services\CoupleService;
 use App\Http\Repositories\CoupleRepository;
 use App\Couple;
+use App\Http\Services\MessageService;
+use App\Http\Repositories\MessageRepository;
+use App\Message;
+use App\Http\Services\WeddingService;
+use App\Http\Repositories\WeddingRepository;
+use App\Wedding;
+use Route;
+
 class CoupleController extends Controller
 {
     private $coupleService;
+    private $weddingService;
     private $FIRST_STEP = 1;
     private $LAST_STEP = 4;
     private  $views = [
@@ -22,6 +31,10 @@ class CoupleController extends Controller
         $couple = new Couple();
         $coupleRepo = new CoupleRepository($couple);
         $this->coupleService = new CoupleService($coupleRepo);
+        //
+        $wedding = new Wedding();
+        $weddingRepo = new WeddingRepository($wedding);
+        $this->weddingService = new WeddingService($weddingRepo);
     }
 
     /**
@@ -33,7 +46,8 @@ class CoupleController extends Controller
 
     public function showIndex(Request $req) {
         $data = [
-            'page' => isset($req->page) ? isset($req->page) : 1
+            'page' => isset($req->page) ? $req->page : 1,
+            'isPagination' => isset($req->isPagination) ? $req->isPagination : true
         ];
 
         $couples = $this->coupleService->getAll($data);
@@ -52,26 +66,64 @@ class CoupleController extends Controller
      */
 
     public function showCreate(Request $req) {
+        $step = 1;  
+        
+        return view($this->views[$step]);
+    }
+
+    /**
+     *  Show create couple page
+     * @method GET /couples/create?step=xxx
+     * @param Request $req
+     * @return view
+     */
+
+    public function showEdit(Request $req, $coupleId) {
         if(!isset($req->step) || $req->step < $this->FIRST_STEP || $req->step > $this->LAST_STEP)
             $step = $this->FIRST_STEP;  
         else
             $step = $req->step;
-            
-        return view($this->views[$step]);
+
+        $coupleId = $coupleId;
+
+        if($step == 1)
+            $data = $this->coupleService->getById($coupleId);
+        else if($step == 2)
+            $data = $this->weddingService->getByCoupleId($coupleId);
+        else if($step == 3) {
+            $coupleService = $this->coupleService->getById($coupleId);
+            $data = [
+              "coupleImage" =>  $coupleService["data"]->coverImage,
+              "groomImage" =>  $coupleService["data"]->groom->GROOM_PHOTO,
+              "brideImage" =>  $coupleService["data"]->bride->BRIDE_PHOTO,
+            ];
+        }
+        return view($this->views[$step], compact(['data', 'coupleId']));
     }
 
     /**
      * Show couple
      * @method GET /couples/{couple_id}
+     * @param Request req
+     * @param Int id
      * @return view
      */
 
-    public function showCouple($id) {
+    public function showCouple(Request $req, $id) {
         if(!isset($id))
             abort(404);
-        
+
+        $data = [
+            'page' => isset($req->page) ? $req->page : 1,
+            'isPagination' => isset($req->isPagination) ? $req->isPagination : true
+        ];
         $couple = $this->coupleService->getById($id);
-        return view("pages.couple.show", compact(['couple']));
+
+        $message = new Message();
+        $messageRepo = new MessageRepository($message);
+        $messageService = new MessageService($messageRepo);
+        $messages = $messageService->getByCoupleId($id, $data);
+        return view("pages.couple.show", compact(['couple', 'messages']));
     }
 
     /**
@@ -111,6 +163,7 @@ class CoupleController extends Controller
             'BRIDE_INSTA' => $req->BRIDE_INSTA,
         ];
         $dataCouple = [
+            'GUID' => isset($req->GUID) ? $req->GUID : null,
             'SUBFOLDER2' => $req->SUBFOLDER2,
             'PREWEDPHOTO_AMOUNT' => $req->PREWEDPHOTO_AMOUNT,
             'EXPIRED_DATE' => $req->EXPIRED_DATE,
@@ -118,11 +171,22 @@ class CoupleController extends Controller
         ];
 
         $coupleService = $this->coupleService->save($dataGroom, $dataBride, $dataCouple);
-        
+
         if(isset($coupleService["errors"])) {
             return back()
                     ->withInput()
                     ->withErrors($coupleService["data"]);
+        }
+        return redirect()->route("showEditCouple", ["step" => 2, 'coupleId' => $coupleService["data"]->GUID]);
+    }
+    /**
+     * @param int $id => couple id
+     */
+    public function dropById($id) {
+        $couple = $this->coupleService->dropById($id);
+
+        if(isset($couple["errors"])) {
+            abort(500);
         }
 
         return redirect()->back();

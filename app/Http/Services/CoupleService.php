@@ -43,25 +43,37 @@ class CoupleService extends Service
 
     public function save($dataGroom, $dataBride, $dataCouple) {
         try {
+            //create couple
+            if($dataCouple["GUID"] != null) {
+                $couple = $this->coupleRepo->getById($dataCouple["GUID"]);
+                $dataGroom["GUID"]  = isset($couple->MSGROOM_GUID) ? $couple->MSGROOM_GUID : null;
+                $dataBride["GUID"]  = isset($couple->MSBRIDE_GUID) ? $couple->MSBRIDE_GUID : null;
+            }
+
             $savedGroom = $this->groomService->save($dataGroom);
             $savedBride = $this->brideService->save($dataBride);
+            
+            //check if there are errors when insert groom and bride
             if(isset($savedGroom["errors"]) || isset($savedBride["errors"])) {
                 $groomErrors = isset($savedGroom["errors"]) ? $savedGroom["data"] : array();
                 $brideErrors = isset($savedBride["errors"]) ? $savedBride["data"] : array();
                 
-                $errors  = $this->getErrors( array_merge($groomErrors, $brideErrors) );
-                return $errors;
+                $errors  = array_merge($groomErrors, $brideErrors);
             }
-            return $savedBride["errors"];
+            
+            //validate couple data
+            $validations = $this->validateData($dataCouple);
+            if(isset($errors) || count($validations) > 0) {
+                return $this->getErrors( array_merge($validations, $errors) );
+            }
+
             $dataCouple["MSGROOM_GUID"] = $savedGroom["data"]->GUID;
             $dataCouple["MSBRIDE_GUID"] = $savedBride["data"]->GUID;
-
-            $validations = $this->validateData($dataCouple);
-            if(count($validations) > 0) {
-                return $this->getErrors($validations);
-            }
-
-            $savedCouple = $this->coupleRepo->save($dataCouple);
+            //insert if couple id not exist
+            if(!isset($dataCouple["GUID"]))
+                $savedCouple = $this->coupleRepo->save($dataCouple);
+            else
+                $savedCouple = $this->coupleRepo->edit($dataCouple);
 
             return $this->getResponse(200, 'Save couple success', $this->coupleRepo->getCouple());
         }
@@ -99,15 +111,26 @@ class CoupleService extends Service
             return $e;
         }
     }
+
+    /**
+     * @param int $id => couple id 
+     */
+    public function dropById($id) {
+        try {
+            $this->coupleRepo->dropById($id);
+            return $this->getResponse(200, 'Delete couple success');
+        }
+        catch(ServiceException $e) {
+            return $e;
+        }
+    }
     
     private function validateData($data) {
         $validation = [];
-        if(!isset($data["MSGROOM_GUID"]))
-            $validation['MSGROOM_GUID'] = 'Groom id is required';
-        if(!isset($data["MSBRIDE_GUID"]))
-            $validation['MSBRIDE_GUID'] = 'Bride id name required';
+        if(!isset($data['SUBFOLDER2']))
+            $validation['SUBFOLDER2'] = 'URL is required';
         if(!isset($data["EXPIRED_DATE"]))
-            $validation['EXPIRED_DATE'] = 'Expired date required';
+            $validation['EXPIRED_DATE'] = 'Expired date is required';
         if(!isset($data["PREWEDPHOTO_AMOUNT"]))
             $validation['PREWEDPHOTO_AMOUNT'] = 'Photo amount is required';
         if(!isset($data["MSTEMPLATE_GUID"]))

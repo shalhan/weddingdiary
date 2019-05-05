@@ -40,7 +40,7 @@
 
 @section("content")
 <ol class="breadcrumb">
-    <li><a href="../../html/.html">home</a></li>
+    <li><a href="{{route('showCouples')}}">couples</a></li>
     <li class="active">Profile</li>
 </ol>
 
@@ -75,15 +75,15 @@
                         <div class="form-vertical">
                             <div class="form-group">
                                 <label for="VENDOR_NAME">Vendor Name</label>
-                                <input type="text" name="VENDOR_NAME" id="VENDOR_NAME" class="form-control" placeholder="Vendor Name" value={{ old('VENDOR_NAME')}}>
+                                <input type="text" name="VENDOR_NAME" id="VENDOR_NAME" class="form-control" placeholder="Vendor Name" value="{{ old('VENDOR_NAME') ? old('VENDOR_NAME') : Auth::user()->VENDOR_NAME }}">
                             </div>
                             <div class="form-group">
                                 <label for="VENDOR_WEBSITE">Vendor Website</label>
-                                <input type="text" name="VENDOR_WEBSITE" id="VENDOR_WEBSITE" class="form-control" placeholder="Vendor Website" value={{ old('VENDOR_WEBSITE')}}>
+                                <input type="text" name="VENDOR_WEBSITE" id="VENDOR_WEBSITE" class="form-control" placeholder="Vendor Website" value="{{ old('VENDOR_WEBSITE') ? old('VENDOR_WEBSITE') : Auth::user()->VENDOR_WEBSITE}}">
                             </div>
                             <div class="form-group">
                                 <label for="EMAIL">Email Address</label>
-                                <input type="email" name="EMAIL" id="EMAIL" class="form-control" placeholder="Email Address" value={{ old('EMAIL')}}>
+                                <input type="email" id="EMAIL" class="form-control" placeholder="Email Address" value="{{ old('email') ? old('email') : Auth::user()->email }}" disabled>
                             </div>
                         </div>
                         <a href="/profile/change-password" class="u-fontMedium text-primary">Change Password</a>

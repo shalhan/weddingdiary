@@ -9,29 +9,34 @@
 @endpush
 
 @section("content")
+
+@php
+    $couple = $couple['data'];
+    $nextPage = $messages['data']['nextPage'];
+    $prevPage = $messages['data']['prevPage'];
+    $messages = $messages['data']['pagination'];
+@endphp
+
 <ol class="breadcrumb">
     <li><a href="{{route('showCouples')}}">couples</a></li>
-    <li class="active">{{$couple['data']->groom->GROOM_NAME}} & {{$couple['data']->bride->BRIDE_NAME}}</li>
+    <li class="active">{{$couple->groom->GROOM_NAME}} & {{$couple->bride->BRIDE_NAME}}</li>
 </ol>
 
 <div class="section-header u-marginTop18 u-flex u-flexJustifyContentSpaceBetween u-flexAlignItemsCenter">
-    <h3 class="text-standard u-margin0">{{$couple['data']->groom->GROOM_NAME}} & {{$couple['data']->bride->BRIDE_NAME}}</h3>
+    <h3 class="text-standard u-margin0">{{$couple->groom->GROOM_NAME}} & {{$couple->bride->BRIDE_NAME}}</h3>
     <div>
         <a href="/">
             <button class="btn btn-inverse">Edit</button>
         </a>
         <button class="btn btn-danger" data-toggle="modal" data-target="#dialog">Delete</button>
         @component('components.dialog')
-        @slot('method')
-        DELETE
-        @endslot
-        @slot('action')
-        /weddings/1
-        @endslot
-        @slot('title')
-        Modal Delete
-        @endslot
-        My components with errors
+            @slot('action')
+            /couples/1
+            @endslot
+            @slot('title')
+            Modal Delete
+            @endslot
+        Are you sure want to delete this couple?
         @endcomponent
     </div>
 </div>
@@ -48,7 +53,7 @@
                     </header>
                 </div>
                 <div class="box-body u-flex u-flexJustifyContentEnd">
-                    <h1 class="text-boldest">1000</h1>
+                    <h1 class="text-boldest">{{$couple->totalVisitors()}}</h1>
                 </div>
             </div>
         </div>
@@ -60,7 +65,7 @@
                     </header>
                 </div>
                 <div class="box-body u-flex u-flexJustifyContentEnd">
-                    <h1 class="text-boldest">92</h1>
+                    <h1 class="text-boldest">{{$couple->totalVendorMenuVisits()}}</h1>
                 </div>
             </div>
         </div>
@@ -72,7 +77,7 @@
                     </header>
                 </div>
                 <div class="box-body u-flex u-flexJustifyContentEnd">
-                    <h1 class="text-boldest">1256</h1>
+                    <h1 class="text-boldest">{{$couple->totalMessages()}}</h1>
                 </div>
             </div>
         </div>
@@ -87,32 +92,66 @@
                         <h4 class="text-light">List of Comments</h4>
                     </header>
                 </div>
-                <div class="box-body">
+                <div class="box-body table-responsive">
                     <table class="table table-hover">
                         <thead>
                             <tr>
                                 <th>From</th>
                                 <th>Message</th>
+                                <th>Data</th>
+                                <th>Time</th>
                                 <th class="text-right1" style="width:90px">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td class="text-center">
-                                    <button type="button" class="btn btn-xs btn-danger btn-equal" data-toggle="modal" data-target="#dialog" data-placement="top" data-original-title="Delete row"><i class="fa fa-trash-o"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Larry</td>
-                                <td>the Bird</td>
-                                <td class="text-center">
-                                    <button type="button" class="btn btn-xs btn-danger btn-equal" data-toggle="modal" data-target="#dialog" data-placement="top" data-original-title="Delete row"><i class="fa fa-trash-o"></i></button>
-                                </td>
-                            </tr>
+                            @if(count($messages) > 0)
+                                @foreach($messages as $message)
+                                <tr>
+                                    <td>{{$message->NAME}}</td>
+                                    <td>{{$message->TEXT}}</td>
+                                    <td>{{dateFormat($message->DATE)}}</td>
+                                    <td>{{timeFormat($message->TIME)}}</td>
+                                    <td class="text-center">
+                                        <button type="button" class="btn btn-xs btn-danger btn-equal" data-toggle="modal" data-target="#dialog{{$message->GUID}}" data-placement="top" data-original-title="Delete row"><i class="fa fa-trash-o"></i></button>
+                                    </td>
+                                </tr>
+                                @component('components.dialog')
+                                    @slot('id')
+                                        dialog{{$message->GUID}}
+                                    @endslot
+                                    @slot('action')
+                                        /messages/{{$message->GUID}}
+                                    @endslot
+                                    @slot('title')
+                                    Modal Delete
+                                    @endslot
+                                    Are you sure want to delete this message?
+                                @endcomponent
+                                @endforeach
+                            @else
+                                <td colspan="5" class="text-center">Messages still empty</td>
+                            @endif
                         </tbody>
                     </table>
+                    <div class="u-flex u-flexJustifyContentEnd u-marginTop24">
+                    @component('components.btnPagination')
+                            @slot('redirectPrev')
+                                {{ route('showCouple', ['id' => $couple->GUID, 'page' => $prevPage] ) }}
+                            @endslot
+                            @slot('redirectNext')
+                                {{ route('showCouple', ['id' => $couple->GUID, 'page' => $nextPage] ) }}
+                            @endslot
+                            @slot('prevPage')
+                                {{$prevPage}}
+                            @endslot
+                            @slot('nextPage')
+                                {{$nextPage}}
+                            @endslot
+                            @slot('data')
+                                {{$couple}}
+                            @endslot
+                        @endcomponent
+                    </div>
                 </div>
             </div>
         </div>

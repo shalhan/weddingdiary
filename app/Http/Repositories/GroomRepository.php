@@ -25,6 +25,20 @@ class GroomRepository extends Repository
     }   
 
     /**
+     * @param Array $data
+     */
+    public function edit($data) {
+        $groom = $this->groom->find($data["GUID"]);
+        $groom->GROOM_NAME = $data["GROOM_NAME"];
+        $groom->GROOM_REALNAME = $data["GROOM_REALNAME"];
+        $groom->GROOM_FACEBOOK = isset($data["GROOM_FACEBOOK"]) ? $data["GROOM_FACEBOOK"] : "#" ;
+        $groom->GROOM_TWITTER = isset($data["GROOM_TWITTER"]) ? $data["GROOM_TWITTER"] : "#" ;
+        $groom->GROOM_INSTA = isset($data["GROOM_INSTA"]) ? $data["GROOM_INSTA"] : "#" ;
+        $groom->update();
+        $this->groom = $groom;
+    }   
+
+    /**
      * @return Groom
      */
     public function getGroom() {

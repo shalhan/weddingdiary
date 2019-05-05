@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Message extends Model
 {
+    use SoftDeletes;
+
     protected $table = 'trmessage';
     protected $fillable = ['MSCOUPLE_GUID', 'TEXT', 'DATE', 'TIME', 'EMAIL', 'NAME', 'GUEST'];
     protected $primaryKey = 'GUID';

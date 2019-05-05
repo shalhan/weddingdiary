@@ -1,4 +1,4 @@
-<div class="modal fade" id="dialog" tabindex="-1" role="dialog" aria-labelledby="simpleModalLabel" aria-hidden="false">
+<div class="modal fade" id="{{isset($id) ? $id : 'dialog'}}" tabindex="-1" role="dialog" aria-labelledby="simpleModalLabel" aria-hidden="false">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -12,8 +12,9 @@
         <form method="POST" action="{{$action}}">
           <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
           {{ csrf_field() }}
-          {{ method_field($method) }}
+          {{ method_field('DELETE') }}
           <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
       </div>
     </div>
   </div>

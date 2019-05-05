@@ -1,0 +1,2 @@
+<a href="{{$redirectPrev}}"><button class="btn btn-default" {{$prevPage == "" ? 'disabled' : ''}}>Previous</button></a>
+<a href="{{$redirectNext}}"><button class="btn btn-default" {{$nextPage == "" || count($data) <= 0 ? 'disabled' : ''}}>Next</button></a>
