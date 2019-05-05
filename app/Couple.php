@@ -49,7 +49,7 @@ class Couple extends Model
     }
 
     public function vendorMenuVisits() {
-        return $this->hasMany('App\vendorMenuVisit', 'MSCOUPLE_GUID', 'GUID');
+        return $this->hasMany('App\VendorMenuVisit', 'MSCOUPLE_GUID', 'GUID');
     }
 
     public function getCoverImageAttribute() {
