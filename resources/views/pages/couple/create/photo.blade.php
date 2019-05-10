@@ -166,7 +166,7 @@
         </div>
     </div>
     <div class="u-flex u-flexJustifyContentEnd">
-        <a href="{{route('showCreateCouple', ['step'=>4])}}"><button type="button" class="btn btn-inverse">Next</button></a>
+        <a href="{{route('showEditCouple', ['coupleId'=>$coupleId, 'step'=> 4] )}}"><button type="button" class="btn btn-inverse">Next</button></a>
     </div>
 </div>
 @endsection

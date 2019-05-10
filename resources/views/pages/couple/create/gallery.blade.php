@@ -140,8 +140,9 @@
 					</table>
 				</div>
 			</div>
-			<a href="{{route('showCouples')}}"><button type="button" class="btn btn-inverse">Publish</button></a> <!-- temporary -->
-
+			<div class="u-flex u-flexJustifyContentEnd">
+				<a href="{{route('showCouples')}}"><button type="button" class="btn btn-inverse">Publish</button></a> <!-- temporary -->
+			</div>
 
 		</div>
 	</form>
