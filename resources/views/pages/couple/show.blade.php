@@ -25,7 +25,7 @@
 <div class="section-header u-marginTop18 u-flex u-flexJustifyContentSpaceBetween u-flexAlignItemsCenter">
     <h3 class="text-standard u-margin0">{{$couple->groom->GROOM_NAME}} & {{$couple->bride->BRIDE_NAME}}</h3>
     <div>
-        <a href="/">
+        <a href="{{ route('showEditCouple', ['coupleId'=> $couple->GUID]) }}">
             <button class="btn btn-inverse">Edit</button>
         </a>
         <button class="btn btn-danger" data-toggle="modal" data-target="#dialog">Delete</button>
