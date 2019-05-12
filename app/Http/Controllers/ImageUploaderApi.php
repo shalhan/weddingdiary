@@ -38,11 +38,9 @@ class ImageUploaderApi extends Controller {
             if ($data === false) {
                 throw new \Exception('base64_decode failed');
             }
-
             $imageName = time()."." .$type;
             $vendorDir = "ven".Auth::user()->GUID;
             $coupleDir = "coup".$req->coupleId;
-
             if($req->type == "BRIDE") {
                 $path = $vendorDir .'/' . $coupleDir . "/bride/" . $imageName;
                 $res = $this->imageUploaderService->saveBridePhoto($req->coupleId, $path);
@@ -52,12 +50,16 @@ class ImageUploaderApi extends Controller {
             } else if($req->type == "COVER") {
                 $path = $vendorDir .'/' . $coupleDir . '/' . $imageName;
                 $res = $this->imageUploaderService->saveCover($req->coupleId, $path);
+            } else if($req->type == "GALLERY") {
+                $path = $vendorDir .'/' . $coupleDir . '/gallery/1/' . $imageName;
+                $res = $this->imageUploaderService->saveGallery($req->coupleId, $path);
             }
-            if(!isset($req["errors"])) {
+
+            if(!isset($res["errors"])) {
                 if(isset($res["data"]["prevPath"])) {
                     Storage::delete(str_replace('/images/', "", $res["data"]["prevPath"]));
                 }
-                \Log::info($res["data"]["prevPath"]);
+                \Log::info($path);
                 Storage::put($path, $data);
             }
             return response()->json($res);

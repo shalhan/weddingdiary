@@ -12,12 +12,16 @@ use App\Message;
 use App\Http\Services\WeddingService;
 use App\Http\Repositories\WeddingRepository;
 use App\Wedding;
+use App\Http\Services\GalleryService;
+use App\Http\Repositories\GalleryRepository;
+use App\Gallery;
 use Route;
 
 class CoupleController extends Controller
 {
     private $coupleService;
     private $weddingService;
+    private $galleryService;
     private $FIRST_STEP = 1;
     private $LAST_STEP = 4;
     private  $views = [
@@ -35,6 +39,10 @@ class CoupleController extends Controller
         $wedding = new Wedding();
         $weddingRepo = new WeddingRepository($wedding);
         $this->weddingService = new WeddingService($weddingRepo);
+        //
+        $gallery = new Gallery();
+        $galleryRepo = new GalleryRepository($gallery);
+        $this->galleryService = new GalleryService($galleryRepo);
     }
 
     /**
@@ -97,6 +105,9 @@ class CoupleController extends Controller
               "groomImage" =>  $coupleService["data"]->groom->GROOM_PHOTO,
               "brideImage" =>  $coupleService["data"]->bride->BRIDE_PHOTO,
             ];
+        }
+        else if($step == 4) {
+            $data = $this->galleryService->getByCoupleId($coupleId);
         }
         return view($this->views[$step], compact(['data', 'coupleId']));
     }

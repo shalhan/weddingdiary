@@ -10,7 +10,9 @@ class ImageUploaderRepository extends Repository
     public function __construct() {
     }
     public function setModel($id, $model) {
-        $this->model = $model->find($id);
+        $this->model = $model;
+        if($id != null)
+            $this->model = $model->find($id);
     }
     public function getModel() {
         return $this->model;
@@ -32,5 +34,11 @@ class ImageUploaderRepository extends Repository
         $model->GROOM_PHOTO = $this->PREFIX . $path;
         $model->update();
         return $model;
+    }
+    public function saveGalleryPhoto($coupleId, $path) {
+        $this->model->MSCOUPLE_GUID = $coupleId;
+        $this->model->GALLERY_PHOTO = $this->PREFIX . $path;
+        $this->model->save();
+        return $this->model;
     }
 }
