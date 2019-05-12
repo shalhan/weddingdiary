@@ -16,7 +16,7 @@ class GalleryRepository extends Repository
         return $this->gallery
                     ->select("GUID", "MSCOUPLE_GUID", "GALLERY_PHOTO")
                     ->where("MSCOUPLE_GUID", $coupleId)
-                    ->first();
+                    ->get();
     }
 
     public function getBride() {

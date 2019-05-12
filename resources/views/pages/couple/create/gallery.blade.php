@@ -149,11 +149,7 @@
 	$("#uploader").change(()=> {
 		files = $("#uploader")[0].files
 	})
-	$('#fileupload').fileupload(
-		'add', {
-			files: <?php $data["data"]; ?>
-		}
-	);
+
 </script>
 <!-- END FILE UPLOAD TEMPLATES -->
 @endpush
@@ -200,7 +196,32 @@
 				</div>
 				<div class="u-marginTop24">
 					<table role="presentation" class="table table-striped">
-						<tbody class="files"></tbody>
+						<tbody class="files">
+						</tbody>
+						<tbody>
+							@foreach($data["data"] as $gallery)
+								<tr class="template-upload">
+									<td>
+										<span class="preview"><img style="width: 60px; height: 80px" src="{{$gallery->GALLERY_PHOTO}}"></span>
+									</td>
+									<td>
+										<p class="name">{{$gallery->fileName}}</p>
+									</td>
+									<td id="status{{$gallery->GUID}}">
+										<p class="size">File size undefined...</p>
+										<p class='text-white'>
+											<span class='text-highlight-info'>Saved</span>
+										</p>
+									</td>
+									<td>
+									<button id="deletebtn{{$gallery->GUID}}" type="button" class="btn btn-warning cancel" onclick="alert('Delete will be here soon')">
+											<i class="glyphicon glyphicon-ban-circle"></i>
+											<span>Delete</span>
+										</button>
+									</td>
+								</tr>
+							@endforeach
+						</tbody>
 					</table>
 				</div>
 			</div>
