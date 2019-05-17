@@ -171,7 +171,7 @@
             </div>
         </div>
         <div class="u-flex u-flexJustifyContentEnd">
-            <button type="submit" class="btn btn-inverse">Save</button>
+            <button type="submit" class="btn btn-inverse">Next</button>
         </div>
     </form>
 
