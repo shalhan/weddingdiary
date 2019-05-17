@@ -7,6 +7,7 @@ use App\Http\Repositories\ImageUploaderRepository;
 use App\Couple;
 use App\Groom;
 use App\Bride;
+use App\Gallery;
 
 class ImageUploaderService extends Service
 {
@@ -78,6 +79,23 @@ class ImageUploaderService extends Service
               "currentPath" =>  $currentPath,
             ];
             return $this->getResponse(200, 'Save photo groom success', $data);
+        }
+        catch(ServiceException $e) {
+            return $e;
+        }
+    }
+
+    public function saveGallery($coupleId, $path) {
+        try {
+            $this->imageUploaderRepo->setModel(null, new Gallery());
+
+            $gallery = $this->imageUploaderRepo->saveGalleryPhoto($coupleId, $path);
+            $currentPath = isset($gallery->GALLERY_PHOTO) ? $gallery->GALLERY_PHOTO : null;
+            $data = [
+              "prevPath" => null,
+              "currentPath" =>  $currentPath,
+            ];
+            return $this->getResponse(200, 'Save gallery photo success', $data);
         }
         catch(ServiceException $e) {
             return $e;
