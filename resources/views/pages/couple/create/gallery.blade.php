@@ -185,13 +185,9 @@
 						<span>Add files...</span>
 						<input id="uploader" type="file" name="images[]" multiple>
 					</span>
-					<button type="button" class="btn btn-primary btn-rounded start" onclick="alert('ha;o')">
+					<button type="button" class="btn btn-primary btn-rounded start" onclick="alert('Upload all will be here soon')">
 						<i class="glyphicon glyphicon-upload"></i>
 						<span>Start upload</span>
-					</button>
-					<button type="reset" class="btn btn-warning btn-rounded cancel">
-						<i class="glyphicon glyphicon-ban-circle"></i>
-						<span>Cancel upload</span>
 					</button>
 				</div>
 				<div class="u-marginTop24">
@@ -225,10 +221,9 @@
 					</table>
 				</div>
 			</div>
-			<div class="u-flex u-flexJustifyContentEnd">
-				<a href="{{route('showCouples')}}"><button type="button" class="btn btn-inverse">Publish</button></a> <!-- temporary -->
-			</div>
-
+		</div>
+		<div class="u-flex u-flexJustifyContentEnd">
+			<a href="{{route('showCouples')}}"><button type="button" class="btn btn-inverse">Publish</button></a> <!-- temporary -->
 		</div>
 	</form>
 

@@ -164,7 +164,7 @@
         </div>
         <div class="u-flex u-flexJustifyContentEnd">
             <!-- <a href="{{route('showCreateCouple', ['step'=>2])}}"><button type="button" class="btn btn-inverse">Save</button></a> -->
-            <button type="submit" class="btn btn-inverse">Save</button>
+            <button type="submit" class="btn btn-inverse">Next</button>
         </div>
     </form>
 
