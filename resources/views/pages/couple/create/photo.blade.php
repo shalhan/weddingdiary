@@ -107,7 +107,7 @@
                             <img id="GROOM_PHOTO" class="u-sizeFull" style="display: none">
                         </div>
                     @else
-                        <div class="uploadPhoto-warpper u-backgroundColorGrey10 u-border0 u-cursorPointer u-height300 u-relative" onclick="handleImgUpload('BRIDE', {{$coupleId}})">
+                        <div class="uploadPhoto-warpper u-backgroundColorGrey10 u-border0 u-cursorPointer u-height300 u-relative" onclick="handleImgUpload('GROOM', {{$coupleId}})">
                             <p id="GROOM_LABEL" style="display: none">Click here to upload Cover Photo</p>
                             <img id="GROOM_PHOTO" class="u-sizeFull" src="{{$groomImg}}">
                         </div>
