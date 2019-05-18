@@ -59,12 +59,17 @@ class ImageUploaderApi extends Controller {
                 if(isset($res["data"]["prevPath"])) {
                     Storage::delete(str_replace('/images/', "", $res["data"]["prevPath"]));
                 }
-                \Log::info($path);
                 Storage::put($path, $data);
             }
             return response()->json($res);
         } else {
             throw new \Exception('did not match data URI with image data');
         }
+    }
+
+    public function dropGalleryById($id) {
+        $res = $this->imageUploaderService->dropGalleryById($id);
+        Storage::delete(str_replace('/images/', "", $res["data"]["prevPath"]));
+        return redirect()->back();
     }
 }

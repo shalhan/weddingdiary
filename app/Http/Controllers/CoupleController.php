@@ -200,6 +200,6 @@ class CoupleController extends Controller
             abort(500);
         }
 
-        return redirect()->back();
+        return redirect()->route('showCouples')->with('success', 'Delete couple success');
     }
 }

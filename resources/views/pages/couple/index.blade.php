@@ -1,11 +1,16 @@
 @extends("layouts.main")
 
 @push('style')
-
+<link type="text/css" rel="stylesheet" href="/assets/css/theme-default/libs/toastr/toastr.css" />
 @endpush
 
 @push('script')
-
+<script src="/assets/js/libs/toastr/toastr.min.js"></script>
+@if(session('success'))
+    <script>
+        toastr.success("<?php echo session('success'); ?>")
+    </script>
+@endif
 @endpush
 
 @section("content")
@@ -14,6 +19,9 @@ $nextPage = $couples['data']['nextPage'];
 $prevPage = $couples['data']['prevPage'];
 $couples = $couples['data']['pagination'];
 @endphp
+
+
+
 
 <ol class="breadcrumb">
     <li class="active">Couple</li>
@@ -37,7 +45,7 @@ $couples = $couples['data']['pagination'];
                     <div class="coupleCard-image" style="background-image: url('{{ $couple->coverImage }}')"></div>
                         <div class="coupleCard-actionWrapper">
                             <a href="{{ route('showEditCouple', $couple->GUID) }}"><button type="button" class="btn btn-xs btn-inverse btn-equal" data-toggle="tooltip" data-placement="top" data-original-title="Edit"><i class="fa fa-pencil"></i></button></a>
-                            <button type="button" class="btn btn-xs btn-danger btn-equal" data-toggle="modal" data-target="#dialog" data-placement="top" data-original-title="Delete"><i class="fa fa-trash-o"></i></button>
+                            {{-- <button type="button" class="btn btn-xs btn-danger btn-equal" data-toggle="modal" data-target="#dialog{{$couple->GUID}}" data-placement="top" data-original-title="Delete"><i class="fa fa-trash-o"></i></button> --}}
                         </div>
                     </div>
                 </a>
@@ -49,15 +57,6 @@ $couples = $couples['data']['pagination'];
                     <p class="coupleCard-template">{{$couple->template->code_name}}</p>
                 </div>
             </div>
-            @component('components.dialog')
-            @slot('action')
-                /couples/{{$couple->GUID}}
-            @endslot
-            @slot('title')
-                Alert!
-            @endslot
-                Are you sure want to delete this couple?
-            @endcomponent
         </div>
         @endforeach
         @else

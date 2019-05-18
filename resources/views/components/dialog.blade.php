@@ -1,4 +1,4 @@
-<div class="modal fade" id="{{isset($id) ? $id : 'dialog'}}" tabindex="-1" role="dialog" aria-labelledby="simpleModalLabel" aria-hidden="false">
+<div class="modal fade" id="{{isset($id) ? 'dialog'.$id : 'dialog'}}" tabindex="-1" role="dialog" aria-labelledby="simpleModalLabel" aria-hidden="false">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">

@@ -101,4 +101,19 @@ class ImageUploaderService extends Service
             return $e;
         }
     }
+
+    public function dropGalleryById($id) {
+        try {
+            $this->imageUploaderRepo->setModel(null, new Gallery());
+            $res = $this->imageUploaderRepo->dropGalleryById($id);
+            $data = [
+                "prevPath" => $res->GALLERY_PHOTO,
+                "currentPath" =>  null,
+            ];
+            return $this->getResponse(200, 'Delete gallery photo success', $data);
+        }
+        catch(ServiceException $e) {
+            return $e;
+        }
+    }
 }
