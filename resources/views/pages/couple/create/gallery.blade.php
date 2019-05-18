@@ -24,6 +24,7 @@
 <script id="template-upload" type="text/x-tmpl">
 	{% for (var i=0, file; file=o.files[i]; i++) { %}
 			<tr class="template-upload fade">
+				{% var uploadedKey = getKey(o.files, file, i); %}
 				<td>
 					<span class="preview"></span>
 				</td>
@@ -31,26 +32,26 @@
 					<p class="name">{%=file.name%}</p>
 					<strong class="error text-danger"></strong>
 				</td>
-				<td id="status{%= file.lastModified %}">
+				<td id="status{%= uploadedKey %}">
 					<p class="size">Processing...</p>
-					<div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div id="progress{%= file.lastModified %}"  class="progress-bar progress-bar-success" style="width:0%;"></div></div>
+					<div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div id="progress{%= uploadedKey %}"  class="progress-bar progress-bar-success" style="width:0%;"></div></div>
 				</td>
 				<td>
 					{% if (!i && !o.options.autoUpload) { %}
-					<button id="startbtn{%= file.lastModified %}" type="button" class="btn btn-primary" onclick="uploadFile({%= file.lastModified %})">
+					<button id="startbtn{%= uploadedKey %}" type="button" class="btn btn-primary" onclick="uploadFile({%= uploadedKey %})">
 						<i class="glyphicon glyphicon-upload"></i>
 						<span>Start</span>
 					</button>
 					{% } %}
 					{% if (!i) { %}
-					<button id="deletebtn{%= file.lastModified %}" class="btn btn-warning cancel hide" disabled>
+					<button id="deletebtn{%= uploadedKey %}" class="btn btn-warning cancel hide" disabled>
 						<i class="glyphicon glyphicon-ban-circle"></i>
 						<span>Refresh before delete</span>
 					</button>
 					{% } %}
 				</td>
 			</tr>
-			{% } %}
+			{%  } %}
 		</script>
 <script id="template-download" type="text/x-tmpl">
 	{% for (var i=0, file; file=o.files[i]; i++) { %}
@@ -96,68 +97,93 @@
 </script>
 <script>
 	var files = null
-	var uploadAllFiles = function() {
+	var isChanged = false
+	var inx = 0
+	var startBtn =  null
+	var progressBar =  null
+	var deletebtn = null
+	var startBtnText = null
+
+	var getKey = function(arr, obj, i) {
+		if(!isChanged)  {
+			isChanged = true
+			return i
+		}else {	
+			return inx+=1
+		}	
+	}
+	var uploadAllFiles = async function() {
 		let len = files.length
-		for(let j = 0; j<len; j++) {
-			uploadFile(files[j].lastModified)
+		let i = 0
+		for(let ind in files) {
+			disabledBtn(ind)
+		}
+		for(let obj of files) {
+			await uploadFile(i)
+			i++
 		}
 	}
-	var uploadFile = function(index) {
-		var reader  = new FileReader();
-		var startBtn = $("#startbtn"+index)
-		var progressBar = $("#progress"+index)
-		var deletebtn = $("#deletebtn"+index)
-		var startBtnText = $("#startbtn"+index + " span")
+	var disabledBtn = function(index) {
+		defineComponent(index)
 		startBtn.addClass("disabled")
 		startBtnText.text("Uploading...")
 		progressBar.css("width", "100%")
-		reader.addEventListener("load", function () {
-			const formData = new FormData();
-			formData.append('imageBase64', reader.result)
-			formData.append('coupleId', $('meta[name="_coupleId"]').attr('content'))
-			formData.append('type', "GALLERY")
+	}
+	var defineComponent = function(index) {
+		startBtn = $("#startbtn"+index)
+		progressBar = $("#progress"+index)
+		deletebtn = $("#deletebtn"+index)
+		startBtnText = $("#startbtn"+index + " span")
+	}
+	var uploadFile = function(index) {
+		return new Promise( (resolve,reject) => {
+			var reader = new FileReader()
+			disabledBtn(index)
+			reader.addEventListener("load", function () {
+				const formData = new FormData();
+				formData.append('imageBase64', reader.result)
+				formData.append('coupleId', $('meta[name="_coupleId"]').attr('content'))
+				formData.append('type', "GALLERY")
 
-			fetch("/api/upload-image", {
-				method: 'POST',
-				headers: {
-					'X-CSRF-Token': $('meta[name="_token"]').attr('content')
-				},
-				body: formData
-			})
-			.then( (response) =>{
-				return response.json()
-			})
-			.then( (data) => {
-				if(data.status == 200) {
-					setTimeout(()=> {
-						startBtn.addClass("hide")
-						startBtnText.text("Start")
-						progressBar.css("width", "0")
-						deletebtn.removeClass("hide")
-						$("#status"+index + " div").remove()
-						var attrSuccess = "<p class='text-white'><span class='text-highlight-info'>Success</span></p>"
-						$("#status"+index).append(attrSuccess)
-					}, 1500)
-				}
-				console.log(data)
-			})
-			.catch(e => {
-				startBtnText.text("Start")
-				progressBar.css("width", "0")
-				$("#status"+index + " div").remove()
-				var attrSuccess = "<p class='text-white'><span class='text-highlight-danger'>Failed, please try again</span></p>"
-				$("#status"+index).append(attrSuccess)
-				console.log(e)
-			})
-		}, false);
+				fetch("/api/upload-image", {
+					method: 'POST',
+					headers: {
+						'X-CSRF-Token': $('meta[name="_token"]').attr('content')
+					},
+					body: formData
+				})
+				.then( (response) =>{
+					return response.json()
+				})
+				.then( (data) => {
+					if(data.status == 200) {
+						setTimeout(()=> {
+							startBtn.addClass("hide")
+							startBtnText.text("Start")
+							progressBar.css("width", "0")
+							deletebtn.removeClass("hide")
+							$("#status"+index + " div").remove()
+							var attrSuccess = "<p class='text-white'><span class='text-highlight-info'>Success</span></p>"
+							$("#status"+index).append(attrSuccess)
+							resolve("SUCCESS")
+						}, 1500)
+					}
+					console.log(data)
+				})
+				.catch(e => {
+					startBtnText.text("Start")
+					progressBar.css("width", "0")
+					$("#status"+index + " div").remove()
+					var attrSuccess = "<p class='text-white'><span class='text-highlight-danger'>Failed, please try again</span></p>"
+					$("#status"+index).append(attrSuccess)
+					reject("FAILED")
+				})
+			}, false);
 
-		let uploadedFile = null
-		for(let inx in files) {
-			if(files[inx].lastModified == index){
-				reader.readAsDataURL(files[inx]);
-				break
+			if(files[index]) {
+				reader.readAsDataURL(files[index]);
 			}
-		}
+		})
 	}
 	$("#uploader").change(()=> {
 		files = $("#uploader")[0].files
