@@ -177,4 +177,4 @@ Route::post("/save/wedding", "WeddingController@save")->name("saveWedding");
 
 
 Route::post("/api/upload-image", "ImageUploaderApi@upload")->name("upload");
-
+Route::delete("/api/upload-image/{id}", "ImageUploaderApi@dropGalleryById")->name("dropGalleryById");

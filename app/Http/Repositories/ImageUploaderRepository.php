@@ -41,4 +41,10 @@ class ImageUploaderRepository extends Repository
         $this->model->save();
         return $this->model;
     }
+    public function dropGalleryById($galleryId) {
+        $gallery = $this->model->find($galleryId);
+        $prevGallery = $gallery;
+        $gallery->delete();
+        return $prevGallery;
+    }
 }

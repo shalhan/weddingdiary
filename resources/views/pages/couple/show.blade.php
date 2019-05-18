@@ -31,7 +31,7 @@
         <button class="btn btn-danger" data-toggle="modal" data-target="#dialog">Delete</button>
         @component('components.dialog')
             @slot('action')
-            /couples/1
+            /couples/{{$couple->GUID}}
             @endslot
             @slot('title')
             Modal Delete

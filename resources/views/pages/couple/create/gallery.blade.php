@@ -31,21 +31,21 @@
 					<p class="name">{%=file.name%}</p>
 					<strong class="error text-danger"></strong>
 				</td>
-				<td id="status{%= i %}">
+				<td id="status{%= file.lastModified %}">
 					<p class="size">Processing...</p>
-					<div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div id="progress{%= i %}"  class="progress-bar progress-bar-success" style="width:0%;"></div></div>
+					<div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div id="progress{%= file.lastModified %}"  class="progress-bar progress-bar-success" style="width:0%;"></div></div>
 				</td>
 				<td>
 					{% if (!i && !o.options.autoUpload) { %}
-					<button id="startbtn{%= i %}" type="button" class="btn btn-primary" onclick="uploadFile({%= i %})">
+					<button id="startbtn{%= file.lastModified %}" type="button" class="btn btn-primary" onclick="uploadFile({%= file.lastModified %})">
 						<i class="glyphicon glyphicon-upload"></i>
 						<span>Start</span>
 					</button>
 					{% } %}
 					{% if (!i) { %}
-					<button id="deletebtn{%= i %}" class="btn btn-warning cancel hide">
+					<button id="deletebtn{%= file.lastModified %}" class="btn btn-warning cancel hide" disabled>
 						<i class="glyphicon glyphicon-ban-circle"></i>
-						<span>Delete</span>
+						<span>Refresh before delete</span>
 					</button>
 					{% } %}
 				</td>
@@ -79,15 +79,15 @@
 			</td>
 			<td>
 				{% if (file.deleteUrl) { %}
-				<button class="btn btn-danger delete" data-type="{%=file.deleteType%}" data-url="{%=file.deleteUrl%}"{% if (file.deleteWithCredentials) { %} data-xhr-fields='{"withCredentials":true}'{% } %}>
+				<button class="btn btn-danger delete" data-type="{%=file.deleteType%}" data-url="{%=file.deleteUrl%}"{% if (file.deleteWithCredentials) { %} data-xhr-fields='{"withCredentials":true}'{% } %} disabled>
 					<i class="glyphicon glyphicon-trash"></i>
-					<span>Delete</span>
+					<span>Refresh if you want to delete this</span>
 				</button>
 				<input type="checkbox" name="delete" value="1" class="toggle">
 				{% } else { %}
-				<button class="btn btn-warning cancel">
+				<button class="btn btn-warning cancel" disabled>
 					<i class="glyphicon glyphicon-ban-circle"></i>
-					<span>Cancel</span>
+					<span>Refresh if you want to delete this</span>
 				</button>
 				{% } %}
 			</td>
@@ -96,7 +96,13 @@
 </script>
 <script>
 	var files = null
-	function uploadFile(index) {
+	var uploadAllFiles = function() {
+		let len = files.length
+		for(let j = 0; j<len; j++) {
+			uploadFile(files[j].lastModified)
+		}
+	}
+	var uploadFile = function(index) {
 		var reader  = new FileReader();
 		var startBtn = $("#startbtn"+index)
 		var progressBar = $("#progress"+index)
@@ -138,18 +144,25 @@
 			.catch(e => {
 				startBtnText.text("Start")
 				progressBar.css("width", "0")
+				$("#status"+index + " div").remove()
+				var attrSuccess = "<p class='text-white'><span class='text-highlight-danger'>Failed, please try again</span></p>"
+				$("#status"+index).append(attrSuccess)
 				console.log(e)
 			})
 		}, false);
 
-		if (files[index]) {
-			reader.readAsDataURL(files[index]);
+		let uploadedFile = null
+		for(let inx in files) {
+			if(files[inx].lastModified == index){
+				reader.readAsDataURL(files[inx]);
+				break
+			}
 		}
 	}
 	$("#uploader").change(()=> {
 		files = $("#uploader")[0].files
+		$("#uploadAllFilesBtn").removeClass("disabled")
 	})
-
 </script>
 <!-- END FILE UPLOAD TEMPLATES -->
 @endpush
@@ -168,7 +181,7 @@
 
 <div class="section-body">
 
-	<form id="fileupload" action="{{route('upload', ['type'=>'GALLERY'] )}}" method="POST" enctype="multipart/form-data">
+	<div id="fileupload">
 		@csrf
 		<div class="box">
 
@@ -185,11 +198,12 @@
 						<span>Add files...</span>
 						<input id="uploader" type="file" name="images[]" multiple>
 					</span>
-					<button type="button" class="btn btn-primary btn-rounded start" onclick="alert('Upload all will be here soon')">
+					<button id="uploadAllFilesBtn" type="button" class="btn btn-primary btn-rounded start disabled" onclick="uploadAllFiles()">
 						<i class="glyphicon glyphicon-upload"></i>
 						<span>Start upload</span>
 					</button>
 				</div>
+				@if(isset($data["data"]))
 				<div class="u-marginTop24">
 					<table role="presentation" class="table table-striped">
 						<tbody class="files">
@@ -210,22 +224,35 @@
 										</p>
 									</td>
 									<td>
-									<button id="deletebtn{{$gallery->GUID}}" type="button" class="btn btn-warning cancel" onclick="alert('Delete will be here soon')">
+									<button id="deletebtn{{$gallery->GUID}}" type="button" class="btn btn-warning cancel" data-toggle="modal" data-target="#dialog{{$gallery->GUID}}">
 											<i class="glyphicon glyphicon-ban-circle"></i>
 											<span>Delete</span>
 										</button>
 									</td>
 								</tr>
+								@component('components.dialog')
+								@slot('id')
+									{{$gallery->GUID}}
+								@endslot
+								@slot('action')
+									/api/upload-image/{{$gallery->GUID}}
+								@endslot
+								@slot('title')
+									Alert!
+								@endslot
+									Are you sure want to delete this gallery photo?
+								@endcomponent
 							@endforeach
 						</tbody>
 					</table>
 				</div>
+				@endif
 			</div>
 		</div>
 		<div class="u-flex u-flexJustifyContentEnd">
 			<a href="{{route('showCouples')}}"><button type="button" class="btn btn-inverse">Publish</button></a> <!-- temporary -->
 		</div>
-	</form>
+	</div>
 
 </div>
 @endsection
