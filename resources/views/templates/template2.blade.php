@@ -212,10 +212,11 @@
 
         </section>
         <!-- section end -->
-
-       <section class="gla_section">
-            <iframe width="100%" height="315" src="{{$wedding->WEDDING_VIDEO}}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-       </section>
+        @if(isset($wedding->WEDDING_VIDEO))
+        <section class="gla_section">
+                <iframe width="100%" height="315" src="{{$wedding->WEDDING_VIDEO}}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </section>
+       @endif
        <!-- section -->
         <section class="gla_section" style="background: url({{ $template->getResourcesPic('images/pattern_1.jpg') }})">
             
@@ -273,18 +274,21 @@
 
 
         <!-- section -->
+        @if(isset($wedding->WEDDING_MAP))
+
         <section class="gla_section">
               
             <div class="gla_map">
            
-            
-            <iframe src="{{$wedding->WEDDING_MAP}}" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                <iframe src="{{$wedding->WEDDING_MAP}}" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
             <!--
             <iframe src="https://www.google.com/maps/d/embed?mid=1Db39qSrYMFfOT9Momg4l4VQEOng&hl=en" width="100%" height="480"></iframe>-->
 
         </div>
 
         </section>
+        @endif
+
         <!-- section end -->
 
 

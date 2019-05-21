@@ -221,9 +221,11 @@
 
 
 <!-- start of story -->
+@if(isset($wedding->WEDDING_VIDEO))
 <section class="story section-padding" id="story">
     <iframe width="100%" height="350" src="<?php echo $wedding->WEDDING_VIDEO ?>" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 </section>
+@endif
 <!-- end of story -->
 
 
@@ -282,7 +284,9 @@
                 </div>
             </div>
             <div class="col col-md-6">
-                <iframe src="{{$wedding->WEDDING_MAP}}" width="100%" height="450" frameborder="0" style="border:0;margin-top:20px;" allowfullscreen></iframe>
+                @if(isset($wedding->WEDDING_MAP))
+                    <iframe src="{{$wedding->WEDDING_MAP}}" width="100%" height="450" frameborder="0" style="border:0;margin-top:20px;" allowfullscreen></iframe>
+                @endif
             </div>
             
         </div>
