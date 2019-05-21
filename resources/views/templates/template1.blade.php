@@ -340,6 +340,7 @@
         </div> <!-- end of section-title -->
 
         <div class="row gallery-boxes masonry-gallery css-animation fadeUpSlow">
+            @if(!isset($couple->galleries))
             <?php
               for($i=1;$i<=$couple->PREWEDPHOTO_AMOUNT;$i++){
               $VENDORNAME = $couple->vendor->VENDOR_PREFIX;
@@ -356,6 +357,20 @@
                 </div>
             </div>
             <?php } ?>
+            @else
+                @foreach($couple->galleries as $gallery)
+                    <div class="col col-md-3 col-xs-6 grid-item">
+                        <div class="box">
+                            <a href="{{ $gallery->GALLERY_PHOTO }}" class="fancybox" data-fancybox-group="gallery">
+                                <img src="{{ $gallery->GALLERY_PHOTO }}" class="img img-responsive" alt>
+                                <div class="fade-icon">
+                                    <span class="icon"><i class="fa fa-search"></i></span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                @endforeach
+            @endif
         </div>
     </div> <!-- end of container -->
 </section>

@@ -55,6 +55,10 @@ class Couple extends Model
         return $this->hasMany('App\VendorMenuVisit', 'MSCOUPLE_GUID', 'GUID');
     }
 
+    public function galleries() {
+        return $this->hasMany("App\Gallery", "MSCOUPLE_GUID", "GUID");
+    }
+
     public function getCoverImagesAttribute() {
         return [
             isset($this->COUPLE_COVER_1) ? $this->COUPLE_COVER_1 : null,

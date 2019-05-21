@@ -297,6 +297,7 @@
                 <h2>Prewedding Gallery</h2>
                                <!-- grid -->
                 <div class="gla_portfolio_no_padding grid">
+                    @if(!isset($couple->galleries))
 
                     <?php
                         for($i=1;$i<=$couple->PREWEDPHOTO_AMOUNT;$i++){
@@ -304,16 +305,27 @@
                     ?>
 
                     
-                    <!-- item -->
-                    <div class="col-xs-6 col-sm-3 gla_anim_box grid-item ceremony">
-                        <div class="gla_shop_item">
-                            <a href="{{ $couple->getGalleryPic($PICNAME) }}" class="lightbox">
-                                <img src="{{ $couple->getGalleryPic($PICNAME,1, true) }}" alt="">
-                            </a>
+                        <!-- item -->
+                        <div class="col-xs-6 col-sm-3 gla_anim_box grid-item ceremony">
+                            <div class="gla_shop_item">
+                                <a href="{{ $couple->getGalleryPic($PICNAME) }}" class="lightbox">
+                                    <img src="{{ $couple->getGalleryPic($PICNAME,1, true) }}" alt="">
+                                </a>
+                            </div>
                         </div>
-                    </div>
                     
                     <?php } ?>
+                    @else
+                        @foreach($couple->galleries as $gallery)
+                            <div class="col-xs-6 col-sm-3 gla_anim_box grid-item ceremony">
+                                <div class="gla_shop_item">
+                                    <a href="{{ $gallery->GALLERY_PHOTO }}" class="lightbox">
+                                        <img src="{{ $gallery->GALLERY_PHOTO }}" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                        @endforeach
+                    @endif
                  </div>
                  <!-- grid end -->
                 
