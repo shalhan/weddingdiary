@@ -449,6 +449,14 @@
 
 	});
 
+	$('.gla_countdown2').each(function(){
+		var year = $(this).attr('data-year');
+		var month = $(this).attr('data-month');
+		var day = $(this).attr('data-day');
+		$(this).countdown({since: new Date(year,month-1,day)});
+
+	});
+
 	$('.gla_countdown_gold').each(function(){
 		var year = $(this).attr('data-year');
 		var month = $(this).attr('data-month');
