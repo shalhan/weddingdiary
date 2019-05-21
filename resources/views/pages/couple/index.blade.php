@@ -42,7 +42,7 @@ $couples = $couples['data']['pagination'];
             <div class="box">
                 <a href="{{ route('showCouple', $couple->GUID) }}">
                     <div class="coupleCard-imageWrapper">
-                    <div class="coupleCard-image" style="background-image: url('{{ $couple->coverImage }}')"></div>
+                    <div class="coupleCard-image" style="background-image: url('{{ $couple->coverImages[0] }}')"></div>
                         <div class="coupleCard-actionWrapper">
                             <a href="{{ route('showEditCouple', $couple->GUID) }}"><button type="button" class="btn btn-xs btn-inverse btn-equal" data-toggle="tooltip" data-placement="top" data-original-title="Edit"><i class="fa fa-pencil"></i></button></a>
                             {{-- <button type="button" class="btn btn-xs btn-danger btn-equal" data-toggle="modal" data-target="#dialog{{$couple->GUID}}" data-placement="top" data-original-title="Delete"><i class="fa fa-trash-o"></i></button> --}}

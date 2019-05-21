@@ -17,10 +17,12 @@ class ImageUploaderRepository extends Repository
     public function getModel() {
         return $this->model;
     }
-    public function saveCover($coupleId, $path) {
+    public function saveCover($coupleId, $path, $index) {
         $model = $this->model->find($coupleId);
-        $model->COUPLE_COVER = $this->PREFIX . $path;
+        $var = "COUPLE_COVER_".$index;
+        $model->$var = $this->PREFIX . $path;
         $model->update();
+        \Log::info($model);
         return $model;
     }
     public function saveBridePhoto($brideId, $path) {

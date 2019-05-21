@@ -101,7 +101,7 @@ class CoupleController extends Controller
         else if($step == 3) {
             $coupleService = $this->coupleService->getById($coupleId);
             $data = [
-              "coupleImage" =>  $coupleService["data"]->coverImage,
+              "coupleImage" =>  $coupleService["data"]->coverImages,
               "groomImage" =>  $coupleService["data"]->groom->GROOM_PHOTO,
               "brideImage" =>  $coupleService["data"]->bride->BRIDE_PHOTO,
             ];

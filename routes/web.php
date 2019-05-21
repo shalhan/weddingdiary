@@ -107,7 +107,8 @@ Route::group(['middleware'=> 'cors'], function() {
                     $subFolder = ['/'. $couple->SUBFOLDER, '/'.$couple->SUBFOLDER.'/'] ;
                     $subFolder2 = $couple->SUBFOLDER2;
                     $vendorId = $couple->MSVENDOR_GUID;
-                    $url = $couple->vendor->VENDOR_WEBSITE;
+                    // $url = $couple->vendor->VENDOR_WEBSITE;
+                    $url = "http://localhost";
 
                     //check is current_url is an URL (to detact script)
                     if(!filter_var($req->current_url, FILTER_VALIDATE_URL))
@@ -119,6 +120,8 @@ Route::group(['middleware'=> 'cors'], function() {
                     $currentUrl = parse_url($req->current_url);
                     //change in server
                     $currentUrlFull = $currentUrl['scheme'] . '://' . $currentUrl['host'];
+                    \Log::info($currentUrlFull . "  " . $url);
+                    \Log::info($currentUrl['path'] . " " . json_encode($subFolder));
                     //check are current_url and path in database exist?
                     if($currentUrlFull === $url && in_array($currentUrl['path'],$subFolder))
                         return [

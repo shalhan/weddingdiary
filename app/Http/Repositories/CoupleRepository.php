@@ -67,7 +67,7 @@ class CoupleRepository extends Repository
         $skip = ( $data['page'] - 1 ) * $take;
 
         $couples = $this->couple
-                    ->select('GUID','MSGROOM_GUID', 'MSBRIDE_GUID', 'PACKAGE_ID', 'EXPIRED_DATE', 'STATUS', 'LOVE_STORY', 'MSVENDOR_GUID', 'PREWEDPHOTO_AMOUNT', 'VIEW_AMOUNT', 'CREATED_DATE', 'SUBFOLDER', 'SUBFOLDER2', 'MSTEMPLATE_GUID', 'COUPLE_COVER')
+                    ->select('GUID','MSGROOM_GUID', 'MSBRIDE_GUID', 'PACKAGE_ID', 'EXPIRED_DATE', 'STATUS', 'LOVE_STORY', 'MSVENDOR_GUID', 'PREWEDPHOTO_AMOUNT', 'VIEW_AMOUNT', 'CREATED_DATE', 'SUBFOLDER', 'SUBFOLDER2', 'MSTEMPLATE_GUID', 'COUPLE_COVER_1', 'COUPLE_COVER_2', 'COUPLE_COVER_3')
                     ->where('MSVENDOR_GUID', Auth::user()->GUID)
                     ->with(['bride', 'groom', 'template'])
                     ->skip($skip)
@@ -84,7 +84,7 @@ class CoupleRepository extends Repository
      */
     public function getById($id) {
         return $this->couple
-                    ->select('GUID','MSGROOM_GUID', 'MSBRIDE_GUID', 'PACKAGE_ID', 'EXPIRED_DATE', 'STATUS', 'LOVE_STORY', 'MSVENDOR_GUID', 'PREWEDPHOTO_AMOUNT', 'VIEW_AMOUNT', 'CREATED_DATE', 'SUBFOLDER', 'SUBFOLDER2', 'MSTEMPLATE_GUID', 'COUPLE_COVER')
+                    ->select('GUID','MSGROOM_GUID', 'MSBRIDE_GUID', 'PACKAGE_ID', 'EXPIRED_DATE', 'STATUS', 'LOVE_STORY', 'MSVENDOR_GUID', 'PREWEDPHOTO_AMOUNT', 'VIEW_AMOUNT', 'CREATED_DATE', 'SUBFOLDER', 'SUBFOLDER2', 'MSTEMPLATE_GUID', 'COUPLE_COVER_1', 'COUPLE_COVER_2', 'COUPLE_COVER_3')
                     ->where('MSVENDOR_GUID', Auth::user()->GUID)
                     ->with(['bride', 'groom', 'template'])
                     ->find($id);

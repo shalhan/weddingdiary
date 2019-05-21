@@ -11,19 +11,19 @@ class Couple extends Model
 
     protected $table = 'mscouple';
     protected $primaryKey = 'GUID';
-    protected $fillable = ['MSGROOM_GUID', 'MSBRIDE_GUID', 'PACKAGE_ID', 'EXPIRED_DATE', 'STATUS', 'LOVE_STORY', 'MSVENDOR_GUID', 'PREWEDPHOTO_AMOUNT', 'VIEW_AMOUNT', 'CREATED_DATE', 'SUBFOLDER', 'SUBFOLDER2', 'MSTEMPLATE_GUID'];
+    protected $fillable = ['MSGROOM_GUID', 'MSBRIDE_GUID', 'PACKAGE_ID', 'EXPIRED_DATE', 'STATUS', 'LOVE_STORY', 'MSVENDOR_GUID', 'PREWEDPHOTO_AMOUNT', 'VIEW_AMOUNT', 'CREATED_DATE', 'SUBFOLDER', 'SUBFOLDER2', 'MSTEMPLATE_GUID', 'COUPLE_COVER_1', 'COUPLE_COVER_2', 'COUPLE_COVER_3'];
 
     public $timestamps = false;
     //subfolder2 is query on url. exp: '?couple=shalhan'
     public function getByVendorId($vendorId, $subfolder2 = null) {
-        return $this->select('GUID','MSGROOM_GUID', 'MSBRIDE_GUID', 'MSVENDOR_GUID', 'SUBFOLDER', 'SUBFOLDER2', "MSTEMPLATE_GUID", "PREWEDPHOTO_AMOUNT")
+        return $this->select('GUID','MSGROOM_GUID', 'MSBRIDE_GUID', 'MSVENDOR_GUID', 'SUBFOLDER', 'SUBFOLDER2', "MSTEMPLATE_GUID", "PREWEDPHOTO_AMOUNT", 'COUPLE_COVER_1', 'COUPLE_COVER_2', 'COUPLE_COVER_3')
                     ->with(['bride', 'groom', 'vendor', 'template'])
                     ->where('MSVENDOR_GUID', $vendorId)
                     ->get();
     }
 
     public function getById($coupleId, $subfolder2 = null) {
-        return $this->select('GUID','MSGROOM_GUID', 'MSBRIDE_GUID', 'MSVENDOR_GUID', 'SUBFOLDER', 'SUBFOLDER2', "MSTEMPLATE_GUID", "PREWEDPHOTO_AMOUNT")
+        return $this->select('GUID','MSGROOM_GUID', 'MSBRIDE_GUID', 'MSVENDOR_GUID', 'SUBFOLDER', 'SUBFOLDER2', "MSTEMPLATE_GUID", "PREWEDPHOTO_AMOUNT", 'COUPLE_COVER_1', 'COUPLE_COVER_2', 'COUPLE_COVER_3')
                     ->find($coupleId);
     }
 
@@ -55,8 +55,12 @@ class Couple extends Model
         return $this->hasMany('App\VendorMenuVisit', 'MSCOUPLE_GUID', 'GUID');
     }
 
-    public function getCoverImageAttribute() {
-        return isset($this->COUPLE_COVER) ? asset($this->COUPLE_COVER) : null;
+    public function getCoverImagesAttribute() {
+        return [
+            isset($this->COUPLE_COVER_1) ? $this->COUPLE_COVER_1 : null,
+            isset($this->COUPLE_COVER_2) ? $this->COUPLE_COVER_2 : null,
+            isset($this->COUPLE_COVER_3) ? $this->COUPLE_COVER_3 : null,
+        ];
     }
 
     public function getCreatedDateForHumansAttribute() {
@@ -82,11 +86,27 @@ class Couple extends Model
 
     public function getCouplePic($code) {
         //code == groom / bride
+        if($code == "groom") {
+            if($this->groom->GROOM_PHOTO) 
+                return url($this->groom->GROOM_PHOTO);
+        }
+        else if($code == "bride") {
+            if($this->bride->BRIDE_PHOTO) 
+                return url($this->bride->BRIDE_PHOTO);
+        }
         return url($this->getImageVendorPath() .'/'.$code.'/'.$code.'.jpg');
     }
 
     public function getSliderPic($key) {
         //code == groom / bride
+        \Log::info($this->COUPLE_COVER_1);
+
+        if($this->COUPLE_COVER_1 != null || $this->COUPLE_COVER_2 != null || $this->COUPLE_COVER_3 != null)
+        {
+            $var = "COUPLE_COVER_".$key;
+            \Log::info("MABOQ");
+            return url($this->$var);
+        }
         return url($this->getImageVendorPath() .'/slider/'.$key.'.jpg');
     }
 

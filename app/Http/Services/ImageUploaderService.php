@@ -16,14 +16,14 @@ class ImageUploaderService extends Service
         $this->imageUploaderRepo = $imageUploaderRepo;
     }
     
-    public function saveCover($coupleId,$path) {
+    public function saveCover($coupleId,$path, $index) {
         try {
             $this->imageUploaderRepo->setModel($coupleId, new Couple());
 
             $couple = $this->imageUploaderRepo->getModel();
             $prevCover = isset($couple->COUPLE_COVER) ? $couple->COUPLE_COVER : null;
 
-            $couple = $this->imageUploaderRepo->saveCover($coupleId, $path);
+            $couple = $this->imageUploaderRepo->saveCover($coupleId, $path, $index);
             $currentPath = isset($couple->COUPLE_COVER) ? $couple->COUPLE_COVER : null;
             $data = [
               "prevPath" => $prevCover,

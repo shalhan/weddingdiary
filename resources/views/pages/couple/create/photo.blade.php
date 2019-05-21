@@ -6,7 +6,7 @@
 
 @push('script')
 <script>
-    function handleImgUpload(type, coupleId) {
+    function handleImgUpload(type, coupleId, index = 0) {
         const reader = new FileReader();
         const input = document.createElement('input');
         input.setAttribute('type', 'file');
@@ -34,6 +34,7 @@
                         formData.append('imageBase64', reader.result)
                         formData.append('coupleId', $('meta[name="_coupleId"]').attr('content'))
                         formData.append('type', type)
+                        formData.append('index', index)
 
 
                         fetch("/api/upload-image", {
@@ -142,23 +143,67 @@
     </div>
 
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-4">
             <div class="box">
                 <div class="box-head">
                     <header>
-                        <h4 class="text-light">Cover Photo</h4>
+                        <h4 class="text-light">Slider Photo</h4>
                     </header>
                 </div>
                 <div class="box-body">
-                    @if(!isset($coupleImg))
-                        <div class="uploadPhoto-warpper u-backgroundColorGrey10 u-border0 u-cursorPointer u-height400 u-relative" onclick="handleImgUpload('COVER', {{$coupleId}})">
-                            <p id="COVER_LABEL">Click here to upload Cover Photo</p>
-                            <img id="COVER_PHOTO" class="u-sizeFull" style="display: none">
+                    @if(!isset($coupleImg[0]))
+                        <div class="uploadPhoto-warpper u-backgroundColorGrey10 u-border0 u-cursorPointer u-height400 u-relative" onclick="handleImgUpload('COVER1', {{$coupleId}}, 1)">
+                            <p id="COVER1_LABEL">Click here to upload Cover Photo</p>
+                            <img id="COVER1_PHOTO" class="u-sizeFull" style="display: none">
                         </div>
                     @else
-                        <div class="uploadPhoto-warpper u-backgroundColorGrey10 u-border0 u-cursorPointer u-height400 u-relative" onclick="handleImgUpload('COVER', {{$coupleId}})">
-                            <p id="COVER_LABEL" style="display: none">Click here to upload Cover Photo</p>
-                            <img id="COVER_PHOTO" class="u-sizeFull" src="{{$coupleImg}}">
+                        <div class="uploadPhoto-warpper u-backgroundColorGrey10 u-border0 u-cursorPointer u-height400 u-relative" onclick="handleImgUpload('COVER1', {{$coupleId}}, 1)">
+                            <p id="COVER1_LABEL" style="display: none">Click here to upload Slider Photo</p>
+                            <img id="COVER1_PHOTO" class="u-sizeFull" src="{{$coupleImg[0]}}">
+                        </div>
+                    @endif
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="box">
+                <div class="box-head">
+                    <header>
+                        <h4 class="text-light">Slider Photo</h4>
+                    </header>
+                </div>
+                <div class="box-body">
+                    @if(!isset($coupleImg[1]))
+                        <div class="uploadPhoto-warpper u-backgroundColorGrey10 u-border0 u-cursorPointer u-height400 u-relative" onclick="handleImgUpload('COVER2', {{$coupleId}}, 2)">
+                            <p id="COVER2_LABEL">Click here to upload Cover Photo</p>
+                            <img id="COVER2_PHOTO" class="u-sizeFull" style="display: none">
+                        </div>
+                    @else
+                        <div class="uploadPhoto-warpper u-backgroundColorGrey10 u-border0 u-cursorPointer u-height400 u-relative" onclick="handleImgUpload('COVER2', {{$coupleId}}, 2)">
+                            <p id="COVER2_LABEL" style="display: none">Click here to upload Slider Photo</p>
+                            <img id="COVER2_PHOTO" class="u-sizeFull" src="{{$coupleImg[1]}}">
+                        </div>
+                    @endif
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="box">
+                <div class="box-head">
+                    <header>
+                        <h4 class="text-light">Slider Photo</h4>
+                    </header>
+                </div>
+                <div class="box-body">
+                    @if(!isset($coupleImg[2]))
+                        <div class="uploadPhoto-warpper u-backgroundColorGrey10 u-border0 u-cursorPointer u-height400 u-relative" onclick="handleImgUpload('COVER3', {{$coupleId}}, 3)">
+                            <p id="COVER3_LABEL">Click here to upload Cover Photo</p>
+                            <img id="COVER3_PHOTO" class="u-sizeFull" style="display: none">
+                        </div>
+                    @else
+                        <div class="uploadPhoto-warpper u-backgroundColorGrey10 u-border0 u-cursorPointer u-height400 u-relative" onclick="handleImgUpload('COVER3', {{$coupleId}}, 3)">
+                            <p id="COVER3_LABEL" style="display: none">Click here to upload Slider Photo</p>
+                            <img id="COVER3_PHOTO" class="u-sizeFull" src="{{$coupleImg[2]}}">
                         </div>
                     @endif
                 </div>

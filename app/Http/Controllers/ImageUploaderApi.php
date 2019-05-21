@@ -47,9 +47,10 @@ class ImageUploaderApi extends Controller {
             } else if($req->type == "GROOM") {
                 $path = $vendorDir .'/' . $coupleDir . "/groom/" . $imageName;
                 $res = $this->imageUploaderService->saveGroomPhoto($req->coupleId, $path);
-            } else if($req->type == "COVER") {
-                $path = $vendorDir .'/' . $coupleDir . '/' . $imageName;
-                $res = $this->imageUploaderService->saveCover($req->coupleId, $path);
+            } else if($req->type == "COVER1" || $req->type == "COVER2" || $req->type == "COVER3") {
+                $index = $req->index;
+                $path = $vendorDir .'/' . $coupleDir . '/slider/' . $index . "." . $type;
+                $res = $this->imageUploaderService->saveCover($req->coupleId, $path, $index);
             } else if($req->type == "GALLERY") {
                 $path = $vendorDir .'/' . $coupleDir . '/gallery/1/' . $imageName;
                 $res = $this->imageUploaderService->saveGallery($req->coupleId, $path);
