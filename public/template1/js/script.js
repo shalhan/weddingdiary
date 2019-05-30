@@ -191,20 +191,6 @@
 
 
     /*------------------------------------------
-        = BIGDAY COUNTDOWN
-    -------------------------------------------*/
-    if ($("#clock").length) {
-        $('#clock').countdown('2018/09/08', function(event) {
-            var $this = $(this).html(event.strftime(''
-            + '<div class="box"><div>%D</div> <span>Days</span> </div>'
-            + '<div class="box"><div>%H</div> <span>Hours</span> </div>'
-            + '<div class="box"><div>%M</div> <span>Minutes</span> </div>'
-            + '<div class="box"><div>%S</div> <span>Seconds</span> </div>'));
-        });
-    }
-
-
-    /*------------------------------------------
         = THE WEDDING
     -------------------------------------------*/
     function eventClothFadeOut() {

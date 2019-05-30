@@ -122,14 +122,17 @@
 			await uploadFile(i)
 			i++
 		}
+		location.reload()
 	}
 	var disabledBtn = function(index) {
 		defineComponent(index)
 		startBtn.addClass("disabled")
+		uploadAllBtn.addClass("disabled")
 		startBtnText.text("Uploading...")
 		progressBar.css("width", "100%")
 	}
 	var defineComponent = function(index) {
+		uploadAllBtn = $("#uploadAllFilesBtn")
 		startBtn = $("#startbtn"+index)
 		progressBar = $("#progress"+index)
 		deletebtn = $("#deletebtn"+index)
@@ -202,18 +205,22 @@
 </ol>
 
 <div class="section-header">
-	<h3 class="text-standard">Step Gallery</h3>
+	<h3 class="text-standard">Gallery</h3>
 </div>
 
 <div class="section-body">
 
+	<div class="u-flex u-flexJustifyContentEnd" style="margin-bottom: 15px;">
+		<a href="{{ route('showEditCouple', ['id'=>$coupleId, 'step'=>2]) }}"><button type="button" class="btn btn-default" style="margin-bottom: 15px;">Prev</button></a>
+		<a href="{{route('showCouples')}}"><button type="button" class="btn btn-inverse">Publish</button></a> <!-- temporary -->
+	</div>
 	<div id="fileupload">
 		@csrf
 		<div class="box">
 
 			<div class="box-head">
 				<header>
-					<h4 class="text-light">Form Upload Gallery</strong></h4>
+					<h4 class="text-light">Upload Gallery</strong></h4>
 				</header>
 			</div>
 
@@ -274,9 +281,6 @@
 				</div>
 				@endif
 			</div>
-		</div>
-		<div class="u-flex u-flexJustifyContentEnd">
-			<a href="{{route('showCouples')}}"><button type="button" class="btn btn-inverse">Publish</button></a> <!-- temporary -->
 		</div>
 	</div>
 

@@ -64,7 +64,10 @@ class CoupleService extends Service
             //validate couple data
             $validations = $this->validateData($dataCouple);
             if(isset($errors) || count($validations) > 0) {
-                return $this->getErrors( array_merge($validations, $errors) );
+                if(isset($errors))
+                    return $this->getErrors( array_merge($validations, $errors) );
+                else
+                    return $this->getErrors($validations);
             }
 
             $dataCouple["MSGROOM_GUID"] = $savedGroom["data"]->GUID;

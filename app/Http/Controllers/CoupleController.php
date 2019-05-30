@@ -15,6 +15,9 @@ use App\Wedding;
 use App\Http\Services\GalleryService;
 use App\Http\Repositories\GalleryRepository;
 use App\Gallery;
+use App\Http\Services\VisitorService;
+use App\Http\Repositories\VisitorRepository;
+use App\Visitor;
 use Route;
 
 class CoupleController extends Controller
@@ -126,7 +129,6 @@ class CoupleController extends Controller
 
         $data = [
             'page' => isset($req->page) ? $req->page : 1,
-            'isPagination' => isset($req->isPagination) ? $req->isPagination : true
         ];
         $couple = $this->coupleService->getById($id);
 
@@ -134,7 +136,12 @@ class CoupleController extends Controller
         $messageRepo = new MessageRepository($message);
         $messageService = new MessageService($messageRepo);
         $messages = $messageService->getByCoupleId($id, $data);
-        return view("pages.couple.show", compact(['couple', 'messages']));
+
+        $visitor = new Visitor();
+        $visitorRepo = new VisitorRepository($visitor);
+        $visitorService = new VisitorService($visitorRepo);
+        $visitors = $visitorService->getByCoupleId($id, $data);
+        return view("pages.couple.show", compact(['couple', 'messages', 'visitors']));
     }
 
     /**

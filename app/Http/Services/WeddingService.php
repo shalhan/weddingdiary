@@ -74,7 +74,9 @@ class WeddingService extends Service
             $validation['WEDDING_RECEPTION_ADDRESS'] = 'Wedding reception address is required';
         if(!isset($reception["WEDDING_RECEPTION_TIME"]))
             $validation['WEDDING_RECEPTION_TIME'] = 'Wedding reception time is required';
-        
+        if(!isset($reception["WEDDING_RECEPTION_TIMEZONE"]))
+            $validation['WEDDING_RECEPTION_TIMEZONE'] = 'Wedding receptions timezone is required';
+    
         return $validation;
     
     }

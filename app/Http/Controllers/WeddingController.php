@@ -31,6 +31,7 @@ class WeddingController extends Controller
      *      - WEDDING_RECEPTION_TIME
      *      - WEDDING_RECEPTION_TIMEZONE
      *      - GUID
+     *      - WEDDING_STYLE
      *      - WEDDING_MAP
      *      - WEDDING_VIDEO
      * @return view to next step
@@ -48,6 +49,7 @@ class WeddingController extends Controller
             'WEDDING_RECEPTION_VENUE' => $req->WEDDING_RECEPTION_VENUE,
             'WEDDING_RECEPTION_ADDRESS' => $req->WEDDING_RECEPTION_ADDRESS,
             'WEDDING_RECEPTION_TIME' => $req->WEDDING_RECEPTION_TIME,
+            'WEDDING_RECEPTION_TIMEZONE' => $req->WEDDING_RECEPTION_TIMEZONE
         ];
 
         $dataAdd = [

@@ -20,8 +20,6 @@ class MessageRepository extends Repository
         $messages = $this->message
                         ->select('GUID', 'MSCOUPLE_GUID', 'TEXT', 'DATE', 'TIME', 'EMAIL', 'NAME', 'GUEST')
                         ->where('MSCOUPLE_GUID', $coupleId)
-                        ->skip($data['skip'])
-                        ->take($data['take'])
                         ->orderBy('date', 'desc')
                         ->get();
         return $this->getResponse($messages, $data);        

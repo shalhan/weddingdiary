@@ -1,7 +1,6 @@
 @extends("layouts.main")
 
 @push('style')
-
 @endpush
 
 @push('script')
@@ -24,12 +23,16 @@
 <div class="section-body">
     <form role="form" method="POST" action="{{route('saveCouple')}}">
         @csrf
+        <div class="u-flex u-flexJustifyContentEnd">
+            <!-- <a href="{{route('showCreateCouple', ['step'=>2])}}"><button type="button" class="btn btn-inverse">Save</button></a> -->
+            <button type="submit" class="btn btn-inverse" style="margin-bottom: 15px;">Next</button>
+        </div>
         <div class="row">
             <div class="col-lg-6">
                 <div class="box">
                     <div class="box-head">
                         <header>
-                            <h4 class="text-light">Form Groom</h4>
+                            <h4 class="text-light">Groom Detail</h4>
                         </header>
                     </div>
                     <div class="box-body">
@@ -74,7 +77,7 @@
                 <div class="box">
                     <div class="box-head">
                         <header>
-                            <h4 class="text-light">Form Bride</h4>
+                            <h4 class="text-light">Bride Detail</h4>
                         </header>
                     </div>
                     <div class="box-body">
@@ -121,23 +124,27 @@
                 <div class="box">
                     <div class="box-head">
                         <header>
-                            <h4 class="text-light">Form Settings</h4>
+                            <h4 class="text-light">Website Setting</h4>
                         </header>
                     </div>
                     <div class="box-body">
                         <div class="form-vertical">
                             <div class="form-group">
                                 <input type="hidden" name="GUID" value="{{isset($couple->GUID) ? $couple->GUID : null}}" />
-                                <label for="URL">URL</label>
+                                <label for="URL">Nickname</label>
+                                @if(Auth::user())
+                                <p><small class="text-gray">{{Auth::user()->VENDOR_URL}}/diary?wedding={NICKNAME}</small></p>
+                                @endif
                                 @if($errors->any() && $errors->first('SUBFOLDER2'))
-                                    <input type="text" name="SUBFOLDER2" id="SUBFOLDER2" class="form-control u-input--isError" placeholder=' e.g "https://yourdomain.com/diary?wedding=URL"' value={{ old('SUBFOLDER2')}}>
+                                    <input type="text" name="SUBFOLDER2" id="SUBFOLDER2" class="form-control u-input--isError" placeholder="Nickname" value={{ old('SUBFOLDER2')}}>
                                     <small class="text-support2">* {{$errors->first('SUBFOLDER2')}} </small>
                                 @else
-                                    <input type="text" name="SUBFOLDER2" id="URL" class="form-control" placeholder=' e.g "https://yourdomain.com/diary?wedding=URL"' value="{{ isset($couple->prettyLink) ? $couple->prettyLink : old('SUBFOLDER2') }}">
+                                    <input type="text" name="SUBFOLDER2" id="URL" class="form-control" placeholder="Nickname" value="{{ isset($couple->prettyLink) ? $couple->prettyLink : old('SUBFOLDER2') }}">
                                 @endif
                             </div>
                             <div class="form-group">
                                 <label for="PREWEDPHOTO_AMOUNT">Total Photo</label>
+                                <p><small class="text-gray">Total Photos Appear On Gallery Screen above input total photo</small></p>
                                 <select id="PREWEDPHOTO_AMOUNT" class="form-control" disabled>
                                     <option value="24" selected>24</option>
                                 </select>
@@ -145,6 +152,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="EXPIRED_DATE">Expired Date</label>
+                                <p><small class="text-gray">This website will be available until expired date</small></p>
                                 <select id="EXPIRED_DATE" class="form-control" disabled>
                                     @php $date1MonthLater = date(' d-m-Y', strtotime("+1 months", strtotime("NOW") )) @endphp <option value="{{$date1MonthLater}}">{{$date1MonthLater}}</option>
                                 </select>
@@ -153,18 +161,14 @@
                             <div class="form-group">
                                 <label for="MSTEMPLATE_GUID">Template</label>
                                 <select name="MSTEMPLATE_GUID" id="MSTEMPLATE_GUID" class="form-control">
-                                    <option value="1" selected>1</option>
-                                    <option value="2">2</option>
+                                    <option value="1" {{!isset($couple->MSTEMPLATE_GUID) || (isset($couple->MSTEMPLATE_GUID) && $couple->MSTEMPLATE_GUID == 1) ? 'selected' : '' }}>1</option>
+                                    <option value="2" {{isset($couple->MSTEMPLATE_GUID) && $couple->MSTEMPLATE_GUID == 2 ? 'selected' : '' }}>2</option>
                                 </select>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="u-flex u-flexJustifyContentEnd">
-            <!-- <a href="{{route('showCreateCouple', ['step'=>2])}}"><button type="button" class="btn btn-inverse">Save</button></a> -->
-            <button type="submit" class="btn btn-inverse">Next</button>
         </div>
     </form>
 

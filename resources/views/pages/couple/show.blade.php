@@ -1,20 +1,26 @@
 @extends("layouts.main")
 
 @push('style')
-
+<link type="text/css" rel="stylesheet" href="/assets/css/theme-default/libs/DataTables/jquery.dataTables.css?1403937875" />
+<link type="text/css" rel="stylesheet" href="/assets/css/theme-default/libs/DataTables/TableTools.css?1403937875" />
 @endpush
 
 @push('script')
-
+<script src="/assets/js/libs/DataTables/jquery.dataTables.min.js"></script>
+<script src="/assets/js/libs/DataTables/extras/ColVis/js/ColVis.min.js"></script>
+<script src="/assets/js/libs/DataTables/extras/TableTools/media/js/TableTools.min.js"></script>
+<script>
+$('#visitorTable').DataTable();
+$('#messageTable').DataTable();
+</script>
 @endpush
 
 @section("content")
 
 @php
     $couple = $couple['data'];
-    $nextPage = $messages['data']['nextPage'];
-    $prevPage = $messages['data']['prevPage'];
-    $messages = $messages['data']['pagination'];
+    $messages = $messages['data'];
+    $visitors = $visitors['data'];
 @endphp
 
 <ol class="breadcrumb">
@@ -85,15 +91,15 @@
     </div>
 
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-6">
             <div class="box">
                 <div class="box-head">
                     <header>
-                        <h4 class="text-light">List of Comments</h4>
+                        <h4 class="text-light">Comments</h4>
                     </header>
                 </div>
                 <div class="box-body table-responsive">
-                    <table class="table table-hover">
+                    <table id="messageTable" class="table table-hover">
                         <thead>
                             <tr>
                                 <th>From</th>
@@ -104,57 +110,67 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @if(count($messages) > 0)
-                                @foreach($messages as $message)
-                                <tr>
-                                    <td>{{$message->NAME}}</td>
-                                    <td>{{$message->TEXT}}</td>
-                                    <td>{{dateFormat($message->DATE)}}</td>
-                                    <td>{{timeFormat($message->TIME)}}</td>
-                                    <td class="text-center">
-                                        <button type="button" class="btn btn-xs btn-danger btn-equal" data-toggle="modal" data-target="#dialog{{$message->GUID}}" data-placement="top" data-original-title="Delete row"><i class="fa fa-trash-o"></i></button>
-                                    </td>
-                                </tr>
-                                @component('components.dialog')
-                                    @slot('id')
-                                        dialog{{$message->GUID}}
-                                    @endslot
-                                    @slot('action')
-                                        /messages/{{$message->GUID}}
-                                    @endslot
-                                    @slot('title')
-                                    Modal Delete
-                                    @endslot
-                                    Are you sure want to delete this message?
-                                @endcomponent
-                                @endforeach
-                            @else
-                                <td colspan="5" class="text-center">Messages still empty</td>
-                            @endif
+                            @foreach($messages as $message)
+                            <tr>
+                                <td style="width: 20%;">{{$message->NAME}}</td>
+                                <td style="width: 30%;">{{$message->TEXT}}</td>
+                                <td>{{dateFormat($message->DATE)}}</td>
+                                <td>{{timeFormat($message->TIME)}}</td>
+                                <td class="text-center">
+                                    <button type="button" class="btn btn-xs btn-danger btn-equal" data-toggle="modal" data-target="#dialog{{$message->GUID}}" data-placement="top" data-original-title="Delete row"><i class="fa fa-trash-o"></i></button>
+                                </td>
+                            </tr>
+                            @component('components.dialog')
+                                @slot('id')
+                                    dialog{{$message->GUID}}
+                                @endslot
+                                @slot('action')
+                                    /messages/{{$message->GUID}}
+                                @endslot
+                                @slot('title')
+                                Modal Delete
+                                @endslot
+                                Are you sure want to delete this message?
+                            @endcomponent
+                            @endforeach
                         </tbody>
                     </table>
-                    <div class="u-flex u-flexJustifyContentEnd u-marginTop24">
-                    @component('components.btnPagination')
-                            @slot('redirectPrev')
-                                {{ route('showCouple', ['id' => $couple->GUID, 'page' => $prevPage] ) }}
-                            @endslot
-                            @slot('redirectNext')
-                                {{ route('showCouple', ['id' => $couple->GUID, 'page' => $nextPage] ) }}
-                            @endslot
-                            @slot('prevPage')
-                                {{$prevPage}}
-                            @endslot
-                            @slot('nextPage')
-                                {{$nextPage}}
-                            @endslot
-                            @slot('data')
-                                {{$couple}}
-                            @endslot
-                        @endcomponent
-                    </div>
                 </div>
             </div>
         </div>
+        <div class="col-lg-6">
+                <div class="box">
+                    <div class="box-head">
+                        <header>
+                            <h4 class="text-light">Visitors</h4>
+                        </header>
+                    </div>
+                    <div class="box-body table-responsive">
+                        <table id="visitorTable" class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>IP Adress</th>
+                                    <th>Browser</th>
+                                    <th>OS</th>
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($visitors as $visitor)
+                                <tr>
+                                    <td style="width: 20%;">{{$visitor->IPPUBLIC}}</td>
+                                    <td style="width: 30%;">{{$visitor->BROWSER}}</td>
+                                    <td>{{$visitor->OS}}</td>
+                                    <td>{{dateFormat($visitor->DATETIME)}}</td>
+                                    <td>{{ timeFormat($visitor->DATETIME)}}</td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
     </div>
 </div>
 @endsection

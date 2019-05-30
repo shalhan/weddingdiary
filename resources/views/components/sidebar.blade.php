@@ -13,7 +13,7 @@
             <!-- Menu Add Wedding -->
             <li class="pointer {{Route::getCurrentRoute()->uri == 'couples' ? 'active' : ''}}">
                 <a href="{{route('showCouples')}}" >
-                    <i class="fa fa-plus-square"></i><span class="title">Couples</span>
+                    <i class="fa fa-home fa-lg"></i><span class="title">Couples</span>
                 </a>
             </li><!--end /menu-item -->
             

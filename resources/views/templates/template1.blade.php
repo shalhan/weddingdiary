@@ -35,7 +35,20 @@
 
     <!-- Custom script for this template -->
     <script src="{{ url('/template1/js/script.js') }}"></script>
-
+    <script>
+    /*------------------------------------------
+        = BIGDAY COUNTDOWN
+    -------------------------------------------*/
+    if ($("#clock").length) {
+        $('#clock').countdown(<?php echo "'". date('Y/m/d', strtotime($wedding->WEDDING_MATRIMONY_TIME) )  ."'" ?>, function(event) {
+            var $this = $(this).html(event.strftime(''
+            + '<div class="box"><div>%D</div> <span>Days</span> </div>'
+            + '<div class="box"><div>%H</div> <span>Hours</span> </div>'
+            + '<div class="box"><div>%M</div> <span>Minutes</span> </div>'
+            + '<div class="box"><div>%S</div> <span>Seconds</span> </div>'));
+        });
+    }
+    </script>
 @endpush
 
 @section("content")
@@ -59,7 +72,7 @@
     <nav class="navigation navbar navbar-default">
         <div class="container">
             <div class="navbar-header">
-                <button type="button" class="open-btn">
+                <button type="button" class="open-btn" style="display: none;">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -144,6 +157,11 @@
 
 
 <!-- start count-down -->
+<?php
+    $matrimonyTime = strtotime($wedding->WEDDING_MATRIMONY_TIME);
+    $now = strtotime(date("Y-m-d H:i:s"));
+?>
+@if($now <= $matrimonyTime)
 <section class="count-down">
     <div class="container">
         <div class="row">
@@ -156,6 +174,7 @@
         </div> <!-- end of row -->
     </div> <!-- end of container -->
 </section>
+@endif
 <!-- end of count-down -->
 
 
@@ -257,7 +276,7 @@
                                 
                                 <?php echo date("D, d M Y", strtotime($wedding->WEDDING_MATRIMONY_TIME)); ?>, 
                                 <?php echo $wedding->WEDDINGDATE_LONG_MATRIMONY; ?><br />
-                                <?php echo date("H:i A", strtotime($wedding->WEDDING_MATRYMONY_TIME)); ?></li>
+                                <?php echo date("H:i", strtotime($wedding->WEDDING_MATRIMONY_TIME)) . " $wedding->WEDDING_MATRIMONY_TIMEZONE"; ?></li>
                                 <li><i class="fa fa-location-arrow"></i>
                                 <?php echo $wedding->WEDDING_MATRIMONY_VENUE; ?><br />
                                 <?php echo $wedding->WEDDING_MATRIMONY_ADDRESS; ?> 
@@ -271,7 +290,7 @@
                                 
                                 <?php echo date("D, d M Y",strtotime($wedding->WEDDING_RECEPTION_TIME)); ?>, 
                                 <?php echo $wedding->WEDDINGDATE_LONG_RECEPTION; ?><br />
-                                <?php echo date("H:i A", strtotime($wedding->WEDDING_RECEPTION_TIME)); ?>
+                                <?php echo date("H:i", strtotime($wedding->WEDDING_RECEPTION_TIME)) . " $wedding->WEDDING_MATRIMONY_TIMEZONE"; ?>
                                 </li>
                                 <li><i class="fa fa-location-arrow"></i> 
                                 <?php echo $wedding->WEDDING_RECEPTION_VENUE; ?> <br />
@@ -548,7 +567,7 @@
                     <div class="love-birds wow fadeInSlow"><i class="fi flaticon-birds-in-love"></i></div>
                     <h2 class="wow fadeInSlow">See You There!</h2>
                     <p class="wow fadeInSlow"><?php echo $couple->groom->GROOM_NAME; ?> &amp; <?php echo $couple->bride->BRIDE_NAME ?></p>
-                    <span class="wow fadeInSlow"><?php echo $wedding->WEDDINGDATE_SHORT; ?></span>
+                    <span class="wow fadeInSlow"><?php echo dateFormat($wedding->WEDDING_MATRIMONY_TIME); ?></span>
                 </div>
                 <p class="copyright">&copy; Copyright 2018. <?php echo $couple->vendor->VENDOR_NAME; ?></p>
             </div>

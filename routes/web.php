@@ -18,7 +18,7 @@ use App\VendorMenuVisit;
 */
 
 // $DEV_CURRENT_URL = "http://abphotographs.com";
-// $DEV_CURRENT_URL = "http://localhost:8888";
+// $DEV_CURRENT_URL = "http://localhost";
 
 Route::get('/', function (Request $req) {
     $vendors = new Vendor();
@@ -108,6 +108,7 @@ Route::group(['middleware'=> 'cors'], function() {
                     $subFolder2 = $couple->SUBFOLDER2;
                     $vendorId = $couple->MSVENDOR_GUID;
                     $url = $couple->vendor->VENDOR_WEBSITE;
+                    $url = "http://localhost";
 
                     //check is current_url is an URL (to detact script)
                     if(!filter_var($req->current_url, FILTER_VALIDATE_URL))

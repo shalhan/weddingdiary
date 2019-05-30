@@ -7,7 +7,7 @@ class Repository
     public function getResponse($data, $query = null) {
         if($query === null)
             return $data;
-        else if(!$query['isPagination'])
+        else if(!isset($query['isPagination']) || !$query['isPagination'])
             return $data;
         
         return [

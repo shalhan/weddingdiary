@@ -235,7 +235,7 @@
                                 <span class="gla_over" data-image="{{$wedding->getWeddingStylePic()}}"></span>    
                             </span>
                             <span class="gla_news_title">Holy Matrimony</span>                            
-                            <p><strong><?php echo date("D, d M Y", strtotime($wedding->WEDDING_MATRIMONY_TIME)); ?><br /><?php echo date("H:i A", strtotime($wedding->WEDDING_MATRIMONY_TIME)); ?></strong><br />
+                            <p><strong><?php echo date("D, d M Y", strtotime($wedding->WEDDING_MATRIMONY_TIME)); ?><br /><?php echo date("H:i", strtotime($wedding->WEDDING_MATRIMONY_TIME)) . " $wedding->WEDDING_MATRIMONY_TIMEZONE"; ?></strong><br />
                             <?php echo $wedding->WEDDING_MATRIMONY_VENUE; ?><br />
                             <?php echo $wedding->WEDDING_MATRIMONY_ADDRESS; ?>                            
                             </p>
@@ -249,7 +249,7 @@
                                 <span class="gla_over" data-image="{{url('/images/venue/00.jpg')}}"></span>    
                             </span>
                             <span class="gla_news_title">Wedding Reception</span>
-                            <p><strong><?php echo date("D, d M Y", strtotime($wedding->WEDDING_RECEPTION_TIME)); ?> <br /><?php echo date("H:i A", strtotime($wedding->WEDDING_RECEPTION_TIME)); ?></strong>
+                            <p><strong><?php echo date("D, d M Y", strtotime($wedding->WEDDING_RECEPTION_TIME)); ?> <br /><?php echo date("H:i", strtotime($wedding->WEDDING_RECEPTION_TIME)) . " $wedding->WEDDING_RECEPTION_TIMEZONE"; ?></strong>
                             <br /><?php echo $wedding->WEDDING_RECEPTION_VENUE; ?><br />
                             <?php echo $wedding->WEDDING_RECEPTION_ADDRESS; ?>
                             

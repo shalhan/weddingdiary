@@ -91,7 +91,13 @@
 <div class="section-header">
     <h3 class="text-standard">Couple Photo</h3>
 </div>
+
 <div class="section-body">
+
+    <div class="u-flex u-flexJustifyContentEnd" style="margin-bottom: 15px;">
+        <a href="{{ route('showEditCouple', ['id'=>$coupleId, 'step'=>2]) }}"><button type="button" class="btn btn-default" style="margin-bottom: 15px;">Prev</button></a>
+        <a href="{{route('showEditCouple', ['coupleId'=>$coupleId, 'step'=> 4] )}}"><button type="button" class="btn btn-inverse">Next</button></a>
+    </div>
     <div class="row">
 
         <div class="col-lg-6">
@@ -147,7 +153,7 @@
             <div class="box">
                 <div class="box-head">
                     <header>
-                        <h4 class="text-light">Slider Photo</h4>
+                        <h4 class="text-light">Background Photo 1</h4>
                     </header>
                 </div>
                 <div class="box-body">
@@ -169,7 +175,7 @@
             <div class="box">
                 <div class="box-head">
                     <header>
-                        <h4 class="text-light">Slider Photo</h4>
+                        <h4 class="text-light">Background Photo 2</h4>
                     </header>
                 </div>
                 <div class="box-body">
@@ -191,7 +197,7 @@
             <div class="box">
                 <div class="box-head">
                     <header>
-                        <h4 class="text-light">Slider Photo</h4>
+                        <h4 class="text-light">Background Photo 3</h4>
                     </header>
                 </div>
                 <div class="box-body">
@@ -209,9 +215,6 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="u-flex u-flexJustifyContentEnd">
-        <a href="{{route('showEditCouple', ['coupleId'=>$coupleId, 'step'=> 4] )}}"><button type="button" class="btn btn-inverse">Next</button></a>
     </div>
 </div>
 @endsection

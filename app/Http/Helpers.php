@@ -97,3 +97,7 @@ function dateFormat($date) {
 function timeFormat($time) {
   return date("H:i A", strtotime($time));
 }
+
+function getDateTimeFormFormat($dateTime) {
+  return date("m/d/Y h:i A", strtotime($dateTime));
+}
