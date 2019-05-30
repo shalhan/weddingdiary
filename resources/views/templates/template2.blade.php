@@ -445,10 +445,13 @@
                 <div class="gla_icon_boxes gla_partners row">
                         
                     <!-- item -->
+                    @if(count($couple->weddingPartners)>0)
+                    @foreach($couple->weddingPartners as $partner)
                     <div class="gla_partner_box">
-                        <a href="http://abphotographs.com"><img src="http://abphotographs.com/style/images/logo-ab.png" height="100" alt=""></a>
-                    </div>
-
+                    <a href="{{ $partner->WEDDING_PARTNER_WEBSITE}}"><img src="{{ $partner->WEDDING_PARTNER_LOGO}}" height="100" alt=""></a>
+                    </div>  
+                    @endforeach
+                    @endif
 
                 </div>
                 <!-- icon boxes end -->              

@@ -534,17 +534,15 @@
                 
         <div class="row">
             <div class="clearfix">
+                @if(count($couple->weddingPartners)>0)
+                @foreach($couple->weddingPartners as $partner)
                 <div class="col col-sm-4 col-xs-6">
                     <center>            
-                    <a href="http://abphotographs.com/" target="blank"><img src="{{ $couple->getVendorPic(1) }}" class="img img-responsive" alt></a>    
+                    <a href="{{$partner->WEDDING_PARTNER_WEBSITE}}" target="blank"><img src="{{ $partner->WEDDING_PARTNER_LOGO }}" class="img img-responsive" alt></a>    
                     </center>
                 </div>
-                <div class="col col-sm-4 col-xs-6">                            
-                    <center>
-                    <a href="https://www.instagram.com/moment.organizer/" target="blank"><img src="{{ $couple->getVendorPic(2) }}" class="img img-responsive" alt></a>
-                    </center>
-                </div>
-                                 
+                @endforeach
+                @endif
             </div>
         </div>
     </div> <!-- end of container -->

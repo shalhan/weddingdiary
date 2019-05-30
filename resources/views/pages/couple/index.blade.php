@@ -30,7 +30,7 @@ $couples = $couples['data']['pagination'];
 <div class="section-header u-md-flex u-md-flexJustifyContentSpaceBetween u-md-flexAlignItemsCenter u-marginTop18 u-marginBottom9">
     <h3 class="text-standard u-margin0">List of Couples</h3>
     <a href="{{route('showCreateCouple', ['step' => 1])}}">
-        <button type="button" class="btn btn-inverse u-marginTop16 u-md-marginTop0">Create New Couple</button>
+        <button type="button" class="btn btn-info u-marginTop16 u-md-marginTop0">Create New Couple</button>
     </a>
 </div>
 
@@ -45,7 +45,7 @@ $couples = $couples['data']['pagination'];
                         <div class="coupleCard-image" style="background-image: url('{{ $couple->coverImages[0] }}')"></div>
                         <div class="coupleCard-actionWrapper">
                             <a href="{{ route('showEditCouple', $couple->GUID) }}"><button type="button" class="btn btn-xs btn-inverse btn-equal" data-toggle="tooltip" data-placement="top" data-original-title="Edit"><i class="fa fa-pencil"></i></button></a>
-                            <a href="{{ route('showCouple', $couple->GUID) }}"><button type="button" class="btn btn-xs btn-success btn-equal" data-placement="top" data-original-title="Report"><i class="fa fa-file"></i></button></a>
+                            <a href="{{ route('showCouple', $couple->GUID) }}"><button type="button" class="btn btn-xs btn-default btn-equal" data-placement="top" data-original-title="Report"><i class="fa fa-file"></i></button></a>
                         </div>
                     </div>
                 </a>
