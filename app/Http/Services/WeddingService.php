@@ -25,11 +25,6 @@ class WeddingService extends Service
 
     public function save($matrimony, $reception, $add) {
         try {
-            $validations = $this->validateData($matrimony, $reception);
-            if(isset($errors) || count($validations) > 0) {
-                return $this->getErrors($validations);
-            }
-
             if(isset($add["GUID"]))
                 $this->weddingRepo->edit($matrimony, $reception, $add);
             else
