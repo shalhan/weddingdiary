@@ -1,6 +1,11 @@
 @extends("layouts.main")
 
 @push('style')
+<style>
+input[type="radio"]:checked+label {
+    border: 4px outset #0d8dd7;
+}
+</style>
 @endpush
 
 @push('script')
@@ -9,7 +14,8 @@
 
 @section("content")
 @php
-    $couple = isset($data['data']) ? $data['data'] : null
+    $couple = isset($data['data']) ? $data['data'] : null;
+    $templates = isset($options['data']) ? $options['data'] : null;
 @endphp
 
 <ol class="breadcrumb">
@@ -159,11 +165,22 @@
                                 <input type="hidden" name="EXPIRED_DATE" value="{{$date1MonthLater}}" />
                             </div>
                             <div class="form-group">
-                                <label for="MSTEMPLATE_GUID">Template</label>
-                                <select name="MSTEMPLATE_GUID" id="MSTEMPLATE_GUID" class="form-control">
+                                <p><label>Template</label></p>
+                                @foreach($templates as $template)
+                                    <div class="col-md-3 col-sm-6">
+                                        <div class="box">
+                                            <input id="template{{ $template->id }}" name="MSTEMPLATE_GUID" type="radio" name="optionsunstyled" value="{{ $template->id }}" {{ (!isset($couple->MSTEMPLATE_GUID)&&$template->id==1) || (isset($couple->MSTEMPLATE_GUID) && $couple->MSTEMPLATE_GUID == $template->id) ? 'checked' : '' }} hidden>
+                                            <label for="template{{ $template->id }}">
+                                                <img src="{{ $template->path }}" style="width:100%;">
+                                            </label>
+                                        </div>
+                                    </div>
+                                @endforeach
+
+                                {{-- <select name="MSTEMPLATE_GUID" id="MSTEMPLATE_GUID" class="form-control">
                                     <option value="1" {{!isset($couple->MSTEMPLATE_GUID) || (isset($couple->MSTEMPLATE_GUID) && $couple->MSTEMPLATE_GUID == 1) ? 'selected' : '' }}>1</option>
                                     <option value="2" {{isset($couple->MSTEMPLATE_GUID) && $couple->MSTEMPLATE_GUID == 2 ? 'selected' : '' }}>2</option>
-                                </select>
+                                </select> --}}
                             </div>
                         </div>
                     </div>

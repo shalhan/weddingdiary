@@ -21,6 +21,9 @@ use App\Visitor;
 use App\Http\Services\WeddingPartnerService;
 use App\Http\Repositories\WeddingPartnerRepository;
 use App\WeddingPartner;
+use App\Http\Services\TemplateService;
+use App\Http\Repositories\TemplateRepository;
+use App\Template;
 use Route;
 
 class CoupleController extends Controller
@@ -87,8 +90,10 @@ class CoupleController extends Controller
 
     public function showCreate(Request $req) {
         $step = 1;  
-        
-        return view($this->views[$step]);
+        $templateService = new TemplateService(new TemplateRepository(new Template()));
+        $options = $templateService->getAll();
+
+        return view($this->views[$step], compact('options'));
     }
 
     /**
@@ -105,9 +110,12 @@ class CoupleController extends Controller
             $step = $req->step;
 
         $coupleId = $coupleId;
-
-        if($step == 1)
+        $options = [];
+        if($step == 1) {
             $data = $this->coupleService->getById($coupleId);
+            $templateService = new TemplateService(new TemplateRepository(new Template()));
+            $options = $templateService->getAll();
+        }
         else if($step == 2)
             $data = $this->weddingService->getByCoupleId($coupleId);
         else if($step == 3) {
@@ -124,7 +132,7 @@ class CoupleController extends Controller
         else if($step == 5) {
             $data = $this->weddingPartnerService->getByCoupleId($coupleId);
         }
-        return view($this->views[$step], compact(['data', 'coupleId']));
+        return view($this->views[$step], compact(['data', 'coupleId', 'options']));
     }
 
     /**
