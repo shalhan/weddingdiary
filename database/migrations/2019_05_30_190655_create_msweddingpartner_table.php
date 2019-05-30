@@ -14,7 +14,11 @@ class CreateMsweddingpartnerTable extends Migration
     public function up()
     {
         Schema::create('msweddingpartner', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('GUID');
+            $table->integer("MSCOUPLE_GUID");
+            $table->string('WEDDING_PARTNER_NAME')->nullable();
+            $table->string('WEDDING_PARTNER_WEBSITE')->nullable();
+            $table->string('WEDDING_PARTNER_LOGO')->nullable();
             $table->timestamps();
         });
     }

@@ -18,6 +18,9 @@ use App\Gallery;
 use App\Http\Services\VisitorService;
 use App\Http\Repositories\VisitorRepository;
 use App\Visitor;
+use App\Http\Services\WeddingPartnerService;
+use App\Http\Repositories\WeddingPartnerRepository;
+use App\WeddingPartner;
 use Route;
 
 class CoupleController extends Controller
@@ -25,13 +28,15 @@ class CoupleController extends Controller
     private $coupleService;
     private $weddingService;
     private $galleryService;
+    private $weddingPartnerService;
     private $FIRST_STEP = 1;
-    private $LAST_STEP = 4;
+    private $LAST_STEP = 5;
     private  $views = [
         1 => 'pages.couple.create.couple',
         2 => 'pages.couple.create.wedding',
         3 => 'pages.couple.create.photo',
         4 => 'pages.couple.create.gallery',
+        5 => 'pages.couple.create.partner',
     ];
 
     public function __construct() {
@@ -46,6 +51,10 @@ class CoupleController extends Controller
         $gallery = new Gallery();
         $galleryRepo = new GalleryRepository($gallery);
         $this->galleryService = new GalleryService($galleryRepo);
+        //
+        $weddingPartner = new WeddingPartner();
+        $weddingPartnerRepo = new WeddingPartnerRepository($weddingPartner);
+        $this->weddingPartnerService = new WeddingPartnerService($weddingPartnerRepo);
     }
 
     /**
@@ -111,6 +120,9 @@ class CoupleController extends Controller
         }
         else if($step == 4) {
             $data = $this->galleryService->getByCoupleId($coupleId);
+        }
+        else if($step == 5) {
+            $data = $this->weddingPartnerService->getByCoupleId($coupleId);
         }
         return view($this->views[$step], compact(['data', 'coupleId']));
     }
@@ -208,5 +220,10 @@ class CoupleController extends Controller
         }
 
         return redirect()->route('showCouples')->with('success', 'Delete couple success');
+    }
+
+    public function publish()
+    {
+        return redirect()->route("showCouples")->with("success", "Publish couple success");
     }
 }

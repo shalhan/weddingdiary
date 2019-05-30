@@ -117,12 +117,12 @@ $('#messageTable').DataTable();
                                 <td>{{dateFormat($message->DATE)}}</td>
                                 <td>{{timeFormat($message->TIME)}}</td>
                                 <td class="text-center">
-                                    <button type="button" class="btn btn-xs btn-danger btn-equal" data-toggle="modal" data-target="#dialog{{$message->GUID}}" data-placement="top" data-original-title="Delete row"><i class="fa fa-trash-o"></i></button>
+                                    <button type="button" class="btn btn-xs btn-danger btn-equal" data-toggle="modal" data-target="#dialog{{$message->GUID}}" data-placement="top" data-original-title="Delete message"><i class="fa fa-trash-o"></i></button>
                                 </td>
                             </tr>
                             @component('components.dialog')
                                 @slot('id')
-                                    dialog{{$message->GUID}}
+                                    {{$message->GUID}}
                                 @endslot
                                 @slot('action')
                                     /messages/{{$message->GUID}}

@@ -24,7 +24,7 @@ class WeddingRepository extends Repository
         $this->wedding->WEDDING_RECEPTION_VENUE = $reception["WEDDING_RECEPTION_VENUE"];
         $this->wedding->WEDDING_RECEPTION_ADDRESS = $reception["WEDDING_RECEPTION_ADDRESS"];
         $this->wedding->WEDDING_RECEPTION_TIME = date("Y-m-d H:i:s", strtotime($reception["WEDDING_RECEPTION_TIME"]));
-        $wedding->WEDDING_RECEPTION_TIMEZONE = $reception["WEDDING_RECEPTION_TIMEZONE"];
+        $this->wedding->WEDDING_RECEPTION_TIMEZONE = $reception["WEDDING_RECEPTION_TIMEZONE"];
         $this->wedding->MSCOUPLE_GUID = $add["MSCOUPLE_GUID"];
         $this->wedding->WEDDING_MAP = $add["WEDDING_MAP"];
         $this->wedding->WEDDING_VIDEO = $add["WEDDING_VIDEO"];
