@@ -113,7 +113,7 @@ $('#messageTable').DataTable();
                             @foreach($messages as $message)
                             <tr>
                                 <td style="width: 20%;">{{$message->NAME}}</td>
-                                <td style="width: 30%;">{{$message->TEXT}}</td>
+                                <td style="max-width: 200px;">{{$message->TEXT}}</td>
                                 <td>{{dateFormat($message->DATE)}}</td>
                                 <td>{{timeFormat($message->TIME)}}</td>
                                 <td class="text-center">
@@ -160,7 +160,7 @@ $('#messageTable').DataTable();
                                 @foreach($visitors as $visitor)
                                 <tr>
                                     <td style="width: 20%;">{{$visitor->IPPUBLIC}}</td>
-                                    <td style="width: 30%;">{{$visitor->BROWSER}}</td>
+                                    <td style="width: 200px;">{{$visitor->BROWSER}}</td>
                                     <td>{{$visitor->OS}}</td>
                                     <td>{{dateFormat($visitor->DATETIME)}}</td>
                                     <td>{{ timeFormat($visitor->DATETIME)}}</td>
