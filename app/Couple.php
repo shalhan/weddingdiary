@@ -51,8 +51,8 @@ class Couple extends Model
         return $this->hasMany('App\Visitor', 'MSCOUPLE_GUID', 'GUID');
     }
 
-    public function vendorMenuVisits() {
-        return $this->hasMany('App\VendorMenuVisit', 'MSCOUPLE_GUID', 'GUID');
+    public function partnerVisits() {
+        return $this->hasMany('App\PartnerVisit', 'MSCOUPLE_GUID', 'GUID');
     }
 
     public function galleries() {
@@ -87,8 +87,8 @@ class Couple extends Model
         return count($this->messages);
     }
 
-    public function totalVendorMenuVisits() {
-        return count($this->vendorMenuVisits);
+    public function totalPartnerVisitors() {
+        return count($this->partnerVisits);
     }
 
 

@@ -24,6 +24,9 @@ use App\WeddingPartner;
 use App\Http\Services\TemplateService;
 use App\Http\Repositories\TemplateRepository;
 use App\Template;
+use App\Http\Services\PartnerVisitService;
+use App\Http\Repositories\PartnerVisitRepository;
+use App\PartnerVisit;
 use Route;
 
 class CoupleController extends Controller
@@ -161,7 +164,12 @@ class CoupleController extends Controller
         $visitorRepo = new VisitorRepository($visitor);
         $visitorService = new VisitorService($visitorRepo);
         $visitors = $visitorService->getByCoupleId($id, $data);
-        return view("pages.couple.show", compact(['couple', 'messages', 'visitors']));
+
+        $partnerVisitor = new PartnerVisit();
+        $partnerVisitorRepo = new PartnerVisitRepository($partnerVisitor);
+        $partnerVisitorService = new PartnerVisitService($partnerVisitorRepo);
+        $partnerVisitors = $partnerVisitorService->getByCoupleId($id, $data);
+        return view("pages.couple.show", compact(['couple', 'messages', 'visitors', 'partnerVisitors']));
     }
 
     /**

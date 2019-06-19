@@ -5,7 +5,7 @@ use App\Couple;
 use App\Wedding;
 use App\Message;
 use App\Vendor;
-use App\VendorMenuVisit;
+use App\PartnerVisit;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -79,11 +79,12 @@ Route::get('/redirect', function (Request $req) {
     $clientData = getClientMeta($req->ip());
     $data = [
         'MSCOUPLE_GUID'=>$req->couple_id,
-        'MSVENDORMENU_GUID'=>$req->vendor_id,
-        'IPPUBLIC' => $clientData["ipAddress"]
+        'MSWEDDINGPARTNER_GUID'=>$req->partner_id,
+        'IPPUBLIC' => $clientData["ipAddress"],
+        'MSVENDOR_GUID' => $req->vendor_id
     ];
-    $vendorMenuVisitors = new VendorMenuVisit();
-    $vendorMenuVisitors->create($data);
+    $partnerVisitors = new PartnerVisit();
+    $partnerVisitors->create($data);
     header('Location: ' . $req->redirect_to);
     exit();
 });
@@ -108,6 +109,7 @@ Route::group(['middleware'=> 'cors'], function() {
                     $subFolder2 = $couple->SUBFOLDER2;
                     $vendorId = $couple->MSVENDOR_GUID;
                     $url = $couple->vendor->VENDOR_WEBSITE;
+                    $url = "http://localhost";
 
                     //check is current_url is an URL (to detact script)
                     if(!filter_var($req->current_url, FILTER_VALIDATE_URL))

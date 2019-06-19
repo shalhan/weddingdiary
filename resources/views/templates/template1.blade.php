@@ -538,7 +538,7 @@
                 @foreach($couple->weddingPartners as $partner)
                 <div class="col col-sm-4 col-xs-6">
                     <center>            
-                    <a href="{{$partner->WEDDING_PARTNER_WEBSITE}}" target="blank"><img src="{{ $partner->WEDDING_PARTNER_LOGO }}" class="img img-responsive" alt></a>    
+                    <a href="{{ url('/redirect?couple_id='.$couple->GUID. '&vendor_id='. $couple->MSVENDOR_GUID .'&partner_id=' . $partner->GUID . '&redirect_to='.$partner->WEDDING_PARTNER_WEBSITE) }}" target="_blank"><img src="{{ $partner->WEDDING_PARTNER_LOGO }}" class="img img-responsive" alt></a>    
                     </center>
                 </div>
                 @endforeach

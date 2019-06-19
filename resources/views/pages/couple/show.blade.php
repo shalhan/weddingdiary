@@ -12,6 +12,7 @@
 <script>
 $('#visitorTable').DataTable();
 $('#messageTable').DataTable();
+$('#partnerVisitorTable').DataTable();
 </script>
 @endpush
 
@@ -21,6 +22,7 @@ $('#messageTable').DataTable();
     $couple = $couple['data'];
     $messages = $messages['data'];
     $visitors = $visitors['data'];
+    $partnerVisitors = $partnerVisitors['data'];
 @endphp
 
 <ol class="breadcrumb">
@@ -67,11 +69,11 @@ $('#messageTable').DataTable();
             <div class="box style-warning">
                 <div class="box-head">
                     <header>
-                        <h4 class="text-light">Total Link Clicked</h4>
+                        <h4 class="text-light">Total Partner Link Clicked</h4>
                     </header>
                 </div>
                 <div class="box-body u-flex u-flexJustifyContentEnd">
-                    <h1 class="text-boldest">{{$couple->totalVendorMenuVisits()}}</h1>
+                    <h1 class="text-boldest">{{$couple->totalPartnerVisitors()}}</h1>
                 </div>
             </div>
         </div>
@@ -139,38 +141,69 @@ $('#messageTable').DataTable();
             </div>
         </div>
         <div class="col-lg-6">
-                <div class="box">
-                    <div class="box-head">
-                        <header>
-                            <h4 class="text-light">Visitors</h4>
-                        </header>
-                    </div>
-                    <div class="box-body table-responsive">
-                        <table id="visitorTable" class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th>IP Adress</th>
-                                    <th>Browser</th>
-                                    <th>OS</th>
-                                    <th>Date</th>
-                                    <th>Time</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($visitors as $visitor)
-                                <tr>
-                                    <td style="width: 20%;">{{$visitor->IPPUBLIC}}</td>
-                                    <td style="width: 200px;">{{$visitor->BROWSER}}</td>
-                                    <td>{{$visitor->OS}}</td>
-                                    <td>{{dateFormat($visitor->DATETIME)}}</td>
-                                    <td>{{ timeFormat($visitor->DATETIME)}}</td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+            <div class="box">
+                <div class="box-head">
+                    <header>
+                        <h4 class="text-light">Visitors</h4>
+                    </header>
+                </div>
+                <div class="box-body table-responsive">
+                    <table id="visitorTable" class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>IP Adress</th>
+                                <th>Browser</th>
+                                <th>OS</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($visitors as $visitor)
+                            <tr>
+                                <td style="width: 20%;">{{$visitor->IPPUBLIC}}</td>
+                                <td style="width: 200px;">{{$visitor->BROWSER}}</td>
+                                <td>{{$visitor->OS}}</td>
+                                <td>{{dateFormat($visitor->DATETIME)}}</td>
+                                <td>{{ timeFormat($visitor->DATETIME)}}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="box">
+                <div class="box-head">
+                    <header>
+                        <h4 class="text-light">Partner Visitors</h4>
+                    </header>
+                </div>
+                <div class="box-body table-responsive">
+                    <table id="partnerVisitorTable" class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Partner</th>
+                                <th>IP Adress</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($partnerVisitors as $visitor)
+                            <tr>
+                                <td style="width: 20%;">{{$visitor->weddingPartner->WEDDING_PARTNER_NAME}}</td>
+                                <td style="width: 20%;">{{$visitor->IPPUBLIC}}</td>
+                                <td>{{dateFormat($visitor->DATE)}}</td>
+                                <td>{{timeFormat($visitor->DATE)}}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 @endsection
