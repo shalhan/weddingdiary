@@ -20,6 +20,8 @@ class Gallery extends Model
     }
     public function getGalleryThumbnailAttribute()
     {
-        return str_replace("/1/", "/1/thumb/", $this->GALLERY_PHOTO);
+        if(file_exists(str_replace("/1/", "/1/thumb/", $this->GALLERY_PHOTO)))
+            return str_replace("/1/", "/1/thumb/", $this->GALLERY_PHOTO);
+        return $this->GALLERY_PHOTO;
     }
 }
