@@ -385,7 +385,7 @@
                     <div class="col col-md-3 col-xs-6 grid-item">
                         <div class="box">
                             <a href="{{ $gallery->GALLERY_PHOTO }}" class="fancybox" data-fancybox-group="gallery">
-                                <img src="{{ $gallery->GALLERY_PHOTO }}" class="img img-responsive" alt>
+                                <img src="{{ $gallery->galleryThumbnail }}" class="img img-responsive" alt>
                                 <div class="fade-icon">
                                     <span class="icon"><i class="fa fa-search"></i></span>
                                 </div>

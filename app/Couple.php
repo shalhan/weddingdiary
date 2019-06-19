@@ -118,7 +118,7 @@ class Couple extends Model
         return url($this->getImageVendorPath() .'/slider/'.$key.'.jpg');
     }
 
-    public function getGalleryPic($picName = "", $num = 1, $isThumbnail=false) {
+    public function getGalleryPic($picName = "", $num = 1, $isThumbnail=true) {
         if($isThumbnail)
             return url($this->getImageVendorPath() . '/gallery/' . $num .'/thumb/'. $picName);
         else

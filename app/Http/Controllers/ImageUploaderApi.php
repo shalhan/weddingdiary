@@ -14,7 +14,9 @@ use Image;
 use Auth;
 
 class ImageUploaderApi extends Controller {
+    private const RESIZE_WIDTH = 200;
     private $imageUploaderService;
+
     public function __construct() {
         $imageUploaderRepo = new ImageUploaderRepository();
         $this->imageUploaderService = new ImageUploaderService($imageUploaderRepo);
@@ -42,7 +44,7 @@ class ImageUploaderApi extends Controller {
             $vendorDir = "ven".Auth::user()->GUID;
             $coupleDir = "coup".$req->coupleId;
             if($req->type == "BRIDE") {
-                $path = $vendorDir .'/' . $coupleDir . "/bride/" . $imageName;
+                $path = $vendorDir .'/' . $coupleDir . "/bride/" . $imageName;  
                 $res = $this->imageUploaderService->saveBridePhoto($req->coupleId, $path);
             } else if($req->type == "GROOM") {
                 $path = $vendorDir .'/' . $coupleDir . "/groom/" . $imageName;
@@ -53,12 +55,21 @@ class ImageUploaderApi extends Controller {
                 $res = $this->imageUploaderService->saveCover($req->coupleId, $path, $index);
             } else if($req->type == "GALLERY") {
                 $path = $vendorDir .'/' . $coupleDir . '/gallery/1/' . $imageName;
+                $thumbPath = $vendorDir .'/' . $coupleDir . '/gallery/1/thumb/' . $imageName;
                 $res = $this->imageUploaderService->saveGallery($req->coupleId, $path);
             }
 
             if(!isset($res["errors"])) {
                 if(isset($res["data"]["prevPath"])) {
                     Storage::delete(str_replace('/images/', "", $res["data"]["prevPath"]));
+                }
+                if($req->type == "GALLERY"){
+                    $resizeImage  = Image::make($data)->resize(self::RESIZE_WIDTH, null, function($constraint) {
+                        $constraint->aspectRatio();
+                    });
+                    $resizeImage->save(public_path('images/'.$thumbPath));
+
+                    \Log::info("MASUK KE RESIZE " . $thumbPath);
                 }
                 Storage::put($path, $data);
             }

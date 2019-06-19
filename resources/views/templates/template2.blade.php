@@ -324,7 +324,7 @@
                             <div class="col-xs-6 col-sm-3 gla_anim_box grid-item ceremony">
                                 <div class="gla_shop_item">
                                     <a href="{{ $gallery->GALLERY_PHOTO }}" class="lightbox">
-                                        <img src="{{ $gallery->GALLERY_PHOTO }}" alt="">
+                                        <img src="{{ $gallery->galleryThumbnail }}" alt="">
                                     </a>
                                 </div>
                             </div>

@@ -18,4 +18,8 @@ class Gallery extends Model
     {
         return $this->belongsTo("App\Couple", "MSCOUPLE_GUID", "GUID");
     }
+    public function getGalleryThumbnailAttribute()
+    {
+        return str_replace("/1/", "/1/thumb/", $this->GALLERY_PHOTO);
+    }
 }
