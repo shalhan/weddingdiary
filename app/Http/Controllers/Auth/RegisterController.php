@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+use App\Vendor;
 
 class RegisterController extends Controller
 {
@@ -38,6 +40,39 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+    }
+
+    public function showRegistrationForm() {
+        return view('pages.auth.registration');
+    }
+
+    public function register(Request $request) {
+        $this->validate($request, [
+            'name' => 'required|min:3|max:50',
+            'website' => 'required|max:50',
+            'email' => 'required|unique:msvendor',
+            'password' => 'required|confirmed|min:6',
+            'logo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+        $logo = $request->file("logo");
+        if(isset($logo)){ 
+            $logoImageName = time().'.'.$logo->getClientOriginalExtension();
+            $path = "/images/vendor-logo/";
+            $logo->move(public_path($path), $logoImageName);
+            $path = $path . $logoImageName;
+        }else {
+            $path = "/assets/img/avatar1.jpg";
+        }
+
+        $vendor = Vendor::create([
+            "VENDOR_NAME" => $request->name,
+            "VENDOR_WEBSITE" => $request->name,
+            "VENDOR_LOGO" => $path,
+            "email" => $request->name,
+            "password" => bcrypt($request->password)
+        ]);
+        $this->guard()->login($vendor);
+        return redirect("/");
     }
 
     /**

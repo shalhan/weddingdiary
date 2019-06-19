@@ -55,7 +55,7 @@
             <div class="box">
                 <div class="box-body u-flex u-flexJustifyContentCenter">
                     <div class="avatarContainer u-size128">
-                        <img id="PROFILE_PICTURE" class="avatarImage u-borderRadius50Percent u-backgroundColorGrey10 u-border0 u-cursorPointer" src="/images/img-placeholder.png" onclick="handleImageUpload()" />
+                        <img id="PROFILE_PICTURE" class="avatarImage u-borderRadius50Percent u-backgroundColorGrey10 u-border0 u-cursorPointer" src="{{Auth::user()->VENDOR_LOGO}}" onclick="handleImageUpload()" />
                     </div>
                 </div>
             </div>

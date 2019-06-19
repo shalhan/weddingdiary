@@ -18,7 +18,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><span class="navbar-devider"></span></li>
                 <li class="dropdown">
-                    <a href="javascript:void(0);" class="navbar-profile dropdown-toggle text-bold" data-toggle="dropdown">{{Auth::user()->VENDOR_NAME2}} <i class="fa fa-fw fa-angle-down"></i> <img class="img-circle" src="../../assets/img/avatar1.jpg?1401481655" alt="" /></a>
+                    <a href="javascript:void(0);" class="navbar-profile dropdown-toggle text-bold" data-toggle="dropdown">{{Auth::user()->VENDOR_NAME2}} <i class="fa fa-fw fa-angle-down"></i> <img class="img-circle" src="{{Auth::user()->VENDOR_LOGO}}" alt="" /></a>
                     <ul class="dropdown-menu animation-slide">
                         <li><a href="{{route('showProfile')}}">My profile</a></li>
                         <li class="divider"></li>

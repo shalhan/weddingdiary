@@ -35,54 +35,58 @@ $couples = $couples['data']['pagination'];
 </div>
 
 <div class="section-body">
-    <div class="row">
-        @if(count($couples) > 0)
-        @foreach($couples as $couple)
-        <div class="col-md-3">
-            <div class="box">
-                <a href="{{ route('showCouple', $couple->GUID) }}">
-                    <div class="coupleCard-imageWrapper">
-                        <div class="coupleCard-image" style="background-image: url('{{ $couple->coverImages[0] }}')"></div>
-                        <div class="coupleCard-actionWrapper">
-                            <a href="{{ route('showEditCouple', $couple->GUID) }}"><button type="button" class="btn btn-xs btn-inverse btn-equal" data-toggle="tooltip" data-placement="top" data-original-title="Edit"><i class="fa fa-pencil"></i></button></a>
-                            <a href="{{ route('showCouple', $couple->GUID) }}"><button type="button" class="btn btn-xs btn-default btn-equal" data-placement="top" data-original-title="Report"><i class="fa fa-file"></i></button></a>
-                        </div>
-                    </div>
-                </a>
-                <div class="u-padding24">
+    @if(count($couples) > 0)
+        <div class="row">
+            @foreach($couples as $couple)
+            <div class="col-md-3">
+                <div class="box">
                     <a href="{{ route('showCouple', $couple->GUID) }}">
-                        <h2 class="coupleCard-title">{{$couple->groom->GROOM_NAME}} & {{$couple->bride->BRIDE_NAME}}</h2>
+                        <div class="coupleCard-imageWrapper">
+                            <div class="coupleCard-image" style="background-image: url('{{ $couple->coverImages[0] }}')"></div>
+                            <div class="coupleCard-actionWrapper">
+                                <a href="{{ route('showEditCouple', $couple->GUID) }}"><button type="button" class="btn btn-xs btn-inverse btn-equal" data-toggle="tooltip" data-placement="top" data-original-title="Edit"><i class="fa fa-pencil"></i></button></a>
+                                <a href="{{ route('showCouple', $couple->GUID) }}"><button type="button" class="btn btn-xs btn-default btn-equal" data-placement="top" data-original-title="Report"><i class="fa fa-file"></i></button></a>
+                            </div>
+                        </div>
                     </a>
-                    <p class="coupleCard-template">Created at : {{$couple->createdDateForHumans}}</p>
-                    <p class="coupleCard-template">{{$couple->template->code_name}}</p>
+                    <div class="u-padding24">
+                        <a href="{{ route('showCouple', $couple->GUID) }}">
+                            <h2 class="coupleCard-title">{{$couple->groom->GROOM_NAME}} & {{$couple->bride->BRIDE_NAME}}</h2>
+                        </a>
+                        <p class="coupleCard-template">Created at : {{$couple->createdDateForHumans}}</p>
+                        <p class="coupleCard-template">{{$couple->template->code_name}}</p>
+                    </div>
                 </div>
             </div>
+            @endforeach
         </div>
-        @endforeach
-        @else
-        <p>Couples still empty</p>
-        @endif
-    </div>
 
-    <div class="u-flex u-flexJustifyContentEnd u-marginTop24">
-        @component('components.btnPagination')
-        @slot('redirectPrev')
-            {{ route('showCouples', ['page' => $prevPage] ) }}
-        @endslot
-        @slot('redirectNext')
-            {{ route('showCouples', ['page' => $nextPage] ) }}
-        @endslot
-        @slot('prevPage')
-            {{$prevPage}}
-        @endslot
-        @slot('nextPage')
-            {{$nextPage}}
-        @endslot
-        @slot('data')
-            {{$couples}}
-        @endslot
-        @endcomponent
-    </div>
+        <div class="u-flex u-flexJustifyContentEnd u-marginTop24">
+            @component('components.btnPagination')
+            @slot('redirectPrev')
+                {{ route('showCouples', ['page' => $prevPage] ) }}
+            @endslot
+            @slot('redirectNext')
+                {{ route('showCouples', ['page' => $nextPage] ) }}
+            @endslot
+            @slot('prevPage')
+                {{$prevPage}}
+            @endslot
+            @slot('nextPage')
+                {{$nextPage}}
+            @endslot
+            @slot('data')
+                {{$couples}}
+            @endslot
+            @endcomponent
+        </div>
+    @else
+        <div class="row">
+            <div class="col-md-12">
+                <p>Couples still empty</p>
+            </div>
+        </div>
+    @endif
 
 </div>
 @endsection

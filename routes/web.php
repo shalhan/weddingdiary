@@ -171,6 +171,8 @@ Route::delete("/wedding-partner/{id}", "WeddingPartnerController@dropById")->nam
 
 Route::get("/login", "Auth\LoginController@showLoginForm")->name("viewLogin");
 Route::post("/login", "Auth\LoginController@login")->name("login");
+Route::get("/register", "Auth\RegisterController@showRegistrationForm")->name("viewRegister");
+Route::post("/register", "Auth\RegisterController@register")->name("register");
 Route::post("/logout", "Auth\LoginController@logout")->name("logout");
 Route::get("/forgot-password", "Auth\LoginController@showForgotPassword")->name("forgotPassword");
 Route::get("/change-password", "Auth\LoginController@showChangePassword")->name("changePassword");
