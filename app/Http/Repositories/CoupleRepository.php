@@ -96,6 +96,7 @@ class CoupleRepository extends Repository
 
     public function dropById($id) {
         $this->couple
+            ->where("MSVENDOR_GUID", Auth::user()->GUID)
             ->find($id)
             ->delete();
     }

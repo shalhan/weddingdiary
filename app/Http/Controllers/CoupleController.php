@@ -114,8 +114,10 @@ class CoupleController extends Controller
 
         $coupleId = $coupleId;
         $options = [];
+        $data = $this->coupleService->getById($coupleId);
+        if(!isset($data["data"]))
+            abort(404);
         if($step == 1) {
-            $data = $this->coupleService->getById($coupleId);
             $templateService = new TemplateService(new TemplateRepository(new Template()));
             $options = $templateService->getAll();
         }
@@ -154,7 +156,8 @@ class CoupleController extends Controller
             'page' => isset($req->page) ? $req->page : 1,
         ];
         $couple = $this->coupleService->getById($id);
-
+        if(!isset($couple["data"]))
+            abort(404);
         $message = new Message();
         $messageRepo = new MessageRepository($message);
         $messageService = new MessageService($messageRepo);

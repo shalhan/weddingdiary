@@ -2,6 +2,7 @@
 
 namespace App\Http\Repositories;
 
+use Auth;
 
 class ImageUploaderRepository extends Repository
 {
@@ -46,7 +47,8 @@ class ImageUploaderRepository extends Repository
     public function dropGalleryById($galleryId) {
         $gallery = $this->model->find($galleryId);
         $prevGallery = $gallery;
-        $gallery->delete();
+        if($gallery->couple->MSVENDOR_GUID == Auth::user()->GUID)
+            $gallery->delete();
         return $prevGallery;
     }
 }

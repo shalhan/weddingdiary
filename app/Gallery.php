@@ -14,4 +14,8 @@ class Gallery extends Model
     public function getFileNameAttribute() {
         return basename($this->GALLERY_PHOTO);
     }
+    public function couple()
+    {
+        return $this->belongsTo("App\Couple", "MSCOUPLE_GUID", "GUID");
+    }
 }
