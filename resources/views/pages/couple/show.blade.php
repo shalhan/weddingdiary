@@ -97,53 +97,6 @@ $('#partnerVisitorTable').DataTable();
             <div class="box">
                 <div class="box-head">
                     <header>
-                        <h4 class="text-light">Comments</h4>
-                    </header>
-                </div>
-                <div class="box-body table-responsive">
-                    <table id="messageTable" class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th>From</th>
-                                <th>Message</th>
-                                <th>Data</th>
-                                <th>Time</th>
-                                <th class="text-right1" style="width:90px">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($messages as $message)
-                            <tr>
-                                <td style="width: 20%;">{{$message->NAME}}</td>
-                                <td style="max-width: 200px;">{{$message->TEXT}}</td>
-                                <td>{{dateFormat($message->DATE)}}</td>
-                                <td>{{timeFormat($message->TIME)}}</td>
-                                <td class="text-center">
-                                    <button type="button" class="btn btn-xs btn-danger btn-equal" data-toggle="modal" data-target="#dialog{{$message->GUID}}" data-placement="top" data-original-title="Delete message"><i class="fa fa-trash-o"></i></button>
-                                </td>
-                            </tr>
-                            @component('components.dialog')
-                                @slot('id')
-                                    {{$message->GUID}}
-                                @endslot
-                                @slot('action')
-                                    /messages/{{$message->GUID}}
-                                @endslot
-                                @slot('title')
-                                Modal Delete
-                                @endslot
-                                Are you sure want to delete this message?
-                            @endcomponent
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-6">
-            <div class="box">
-                <div class="box-head">
-                    <header>
                         <h4 class="text-light">Visitors</h4>
                     </header>
                 </div>
@@ -174,33 +127,83 @@ $('#partnerVisitorTable').DataTable();
             </div>
         </div>
         <div class="col-lg-6">
-            <div class="box">
-                <div class="box-head">
-                    <header>
-                        <h4 class="text-light">Partner Visitors</h4>
-                    </header>
+
+            <div class="col-lg-12">
+                <div class="box">
+                    <div class="box-head">
+                        <header>
+                            <h4 class="text-light">Comments</h4>
+                        </header>
+                    </div>
+                    <div class="box-body table-responsive">
+                        <table id="messageTable" class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>From</th>
+                                    <th>Message</th>
+                                    <th>Data</th>
+                                    <th>Time</th>
+                                    <th class="text-right1" style="width:90px">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($messages as $message)
+                                <tr>
+                                    <td style="width: 20%;">{{$message->NAME}}</td>
+                                    <td style="max-width: 200px;">{{$message->TEXT}}</td>
+                                    <td>{{dateFormat($message->DATE)}}</td>
+                                    <td>{{timeFormat($message->TIME)}}</td>
+                                    <td class="text-center">
+                                        <button type="button" class="btn btn-xs btn-danger btn-equal" data-toggle="modal" data-target="#dialog{{$message->GUID}}" data-placement="top" data-original-title="Delete message"><i class="fa fa-trash-o"></i></button>
+                                    </td>
+                                </tr>
+                                @component('components.dialog')
+                                    @slot('id')
+                                        {{$message->GUID}}
+                                    @endslot
+                                    @slot('action')
+                                        /messages/{{$message->GUID}}
+                                    @endslot
+                                    @slot('title')
+                                    Modal Delete
+                                    @endslot
+                                    Are you sure want to delete this message?
+                                @endcomponent
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-                <div class="box-body table-responsive">
-                    <table id="partnerVisitorTable" class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th>Partner</th>
-                                <th>IP Adress</th>
-                                <th>Date</th>
-                                <th>Time</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($partnerVisitors as $visitor)
-                            <tr>
-                                <td style="width: 20%;">{{$visitor->weddingPartner->WEDDING_PARTNER_NAME}}</td>
-                                <td style="width: 20%;">{{$visitor->IPPUBLIC}}</td>
-                                <td>{{dateFormat($visitor->DATE)}}</td>
-                                <td>{{timeFormat($visitor->DATE)}}</td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+            </div>
+            <div class="col-lg-12">
+                <div class="box">
+                    <div class="box-head">
+                        <header>
+                            <h4 class="text-light">Partner Visitors</h4>
+                        </header>
+                    </div>
+                    <div class="box-body table-responsive">
+                        <table id="partnerVisitorTable" class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Partner</th>
+                                    <th>IP Adress</th>
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($partnerVisitors as $visitor)
+                                <tr>
+                                    <td style="width: 20%;">{{$visitor->weddingPartner->WEDDING_PARTNER_NAME}}</td>
+                                    <td style="width: 20%;">{{$visitor->IPPUBLIC}}</td>
+                                    <td>{{dateFormat($visitor->DATE)}}</td>
+                                    <td>{{timeFormat($visitor->DATE)}}</td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
