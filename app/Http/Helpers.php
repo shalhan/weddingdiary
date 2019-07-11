@@ -99,5 +99,6 @@ function timeFormat($time) {
 }
 
 function getDateTimeFormFormat($dateTime) {
+  if (!isset($date)) return date("m/d/Y h:i A");
   return date("m/d/Y h:i A", strtotime($dateTime));
 }

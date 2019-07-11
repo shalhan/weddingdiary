@@ -118,6 +118,7 @@ $('#WEDDING_RECEPTION_TIME').datetimepicker();
                                     <input type="text" name="WEDDING_RECEPTION_TIME" id="WEDDING_RECEPTION_TIME" class="form-control u-input--isError" placeholder="Reception Time" value={{ getDateTimeFormFormat(old('WEDDING_RECEPTION_TIME'))}}>
                                     <small class="text-support2">* {{$errors->first('WEDDING_RECEPTION_TIME')}} </small>
                                 @else
+                                {{old('WEDDING_RECEPTION_TIME')}}
                                     <input type="text" name="WEDDING_RECEPTION_TIME" placeholder="Reception Time" class="form-control" id='WEDDING_RECEPTION_TIME' value="{{ isset($wedding->WEDDING_RECEPTION_TIME) ? getDateTimeFormFormat($wedding->WEDDING_RECEPTION_TIME) : getDateTimeFormFormat(old('WEDDING_RECEPTION_TIME')) }}">
                                 @endif
                             </div>
