@@ -9,6 +9,7 @@
 <script src="/assets/js/libs/bootstrap-datetimepicker/bootstrap-datetimepicker.js"></script>
 <script>
 $('#WEDDING_MATRIMONY_TIME').datetimepicker();
+$('#WEDDING_RECEPTION_TIME').datetimepicker();
 </script>
 @endpush
 
@@ -74,10 +75,10 @@ $('#WEDDING_MATRIMONY_TIME').datetimepicker();
                             <div class="form-group">
                                 <label for="WEDDING_MATRIMONY_TIME">Matrimony Timezone</label>
                                 @if($errors->any() && $errors->first('WEDDING_MATRIMONY_TIMEZONE'))
-                                    <input type="text" name="WEDDING_MATRIMONY_TIMEZONE" id="WEDDING_MATRIMONY_TIMEZONE" class="form-control u-input--isError" placeholder="e.g : WIB, WITA, WIT, GMT+7, etc" value="{{ getDateTimeFormFormat(old('WEDDING_MATRIMONY_TIMEZONE')) }}">
+                                    <input type="text" name="WEDDING_MATRIMONY_TIMEZONE" id="WEDDING_MATRIMONY_TIMEZONE" class="form-control u-input--isError" placeholder="e.g : WIB, WITA, WIT, GMT+7, etc" value="{{ old('WEDDING_MATRIMONY_TIMEZONE') }}">
                                     <small class="text-support2">* {{$errors->first('WEDDING_MATRIMONY_TIMEZONE')}} </small>
                                 @else
-                                    <input type="text" name="WEDDING_MATRIMONY_TIMEZONE" id="WEDDING_MATRIMONY_TIMEZONE" class="form-control" placeholder="e.g : WIB, WITA, WIT, GMT+7, etc" value="{{ isset($wedding->WEDDING_MATRIMONY_TIMEZONE) ? getDateTimeFormFormat($wedding->WEDDING_MATRIMONY_TIMEZONE) : getDateTimeFormFormat(old('WEDDING_MATRIMONY_TIMEZONE')) }}">
+                                    <input type="text" name="WEDDING_MATRIMONY_TIMEZONE" id="WEDDING_MATRIMONY_TIMEZONE" class="form-control" placeholder="e.g : WIB, WITA, WIT, GMT+7, etc" value="{{ isset($wedding->WEDDING_MATRIMONY_TIMEZONE) ? $wedding->WEDDING_MATRIMONY_TIMEZONE : old('WEDDING_MATRIMONY_TIMZONE') }}">
                                 @endif
                             </div>
                         </div>
@@ -114,10 +115,10 @@ $('#WEDDING_MATRIMONY_TIME').datetimepicker();
                             <div class="form-group">
                                 <label for="WEDDING_RECEPTION_TIME">Reception Time</label>
                                 @if($errors->any() && $errors->first('WEDDING_RECEPTION_TIME'))
-                                    <input type="text" name="WEDDING_RECEPTION_TIME" id="WEDDING_RECEPTION_TIME" class="form-control u-input--isError" placeholder="Reception Time" value={{ old('WEDDING_RECEPTION_TIME')}}>
+                                    <input type="text" name="WEDDING_RECEPTION_TIME" id="WEDDING_RECEPTION_TIME" class="form-control u-input--isError" placeholder="Reception Time" value={{ getDateTimeFormFormat(old('WEDDING_RECEPTION_TIME'))}}>
                                     <small class="text-support2">* {{$errors->first('WEDDING_RECEPTION_TIME')}} </small>
                                 @else
-                                    <input type="text" name="WEDDING_RECEPTION_TIME" placeholder="Reception Time" class="form-control" id='demo-date-inline-second' value="{{ isset($wedding->WEDDING_RECEPTION_TIME) ? $wedding->WEDDING_RECEPTION_TIME : old('WEDDING_RECEPTION_TIME') }}" value={{ old('WEDDING_RECEPTION_TIME')}}>
+                                    <input type="text" name="WEDDING_RECEPTION_TIME" placeholder="Reception Time" class="form-control" id='WEDDING_RECEPTION_TIME' value="{{ isset($wedding->WEDDING_RECEPTION_TIME) ? getDateTimeFormFormat($wedding->WEDDING_RECEPTION_TIME) : getDateTimeFormFormat(old('WEDDING_RECEPTION_TIME')) }}">
                                 @endif
                             </div>
                             <div class="form-group">
