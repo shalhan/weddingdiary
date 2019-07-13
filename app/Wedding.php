@@ -18,4 +18,8 @@ class Wedding extends Model
     public function getWeddingStylePic() {
         return ('/images/venue/' . $this->WEDDING_STYLE . '.jpg');
     }
+
+    public function getWeddingVideoIframeAttribute() {
+        return 'https://www.youtube.com/embed/' . $this->WEDDING_VIDEO;
+    }
 }

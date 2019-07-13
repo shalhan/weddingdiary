@@ -35,8 +35,6 @@ Route::get('/', function (Request $req) {
         $weddings = new Wedding();
         $messages = new Message();
         $wedding = $weddings->getByCoupleId($couple->GUID);
-        if (!isset($wedding))
-            abort(404);
         $messages = $messages->getByCoupleId($couple->GUID);
         $template = $couple->template;
         $subFolder2 = $couple->SUBFOLDER2;

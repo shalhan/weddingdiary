@@ -25,6 +25,9 @@ class WeddingService extends Service
 
     public function save($matrimony, $reception, $add) {
         try {
+            if (isset($add["WEDDING_MAP"])) {
+                $add["WEDDING_MAP"]= preg_replace('/width="[0-9]*"/i', 'width="100%"',$add["WEDDING_MAP"]);
+            }
             if(isset($add["GUID"]))
                 $this->weddingRepo->edit($matrimony, $reception, $add);
             else

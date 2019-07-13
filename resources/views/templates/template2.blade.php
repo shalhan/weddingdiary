@@ -212,9 +212,9 @@
 
         </section>
         <!-- section end -->
-        @if(isset($wedding->WEDDING_VIDEO))
+        @if(isset($wedding->weddingVideoIframe))
         <section class="gla_section">
-                <iframe width="100%" height="315" src="{{$wedding->WEDDING_VIDEO}}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                <iframe width="100%" height="315" src="{{$wedding->weddingVideoIframe}}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         </section>
        @endif
        <!-- section -->
@@ -279,8 +279,8 @@
         <section class="gla_section">
               
             <div class="gla_map">
-           
-                <iframe src="{{$wedding->WEDDING_MAP}}" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                {!!$wedding->WEDDING_MAP!!}
+                {{-- <iframe src="{{$wedding->WEDDING_MAP}}" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe> --}}
             <!--
             <iframe src="https://www.google.com/maps/d/embed?mid=1Db39qSrYMFfOT9Momg4l4VQEOng&hl=en" width="100%" height="480"></iframe>-->
 
