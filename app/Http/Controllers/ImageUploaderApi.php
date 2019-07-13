@@ -52,7 +52,8 @@ class ImageUploaderApi extends Controller {
                 $res = $this->imageUploaderService->saveGroomPhoto($req->coupleId, $path);
             } else if($req->type == "COVER1" || $req->type == "COVER2" || $req->type == "COVER3") {
                 $index = $req->index;
-                $path = $vendorDir .'/' . $coupleDir . '/slider/' . $index . "." . $type;
+                $imageName = $index . "." . $type;
+                $path = $vendorDir .'/' . $coupleDir . '/slider/' . $imageName;
                 $res = $this->imageUploaderService->saveCover($req->coupleId, $path, $index);
             } else if($req->type == "GALLERY") {
                 $path = $vendorDir .'/' . $coupleDir . '/gallery/1/' . $imageName;
