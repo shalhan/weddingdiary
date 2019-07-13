@@ -251,7 +251,6 @@
 										<p class="name">{{$gallery->fileName}}</p>
 									</td>
 									<td id="status{{$gallery->GUID}}">
-										<p class="size">File size undefined...</p>
 										<p class='text-white'>
 											<span class='text-highlight-info'>Saved</span>
 										</p>

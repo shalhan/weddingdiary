@@ -12,6 +12,7 @@ class WeddingPartnerController extends Controller
     private $weddingPartnerService;
 
     public function __construct() {
+        $this->middleware('auth');
         $weddingPartner = new WeddingPartner();
         $weddingPartnerRepo = new WeddingPartnerRepository($weddingPartner);
         $this->weddingPartnerService = new WeddingPartnerService($weddingPartnerRepo);

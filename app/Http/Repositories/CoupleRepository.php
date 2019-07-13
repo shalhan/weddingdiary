@@ -24,9 +24,9 @@ class CoupleRepository extends Repository
         $this->couple->MSBRIDE_GUID = $data["MSBRIDE_GUID"];
         $this->couple->PACKAGE_ID = 1;
         $this->couple->EXPIRED_DATE = date("Y-m-d",strtotime($data["EXPIRED_DATE"]));
-        $this->couple->STATUS = Auth::user()->GUID;
+        $this->couple->STATUS = 1;
         $this->couple->LOVE_STORY = "";
-        $this->couple->MSVENDOR_GUID = 2; //temporary
+        $this->couple->MSVENDOR_GUID = Auth::user()->GUID;
         $this->couple->PREWEDPHOTO_AMOUNT = $data["PREWEDPHOTO_AMOUNT"];
         $this->couple->VIEW_AMOUNT = 0;
         $this->couple->CREATED_DATE = date("Y-m-d");
@@ -45,9 +45,9 @@ class CoupleRepository extends Repository
         $couple->MSBRIDE_GUID = $data["MSBRIDE_GUID"];
         $couple->PACKAGE_ID = 1;
         $couple->EXPIRED_DATE = date("Y-m-d",strtotime($data["EXPIRED_DATE"]));
-        $couple->STATUS = Auth::user()->GUID;
+        $couple->STATUS = 1;
         $couple->LOVE_STORY = "";
-        $couple->MSVENDOR_GUID = 2; //temporary
+        $couple->MSVENDOR_GUID = Auth::user()->GUID; //temporary
         $couple->PREWEDPHOTO_AMOUNT = $data["PREWEDPHOTO_AMOUNT"];
         $couple->VIEW_AMOUNT = 0;
         $couple->CREATED_DATE = date("Y-m-d");

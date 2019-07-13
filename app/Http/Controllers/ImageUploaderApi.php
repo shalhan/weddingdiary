@@ -18,6 +18,7 @@ class ImageUploaderApi extends Controller {
     private $imageUploaderService;
 
     public function __construct() {
+        $this->middleware('auth');
         $imageUploaderRepo = new ImageUploaderRepository();
         $this->imageUploaderService = new ImageUploaderService($imageUploaderRepo);
     }
@@ -63,13 +64,13 @@ class ImageUploaderApi extends Controller {
                 if(isset($res["data"]["prevPath"])) {
                     Storage::delete(str_replace('/images/', "", $res["data"]["prevPath"]));
                 }
+                Storage::makeDirectory(str_replace($imageName,"",$path));
                 if($req->type == "GALLERY"){
                     $resizeImage  = Image::make($data)->resize(self::RESIZE_WIDTH, null, function($constraint) {
                         $constraint->aspectRatio();
                     });
+                    Storage::makeDirectory(str_replace($imageName,"",$thumbPath));
                     $resizeImage->save(public_path('images/'.$thumbPath));
-
-                    \Log::info("MASUK KE RESIZE " . $thumbPath);
                 }
                 Storage::put($path, $data);
             }

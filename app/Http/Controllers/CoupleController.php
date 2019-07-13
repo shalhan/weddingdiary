@@ -46,6 +46,8 @@ class CoupleController extends Controller
     ];
 
     public function __construct() {
+        $this->middleware('auth');
+
         $couple = new Couple();
         $coupleRepo = new CoupleRepository($couple);
         $this->coupleService = new CoupleService($coupleRepo);
@@ -137,6 +139,7 @@ class CoupleController extends Controller
         else if($step == 5) {
             $data = $this->weddingPartnerService->getByCoupleId($coupleId);
         }
+
         return view($this->views[$step], compact(['data', 'coupleId', 'options']));
     }
 
@@ -218,7 +221,6 @@ class CoupleController extends Controller
             'EXPIRED_DATE' => $req->EXPIRED_DATE,
             'MSTEMPLATE_GUID' => $req->MSTEMPLATE_GUID,
         ];
-
         $coupleService = $this->coupleService->save($dataGroom, $dataBride, $dataCouple);
 
         if(isset($coupleService["errors"])) {

@@ -16,7 +16,7 @@ class Couple extends Model
     public $timestamps = false;
     //subfolder2 is query on url. exp: '?couple=shalhan'
     public function getByVendorId($vendorId, $subfolder2 = null) {
-        return $this->select('GUID','MSGROOM_GUID', 'MSBRIDE_GUID', 'MSVENDOR_GUID', 'SUBFOLDER', 'SUBFOLDER2', "MSTEMPLATE_GUID", "PREWEDPHOTO_AMOUNT", 'COUPLE_COVER_1', 'COUPLE_COVER_2', 'COUPLE_COVER_3')
+        return $this->select('GUID','MSGROOM_GUID', 'MSBRIDE_GUID', 'MSVENDOR_GUID', 'SUBFOLDER', 'SUBFOLDER2', "MSTEMPLATE_GUID", "PREWEDPHOTO_AMOUNT", 'COUPLE_COVER_1', 'COUPLE_COVER_2', 'COUPLE_COVER_3', 'EXPIRED_DATE')
                     ->with(['bride', 'groom', 'vendor', 'template'])
                     ->where('MSVENDOR_GUID', $vendorId)
                     ->get();
@@ -112,7 +112,6 @@ class Couple extends Model
         if($this->COUPLE_COVER_1 != null || $this->COUPLE_COVER_2 != null || $this->COUPLE_COVER_3 != null)
         {
             $var = "COUPLE_COVER_".$key;
-            \Log::info("MABOQ");
             return url($this->$var);
         }
         return url($this->getImageVendorPath() .'/slider/'.$key.'.jpg');

@@ -9,7 +9,13 @@ input[type="radio"]:checked+label {
 @endpush
 
 @push('script')
-
+<script src="/assets/js/libs/moment/moment.min.js"></script>
+<script src="/assets/js/libs/bootstrap-datetimepicker/bootstrap-datetimepicker.js"></script>
+<script>
+$('#EXPIRED_DATE').datetimepicker({
+    format: 'MM/DD/YYYY'
+});
+</script>
 @endpush
 
 @section("content")
@@ -159,10 +165,16 @@ input[type="radio"]:checked+label {
                             <div class="form-group">
                                 <label for="EXPIRED_DATE">Expired Date</label>
                                 <p><small class="text-gray">This website will be available until expired date</small></p>
-                                <select id="EXPIRED_DATE" class="form-control" disabled>
-                                    @php $date1MonthLater = date(' d-m-Y', strtotime("+1 months", strtotime("NOW") )) @endphp <option value="{{$date1MonthLater}}">{{$date1MonthLater}}</option>
-                                </select>
-                                <input type="hidden" name="EXPIRED_DATE" value="{{$date1MonthLater}}" />
+                                @php
+                                    if (isset($couple->EXPIRED_DATE)){
+                                        $dateVal = getDateTimeFormFormat($couple->EXPIRED_DATE,false);
+                                    }
+                                    else if (old('EXPIRED_DATE')!=null) 
+                                        $dateVal = getDateTimeFormFormat(old('EXPIRED_DATE'),false);
+                                    else
+                                        $dateVal = date(' m/d/Y', strtotime("+1 months", strtotime("NOW") ))
+                                @endphp
+                                <input type="text" name="EXPIRED_DATE" id="EXPIRED_DATE" class="form-control" placeholder="Reception Time" value="{{ $dateVal }}">
                             </div>
                             <div class="form-group">
                                 <p><label>Template</label></p>

@@ -35,12 +35,18 @@ Route::get('/', function (Request $req) {
         $weddings = new Wedding();
         $messages = new Message();
         $wedding = $weddings->getByCoupleId($couple->GUID);
+        if (!isset($wedding))
+            abort(404);
         $messages = $messages->getByCoupleId($couple->GUID);
         $template = $couple->template;
         $subFolder2 = $couple->SUBFOLDER2;
         $vendorId = $couple->MSVENDOR_GUID;
         foreach($req->query() as $key => $value) {
             if($key . '=' . $value == $subFolder2) {
+                $now = strtotime('now');
+                $expiredDate = strtotime($couple->EXPIRED_DATE);
+                if ($now>$expiredDate)
+                    abort(404);
                 visited($couple->GUID,$req->ip());
                 return view('templates.template'.$couple->MSTEMPLATE_GUID, compact('couple', 'wedding', 'messages', 'template'));
             }
