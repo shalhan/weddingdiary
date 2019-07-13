@@ -7,7 +7,7 @@
         <div class="navbar-header">
             <a class="btn btn-transparent btn-equal btn-menu" href="javascript:void(0);"><i class="fa fa-bars fa-lg"></i></a>
             <div class="navbar-brand">
-                <a class="main-brand" href="../../html/dashboards/dashboard.html">
+                <a class="main-brand" href="{{route('showCouples')}}>
                     <h3 class="text-light text-white"><span>Boost<strong>Box</strong> </span><i class="fa fa-rocket fa-fw"></i></h3>
                 </a>
             </div><!--end .navbar-brand -->

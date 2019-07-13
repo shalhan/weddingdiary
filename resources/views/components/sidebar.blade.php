@@ -3,7 +3,7 @@
     <div class="sidebar-back"></div>
     <div class="sidebar-content">
         <div class="nav-brand">
-            <a class="main-brand" href="../../html/dashboards/dashboard.html">
+            <a class="main-brand" href="{{route('showCouples')}}">
                 <h3 class="text-light text-white"><span>Wedding<strong>Diary</strong> </span></h3>
             </a>
         </div>
