@@ -211,7 +211,7 @@
 <div class="section-body">
 
 	<div class="u-flex u-flexJustifyContentEnd" style="margin-bottom: 15px;">
-		<a href="{{route('showEditCouple', ['id'=>$coupleId, 'step'=>2]) }}"><button type="button" class="btn btn-default" style="margin-bottom: 15px;">Prev</button></a>
+		<a href="{{route('showEditCouple', ['id'=>$coupleId, 'step'=>3]) }}"><button type="button" class="btn btn-default" style="margin-bottom: 15px;">Prev</button></a>
 		<a href="{{route('showEditCouple', ['id'=>$coupleId, 'step'=>5])}}"><button type="button" class="btn btn-inverse">Next</button></a> <!-- temporary -->
 	</div>
 	<div id="fileupload">
