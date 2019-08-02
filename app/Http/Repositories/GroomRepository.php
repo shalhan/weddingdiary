@@ -35,6 +35,7 @@ class GroomRepository extends Repository
         $groom->GROOM_TWITTER = isset($data["GROOM_TWITTER"]) ? $data["GROOM_TWITTER"] : "#" ;
         $groom->GROOM_INSTA = isset($data["GROOM_INSTA"]) ? $data["GROOM_INSTA"] : "#" ;
         $groom->update();
+        \Log::info($groom);
         $this->groom = $groom;
     }   
 

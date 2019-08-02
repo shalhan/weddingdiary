@@ -78,8 +78,8 @@ $('#EXPIRED_DATE').datetimepicker({
                                 <input type="text" name="GROOM_INSTA" id="GROOM_INSTA" class="form-control" placeholder=' e.g "https://instagram.com/weddingdiary"' value="{{ isset($couple->groom->GROOM_INSTA) ? $couple->groom->GROOM_INSTA : old('GROOM_INSTA') }}">
                             </div>
                             <div class="form-group">
-                                <label for="GROOM_TWTITER">Twitter</label>
-                                <input type="text" name="GROOM_TWTITER" id="GROOM_TWTITER" class="form-control" placeholder=' e.g "https://twitter.com/weddingdiary"' value="{{ isset($couple->groom->GROOM_TWTITER) ? $couple->groom->GROOM_TWTITER : old('GROOM_TWTITER') }}">
+                                <label for="GROOM_TWITTER">Twitter</label>
+                                <input type="text" name="GROOM_TWITTER" id="GROOM_TWITTER" class="form-control" placeholder=' e.g "https://twitter.com/weddingdiary"' value="{{ isset($couple->groom->GROOM_TWITTER) ? $couple->groom->GROOM_TWITTER : old('GROOM_TWITTER') }}">
                             </div>
                         </div>
                     </div>
@@ -122,8 +122,8 @@ $('#EXPIRED_DATE').datetimepicker({
                                 <input type="text" name="BRIDE_INSTA" id="BRIDE_INSTA" class="form-control" placeholder=' e.g "https://instagram.com/weddingdiary"' value="{{ isset($couple->bride->BRIDE_INSTA) ? $couple->bride->BRIDE_INSTA : old('BRIDE_INSTA') }}">
                             </div>
                             <div class="form-group">
-                                <label for="BRIDE_TWTITER">Twitter</label>
-                                <input type="text" name="BRIDE_TWTITER" id="BRIDE_TWTITER" class="form-control" placeholder=' e.g "https://twitter.com/weddingdiary"' value="{{ isset($couple->bride->BRIDE_TWTITER) ? $couple->bride->BRIDE_TWTITER : old('BRIDE_TWTITER') }}">
+                                <label for="BRIDE_TWITTER">Twitter</label>
+                                <input type="text" name="BRIDE_TWITTER" id="BRIDE_TWITTER" class="form-control" placeholder=' e.g "https://twitter.com/weddingdiary"' value="{{ isset($couple->bride->BRIDE_TWITTER) ? $couple->bride->BRIDE_TWITTER : old('BRIDE_TWITTER') }}">
                             </div>
                         </div>
                     </div>

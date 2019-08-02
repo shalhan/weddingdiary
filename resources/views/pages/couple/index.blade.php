@@ -44,6 +44,7 @@ $couples = $couples['data']['pagination'];
                         <div class="coupleCard-imageWrapper">
                             <div class="coupleCard-image" style="background-image: url('{{ $couple->coverImages[0] }}')"></div>
                             <div class="coupleCard-actionWrapper">
+                                <a href="{{ route('showCouplePreview', $couple->GUID) }}" target="_blank"><button type="button" class="btn btn-xs btn-success btn-equal" data-toggle="tooltip" data-placement="top" data-original-title="Show"><i class="fa fa-eye"></i></button></a>
                                 <a href="{{ route('showEditCouple', $couple->GUID) }}"><button type="button" class="btn btn-xs btn-inverse btn-equal" data-toggle="tooltip" data-placement="top" data-original-title="Edit"><i class="fa fa-pencil"></i></button></a>
                                 <a href="{{ route('showCouple', $couple->GUID) }}"><button type="button" class="btn btn-xs btn-default btn-equal" data-placement="top" data-original-title="Report"><i class="fa fa-file"></i></button></a>
                             </div>

@@ -29,6 +29,7 @@ class BrideRepository extends Repository
         $bride->BRIDE_TWITTER = isset($data["BRIDE_TWITTER"]) ? $data["BRIDE_TWITTER"] : "#" ;
         $bride->BRIDE_INSTA = isset($data["BRIDE_INSTA"]) ? $data["BRIDE_INSTA"] : "#" ;
         $bride->update();
+        \Log::info($bride);
         $this->bride = $bride;
     }
 

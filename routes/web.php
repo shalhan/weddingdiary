@@ -159,6 +159,20 @@ Route::group(['middleware'=> 'cors'], function() {
 /**
  * ADMIN SYSTEM
  */
+Route::get('/couples/{id}/show', function (Request $req, $id) {
+    $this->middleware('auth');
+    $vendor = Auth::user();
+    $couples = new Couple();
+    $couple = $couples->getById($id);
+    $weddings = new Wedding();
+    $messages = new Message();
+    $wedding = $weddings->getByCoupleId($couple->GUID);
+    $messages = $messages->getByCoupleId($couple->GUID);
+    $template = $couple->template;
+    $subFolder2 = $couple->SUBFOLDER2;
+    $vendorId = $couple->MSVENDOR_GUID;
+    return view('templates.template'.$couple->MSTEMPLATE_GUID, compact('couple', 'wedding', 'messages', 'template'));
+})->name('showCouplePreview');
 Route::get("/couples", "CoupleController@showIndex")->name("showCouples");
 Route::get("/couples/publish", "CoupleController@publish")->name("publish");
 Route::get("/couples/create", "CoupleController@showCreate")->name("showCreateCouple");
