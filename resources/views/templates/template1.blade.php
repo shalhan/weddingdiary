@@ -203,8 +203,8 @@
                         <span>The groom</span>
                         <h4>Mr. <?php echo $couple->groom->GROOM_REALNAME; ?></h4>
                         <ul class="social-links">
-                            <li><a><i class="fa fa-facebook"></i></a></li>
-                            <li><a><i class="fa fa-twitter"></i></a></li>
+                            <li><a target="blank" href="<?php echo $couple->groom->GROOM_FACEBOOK; ?>"><i class="fa fa-facebook"></i></a></li>
+                            <li><a target="blank" href="<?php echo $couple->groom->GROOM_TWITTER; ?>"><i class="fa fa-twitter"></i></a></li>
                             <li><a target="blank" href="<?php echo $couple->groom->GROOM_INSTA; ?>"><i class="fa fa-instagram"></i></a></li>
                         </ul>
                     </div>
@@ -224,8 +224,8 @@
                         <span>The Bride</span>
                         <h4>Mrs. <?php echo $couple->bride->BRIDE_REALNAME; ?></h4>
                         <ul class="social-links">
-                            <li><a><i class="fa fa-facebook"></i></a></li>
-                            <li><a><i class="fa fa-twitter"></i></a></li>
+                            <li><a target="blank" href="<?php echo $couple->bride->BRIDE_FACEBOOK; ?>"><i class="fa fa-facebook"></i></a></li>
+                            <li><a target="blank" href="<?php echo $couple->bride->BRIDE_TWITTER; ?>"><i class="fa fa-twitter"></i></a></li>
                             <li><a target="blank" href="<?php echo $couple->bride->BRIDE_INSTA; ?>"><i class="fa fa-instagram"></i></a></li>
                         </ul>
                     </div>

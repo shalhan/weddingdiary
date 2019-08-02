@@ -170,9 +170,9 @@
                             </span>
                             <span class="gla_news_title">The Groom <br /><strong><?php echo $couple->groom->GROOM_REALNAME; ?></strong></span>
                             <p>                            
-                            <a href="<?php echo $couple->groom->GROOM_FACEBOOK; ?>"><i class="ti ti-facebook gla_icon_box" style="margin-left:0;padding-left:0px;"></i></a>
-                            <a href="<?php echo $couple->groom->GROOM_TWITTER; ?>"><i class="ti ti-twitter gla_icon_box"></i></a>
-                            <a href="<?php echo $couple->groom->GROOM_INSTA; ?>"><i class="ti ti-instagram gla_icon_box"></i></a>
+                            <a href="<?php echo $couple->groom->GROOM_FACEBOOK; ?>" target="_blank"><i class="ti ti-facebook gla_icon_box" style="margin-left:0;padding-left:0px;"></i></a>
+                            <a href="<?php echo $couple->groom->GROOM_TWITTER; ?>" target="_blank"><i class="ti ti-twitter gla_icon_box"></i></a>
+                            <a href="<?php echo $couple->groom->GROOM_INSTA; ?>" target="_blank"><i class="ti ti-instagram gla_icon_box"></i></a>
                             
                             </p>
                         </div>
@@ -186,9 +186,9 @@
                             </span>
                             <span class="gla_news_title">The Bride <br /><strong><?php echo $couple->bride->BRIDE_REALNAME; ?></strong></span>
                             <p>                       
-                            <a href="<?php echo $couple->bride->BRIDE_FACEBOOK; ?>"><i class="ti ti-facebook gla_icon_box" style="margin-left:0;padding-left:0px;"></i></a>
-                            <a href="<?php echo $couple->bride->BRIDE_TWITTER; ?>"><i class="ti ti-twitter gla_icon_box"></i></a>
-                            <a href="<?php echo $couple->bride->BRIDE_INSTA; ?>"><i class="ti ti-instagram gla_icon_box"></i></a>
+                            <a href="<?php echo $couple->bride->BRIDE_FACEBOOK; ?>" target="_blank"><i class="ti ti-facebook gla_icon_box" style="margin-left:0;padding-left:0px;"></i></a>
+                            <a href="<?php echo $couple->bride->BRIDE_TWITTER; ?>" target="_blank"><i class="ti ti-twitter gla_icon_box"></i></a>
+                            <a href="<?php echo $couple->bride->BRIDE_INSTA; ?>" target="_blank"><i class="ti ti-instagram gla_icon_box"></i></a>
                             
                             </p>
                         </div>
