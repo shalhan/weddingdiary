@@ -49,7 +49,12 @@ class Handler extends ExceptionHandler
         if ($exception instanceof ServiceException) {
             return response()->json(['message' => $exception->getMessage()]);
         }
-        
+        if ($exception instanceof \ErrorException && app()->environment('production')) {
+            return view('errors.500', compact('exception'));
+        } else {
+            return parent::render($request, $exception);
+        }
+
         return parent::render($request, $exception);
     }
 }

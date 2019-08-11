@@ -47,8 +47,13 @@ class GroomService extends Service
         $validation = [];
         if(!isset($data["GROOM_NAME"]))
             $validation['GROOM_NAME'] = 'Groom name required';
+        else if(strlen($data["GROOM_NAME"])> 20)
+            $validation['GROOM_NAME'] = 'Groom name can\'t be more than 20 chars';
+
         if(!isset($data["GROOM_REALNAME"]))
             $validation['GROOM_REALNAME'] = 'Groom real name required';
+        else if(strlen($data["GROOM_REALNAME"])> 50)
+            $validation['GROOM_REALNAME'] = 'Groom real name can\'t be more than 50 chars';
         
         return $validation;
     }

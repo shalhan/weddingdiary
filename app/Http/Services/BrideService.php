@@ -45,8 +45,13 @@ class BrideService extends Service
         $validation = [];
         if(!isset($data["BRIDE_NAME"]))
             $validation['BRIDE_NAME'] = 'Bride name required';
+        else if(strlen($data["BRIDE_NAME"])> 20)
+            $validation['BRIDE_NAME'] = 'Bride name can\'t be more than 20 chars';
+    
         if(!isset($data["BRIDE_REALNAME"]))
             $validation['BRIDE_REALNAME'] = 'Bride real name required';
+        else if(strlen($data["BRIDE_REALNAME"])> 50)
+            $validation['BRIDE_REALNAME'] = 'Bride real name can\'t be more than 50 chars';
         
         return $validation;
     }
