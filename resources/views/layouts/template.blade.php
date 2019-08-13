@@ -31,8 +31,10 @@
                 color: #636b6f;
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
-                height: 100vh;
+                height: 100%;
                 margin: 0;
+                overflow: auto; 
+                -webkit-overflow-scrolling: touch; 
             }
             .full-height {
                 height: 100vh;
