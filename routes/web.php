@@ -42,7 +42,7 @@ Route::get('/', function (Request $req) {
         foreach($req->query() as $key => $value) {
             if($key . '=' . $value == $subFolder2) {
                 $now = strtotime('now');
-                $expiredDate = strtotime($couple->EXPIRED_DATE);
+                $expiredDate = App::environment('local') ? $now + 1000 : strtotime($couple->EXPIRED_DATE);
                 if ($now>$expiredDate)
                     abort(404);
                 visited($couple->GUID,$req->ip());
@@ -112,7 +112,7 @@ Route::group(['middleware'=> 'cors'], function() {
                     $subFolder = ['/'. $couple->SUBFOLDER, '/'.$couple->SUBFOLDER.'/'] ;
                     $subFolder2 = $couple->SUBFOLDER2;
                     $vendorId = $couple->MSVENDOR_GUID;
-                    $url = $couple->vendor->VENDOR_WEBSITE;
+                    $url = App::environment('local') ? 'http://localhost' : $couple->vendor->VENDOR_WEBSITE;
                     //check is current_url is an URL (to detact script)
                     if(!filter_var($req->current_url, FILTER_VALIDATE_URL))
                         return [
@@ -124,7 +124,7 @@ Route::group(['middleware'=> 'cors'], function() {
                     //change in server
                     $currentUrlFull = $currentUrl['scheme'] . '://' . $currentUrl['host'];
                     //check are current_url and path in database exist?
-                    if($currentUrlFull === $url && in_array($currentUrl['path'],$subFolder))
+                    if($currentUrlFull === $url && in_array($currentUrl['path'],$subFolder)) {
                         return [
                             'code' => 1,
                             'msg' => 'Url is valid',
@@ -132,6 +132,7 @@ Route::group(['middleware'=> 'cors'], function() {
                                 'query' => $subFolder2
                             ]
                         ];
+                    }
                     else 
                         return [
                             'code' => 0,

@@ -5,7 +5,7 @@
 
 		<!-- BEGIN META -->
 		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 		<meta name="keywords" content="wedding, photography, wedding photography, wedding photographer">
 		<meta name="description" content="Wedding diary is a website for wedding photographer to publish their works">
 		<!-- END META -->
