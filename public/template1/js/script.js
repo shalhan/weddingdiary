@@ -111,7 +111,6 @@
     function preloader() {
         if($('.preloader').length) {
             $('.preloader').delay(100).fadeOut(500, function() {
-
                 //active wow
                 wow.init();
             });
@@ -186,7 +185,8 @@
         animateClass: 'animated', // default
         offset:       0,          // default
         mobile:       true,       // default
-        live:         true        // default
+        live:         true,        // default
+        scrollContainer: 'body'
     });
 
 
