@@ -220,23 +220,42 @@
                     right: 0
                 });
             }
-
             eventBoxes.appear();
-            $(document.body).on('appear', '.event-boxes', function() {
-                if (!leftHalf.hasClass('appeared') || rightHalf.hasClass("appeared")) {
-                    leftHalf.addClass('appeared slideOutLeft');
-                    rightHalf.addClass('appeared slideOutRight');
-                    clip.addClass('appeared clip-fade-out');
-                }
-            });
+            var event_fired = false;
 
-            $(document.body).on('disappear', '.event-boxes', function() {
-                if (rightHalf.hasClass('appeared') || leftHalf.hasClass('appeared')) {
-                    rightHalf.removeClass('appeared slideOutRight');
-                    leftHalf.removeClass('appeared slideOutLeft');
-                    clip.removeClass('appeared clip-fade-out');
+            $("body").scroll(function() {
+                if( $(".event-boxes").offset().top <= ( $(this).offset().top + $(this).height() ) && !event_fired ){
+                    if (!leftHalf.hasClass('appeared') || rightHalf.hasClass("appeared")) {
+                        leftHalf.addClass('appeared slideOutLeft');
+                        rightHalf.addClass('appeared slideOutRight');
+                        clip.addClass('appeared clip-fade-out');
+                    }
+                    event_fired = true;
+                } else if ( $(".event-boxes").offset().top > ( $(this).offset().top + $(this).height() ) ){
+                    if (rightHalf.hasClass('appeared') || leftHalf.hasClass('appeared')) {
+                        rightHalf.removeClass('appeared slideOutRight');
+                        leftHalf.removeClass('appeared slideOutLeft');
+                        clip.removeClass('appeared clip-fade-out');
+                    }
+                    event_fired = false;
                 }
-            });
+            })
+            // $(document.body).on('appear', '.event-boxes', function() {
+            //     alert('halo')
+            //     if (!leftHalf.hasClass('appeared') || rightHalf.hasClass("appeared")) {
+            //         leftHalf.addClass('appeared slideOutLeft');
+            //         rightHalf.addClass('appeared slideOutRight');
+            //         clip.addClass('appeared clip-fade-out');
+            //     }
+            // });
+
+            // $(document.body).on('disappear', '.event-boxes', function() {
+            //     if (rightHalf.hasClass('appeared') || leftHalf.hasClass('appeared')) {
+            //         rightHalf.removeClass('appeared slideOutRight');
+            //         leftHalf.removeClass('appeared slideOutLeft');
+            //         clip.removeClass('appeared clip-fade-out');
+            //     }
+            // });
         };
     }
 
