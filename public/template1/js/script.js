@@ -225,14 +225,16 @@
 
             $("body").scroll(function() {
                 if( $(".event-boxes").offset().top <= ( $(this).offset().top + $(this).height() ) && !event_fired ){
-                    if (!leftHalf.hasClass('appeared') || rightHalf.hasClass("appeared")) {
+                    
+		   if (!leftHalf.hasClass('appeared') || rightHalf.hasClass("appeared")) {
                         leftHalf.addClass('appeared slideOutLeft');
                         rightHalf.addClass('appeared slideOutRight');
                         clip.addClass('appeared clip-fade-out');
                     }
                     event_fired = true;
                 } else if ( $(".event-boxes").offset().top > ( $(this).offset().top + $(this).height() ) ){
-                    if (rightHalf.hasClass('appeared') || leftHalf.hasClass('appeared')) {
+                   
+ if (rightHalf.hasClass('appeared') || leftHalf.hasClass('appeared')) {
                         rightHalf.removeClass('appeared slideOutRight');
                         leftHalf.removeClass('appeared slideOutLeft');
                         clip.removeClass('appeared clip-fade-out');

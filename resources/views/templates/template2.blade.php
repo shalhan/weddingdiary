@@ -234,7 +234,16 @@
                             <span class="gla_news_img">
                                 <span class="gla_over" data-image="{{$wedding->getWeddingStylePic()}}"></span>    
                             </span>
-                            <span class="gla_news_title">Holy Matrimony</span>                            
+                            <span class="gla_news_title">
+
+                            <?php 
+                            if($wedding->WEDDING_STYLE == 3) { 
+                                echo "Akad Nikah";
+                            } else {
+                                echo "Holy Matrymony";
+                            }
+                            ?>
+                            </span>                            
                             <p><strong><?php echo date("D, d M Y", strtotime($wedding->WEDDING_MATRIMONY_TIME)); ?><br /><?php echo date("H:i", strtotime($wedding->WEDDING_MATRIMONY_TIME)) . " $wedding->WEDDING_MATRIMONY_TIMEZONE"; ?></strong><br />
                             <?php echo $wedding->WEDDING_MATRIMONY_VENUE; ?><br />
                             <?php echo $wedding->WEDDING_MATRIMONY_ADDRESS; ?>                            
@@ -438,7 +447,7 @@
                         
             <div class="container" style="padding-top:50px;">
        
-                <h2>Wonderful Partners</h2>
+                <h2>Wedding Partners</h2>
                
                
                 <!-- icon boxes -->

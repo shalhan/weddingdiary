@@ -25,6 +25,9 @@
     .couple .details .social-links {
     margin-top: 0px;
     }
+    .wow {
+        visibility: visible !important;
+    }
     </style>
 @endpush
 
@@ -320,19 +323,9 @@
     <div class="container">
         <div class="row">
             <div class="col col-md-8 col-md-offset-2">
-                <div class="bquotes-slider">
-                    <div class="item">
-                        <div class="text">
-                            <p>I just want you to know, that when I picture myself happy, it's with You</p>
-                        </div>
-
-                    </div>
-                    <div class="item">
-                        <div class="text">
-                            <p>When You are with me, You make Me Perfect.</p>
-                        </div>
-
-                    </div>
+                <div class="bquotes-slider" style="height:250px;">
+                	
+                   
                 </div>
             </div>
         </div>
@@ -526,7 +519,7 @@
                     <i class="fi flaticon-social"></i>
                     <i class="fi flaticon-social"></i>
                 </div>
-                <h2>Wonderful <br />Partners</h2>
+                <h2>Wedding <br />Partners</h2>
                 <div class="double-line double-line-bottom"></div>
             </div>
         </div> <!-- end of section-title -->
@@ -567,7 +560,7 @@
                     <p class="wow fadeInSlow"><?php echo $couple->groom->GROOM_NAME; ?> &amp; <?php echo $couple->bride->BRIDE_NAME ?></p>
                     <span class="wow fadeInSlow"><?php echo dateFormat($wedding->WEDDING_MATRIMONY_TIME); ?></span>
                 </div>
-                <p class="copyright">&copy; Copyright 2018. <?php echo $couple->vendor->VENDOR_NAME; ?></p>
+                <p class="copyright">&copy; Copyright <?php echo date("Y"); ?>. <?php echo $couple->vendor->VENDOR_NAME; ?></p>
             </div>
         </div>
     </div>

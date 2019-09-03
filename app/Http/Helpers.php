@@ -60,7 +60,15 @@ function getClientMeta($defaultIp) {
     } elseif(preg_match('/Netscape/i',$u_agent)) {
       $bname = 'Netscape';
       $ub = "Netscape";
-    }
+    } 
+elseif(preg_match('/Mozilla/i',$u_agent)) {
+$bname = 'Mozilla';
+$ub = 'Mozilla';
+}
+else {
+	$bname = $u_agent;
+	$ub = $u_agent;    
+}
     // finally get the correct version number
     $known = array('Version', $ub, 'other');
     $pattern = '#(?<browser>' . join('|', $known) . ')[/ ]+(?<version>[0-9.|a-zA-Z.]*)#';
@@ -73,12 +81,12 @@ function getClientMeta($defaultIp) {
       //we will have two since we are not using 'other' argument yet
       //see if version is before or after the name
       if (strripos($u_agent,"Version") < strripos($u_agent,$ub)){
-        $version= $matches['version'][0];
+        $version= $matches['version'] ?  $matches['version'][0] : 'undefined';
       } else {
-        $version= $matches['version'][1];
+        $version= $matches['version'] ?  $matches['version'][1] : 'undefined';
       }
     } else {
-      $version= $matches['version'][0];
+      $version= $matches['version'] ?  $matches['version'][0] : 'undefined';
     }
     // check if we have a number
     if ($version==null || $version=="") {$version="?";}
